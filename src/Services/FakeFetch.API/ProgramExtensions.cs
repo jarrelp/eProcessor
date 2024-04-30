@@ -55,7 +55,7 @@ public static class ProgramExtensions
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<IEventBus, DaprEventBus>();
-        builder.Services.AddScoped<IOracleFetchRepository, OracleFetchRepository>();
+        // builder.Services.AddScoped<IOracleFetchRepository, OracleFetchRepository>();
         builder.Services.AddScoped<IOracleFetchService, OracleFetchService>();
     }
 
@@ -63,6 +63,7 @@ public static class ProgramExtensions
     {
         builder.Services.AddDbContext<OracleTestDbContext>(
             options => options.UseSqlServer(builder.Configuration["ConnectionStrings:OracleTestDB"]!));
+        // options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     }
 
     public static void ApplyDatabaseMigration(this WebApplication app)

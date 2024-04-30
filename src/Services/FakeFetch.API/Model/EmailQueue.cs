@@ -16,7 +16,7 @@ public class EmailQueue
   public int EmailQueueId { get; set; }
 
   public int EmailTemplateId { get; set; }
-  public EmailTemplate EmailTemplate { get; set; }
+  public EmailTemplate EmailTemplate { get; set; } = null!;
 
   // Constructor
   // public EmailQueue(string subject, int attempts, bool sent, int companyId, string sendAt, string email, string isoLanguage, string xslName, string xmlData, int emailQueueId)
@@ -33,11 +33,12 @@ public class EmailQueue
   //   EmailQueueId = emailQueueId;
   // }
 
-  public EmailQueue(int emailQueueId, string xslName, string email)
+  public EmailQueue(int emailQueueId, string xslName, string email, int emailTemplateId)
   {
     EmailQueueId = emailQueueId;
     XslName = xslName;
     Email = email;
+    EmailTemplateId = emailTemplateId;
   }
 }
 
