@@ -1,7 +1,7 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: sendmail
+  name: eprocessor-sendmail
   namespace: eprocessor
 spec:
   type: bindings.smtp

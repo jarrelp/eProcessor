@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..\..</DockerfileContext>
-    <RootNamespace>Ecmanage.eProcessor.Web.WebStatus</RootNamespace>
+    <RootNamespace>Ecmanage.eProcessor.Web.Webstatus</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

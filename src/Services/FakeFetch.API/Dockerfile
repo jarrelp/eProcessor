@@ -16,13 +16,13 @@ COPY ["eProcessor.sln", "./"]
 RUN dotnet restore "eProcessor.sln"
 
 COPY . .
-WORKDIR "/src/src/Web/Webstatus"
-# RUN dotnet build "Webstatus.csproj" -c Release -o /app/build
+WORKDIR "/src/src/Services/FakeFetch.API"
+# RUN dotnet build "FakeFetch.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish --no-restore "Webstatus.csproj" -c Release -o /app/publish
+RUN dotnet publish --no-restore "FakeFetch.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Webstatus.dll"]
+ENTRYPOINT ["dotnet", "FakeFetch.API.dll"]

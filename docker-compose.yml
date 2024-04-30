@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  maildev:
+    image: maildev/maildev:latest
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  redis:
+    image: redis:alpine
+
+  seq:
+    image: datalust/seq:latest
+
+  # Use the Azure SQL Edge version so we can also run on Apple Sillicon (thanks @ChristianWeyer)
+  sqldata:
+    image: mcr.microsoft.com/azure-sql-edge
+
+  zipkin:
+    image: openzipkin/zipkin-slim:latest
+
+  fake-fetch-api:
+    image: ${REGISTRY:-eprocessor}/fake-fetch.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/FakeFetch.API/Dockerfile
+    depends_on:
+      - sqldata
+
+  fake-fetch-api-dapr:
+    image: 'daprio/daprd:1.9.4'
+    network_mode: 'service:fake-fetch-api'
+    depends_on:
+      - fake-fetch-api
+
+  webstatus:
+    image: ${REGISTRY:-eprocessor}/webstatus:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/Webstatus/Dockerfile
+
+  dapr-placement:
+    image: 'daprio/dapr:1.9.4'
