@@ -11,6 +11,11 @@ builder.AddCustomDatabase();
 builder.Services.AddDaprClient();
 builder.Services.AddControllers();
 
+// builder.Services.AddDbContext<OracleTestDbContext>(options =>
+// {
+//     options.UseSqlServer();
+// });
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

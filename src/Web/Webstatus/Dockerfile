@@ -7,9 +7,14 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:${NET_IMAGE} AS build
 WORKDIR /src
 
-# Create this "restore-solution" section by running ./Create-DockerfileSolutionRestore.ps1, to optimize build cache reuse
 COPY ["src/BuildingBlocks/EventBus/EventBus.csproj", "src/BuildingBlocks/EventBus/"]
 COPY ["src/BuildingBlocks/Healthchecks/Healthchecks.csproj", "src/BuildingBlocks/Healthchecks/"]
+
+COPY ["src/Services/Fetch.API/src/Web/Web.csproj", "src/Services/Fetch.API/src/Web/"]
+COPY ["src/Services/Fetch.API/src/Infrastructure/Infrastructure.csproj", "src/Services/Fetch.API/src/Infrastructure/"]
+COPY ["src/Services/Fetch.API/src/Domain/Domain.csproj", "src/Services/Fetch.API/src/Domain/"]
+COPY ["src/Services/Fetch.API/src/Application/Application.csproj", "src/Services/Fetch.API/src/Application/"]
+
 COPY ["src/Services/FakeFetch.API/FakeFetch.API.csproj", "src/Services/FakeFetch.API/"]
 COPY ["src/Web/Webstatus/Webstatus.csproj", "src/Web/Webstatus/"]
 COPY ["eProcessor.sln", "./"]

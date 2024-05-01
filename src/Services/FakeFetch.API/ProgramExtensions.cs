@@ -55,14 +55,17 @@ public static class ProgramExtensions
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<IEventBus, DaprEventBus>();
-        // builder.Services.AddScoped<IOracleFetchRepository, OracleFetchRepository>();
+        builder.Services.AddScoped<IOracleFetchRepository, OracleFetchRepository>();
         builder.Services.AddScoped<IOracleFetchService, OracleFetchService>();
     }
 
     public static void AddCustomDatabase(this WebApplicationBuilder builder)
     {
         builder.Services.AddDbContext<OracleTestDbContext>(
-            options => options.UseSqlServer(builder.Configuration["ConnectionStrings:OracleTestDB"]!));
+            options => options.UseSqlServer(
+                // "Server=(localdb)\\mssqllocaldb;Database=OracleFakeDB;Trusted_Connection=True;"
+                builder.Configuration["ConnectionStrings:OracleTestDB"]!
+                ));
         // options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     }
 

@@ -22,7 +22,6 @@ global using Ecmanage.eProcessor.Services.FakeFetch.API.ViewModel.EmailTemplates
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Diagnostics.HealthChecks;
-global using Microsoft.Extensions.FileProviders;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.OpenApi.Models;
 global using Polly;

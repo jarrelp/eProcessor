@@ -6,7 +6,7 @@ public class EmailQueueEntityTypeConfiguration : IEntityTypeConfiguration<EmailQ
   {
     builder.ToTable("EmailQueue");
 
-    builder.HasKey(emailQueue => emailQueue.EmailQueueId);
+    builder.HasKey(emailQueue => emailQueue.Id);
 
     builder.HasOne(e => e.EmailTemplate)
     .WithOne()

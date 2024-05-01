@@ -22,7 +22,7 @@ public class OracleFetchService : IOracleFetchService
             {
                 Email = emailQueue.Email,
                 XslName = emailQueue.XslName,
-                EmailQueueId = emailQueue.EmailQueueId,
+                EmailQueueId = emailQueue.Id,
                 EmailTemplateId = emailQueue.EmailTemplateId,
                 EmailTemplate = MapToDto(emailQueue.EmailTemplate)
             };
@@ -46,7 +46,7 @@ public class OracleFetchService : IOracleFetchService
         {
             Email = emailQueue.Email,
             XslName = emailQueue.XslName,
-            EmailQueueId = emailQueue.EmailQueueId,
+            EmailQueueId = emailQueue.Id,
             EmailTemplateId = emailQueue.EmailTemplateId,
             EmailTemplate = MapToDto(emailQueue.EmailTemplate)
         };

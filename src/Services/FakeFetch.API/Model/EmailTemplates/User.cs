@@ -2,16 +2,16 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates;
 
 public class User : EmailTemplate
 {
-    public string ImageHeader { get; set; }
-    public string Email { get; set; }
-    public string FullName { get; set; }
-    public string UserName { get; set; }
+    public string ImageHeader { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string FullName { get; set; } = string.Empty;
+    public string UserName { get; set; } = string.Empty;
 
-    public string Password { get; set; }
+    public string Password { get; set; } = string.Empty;
 
-    public string Company { get; set; }
+    public string Company { get; set; } = string.Empty;
 
-    public string Url { get; set; }
+    public string Url { get; set; } = string.Empty;
 
     // Constructor
     public User(int id, string imageHeader, string email, string fullName, string userName, string password, string company, string url) : base(id)

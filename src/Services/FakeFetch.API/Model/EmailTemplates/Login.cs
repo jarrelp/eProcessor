@@ -2,10 +2,10 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates;
 
 public class Login : EmailTemplate
 {
-    public string FullName { get; set; }
-    public string Environment { get; set; }
-    public string Date { get; set; }
-    public string Time { get; set; }
+    public string FullName { get; set; } = string.Empty;
+    public string Environment { get; set; } = string.Empty;
+    public string Date { get; set; } = string.Empty;
+    public string Time { get; set; } = string.Empty;
 
     public Login(int id, string fullName, string environment,
     // string ipAddress, 

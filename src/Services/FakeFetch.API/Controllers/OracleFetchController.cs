@@ -61,7 +61,7 @@ public class OracleFetchController : ControllerBase
 
   //     await _eventBus.PublishAsync(emailTemplate);
 
-  //     return CreatedAtAction(nameof(GetEmailQueueById), new { id = emailQueue.EmailQueueId }, emailQueue);
+  //     return CreatedAtAction(nameof(GetEmailQueueById), new { id = emailQueue.Id }, emailQueue);
   //   }
   //   catch (Exception ex)
   //   {
@@ -74,7 +74,7 @@ public class OracleFetchController : ControllerBase
   {
     try
     {
-      if (id != emailQueue.EmailQueueId)
+      if (id != emailQueue.Id)
       {
         return BadRequest("ID mismatch");
       }

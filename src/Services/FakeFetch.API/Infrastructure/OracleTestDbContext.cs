@@ -1,15 +1,15 @@
 namespace Ecmanage.eProcessor.Services.FakeFetch.API.Infrastructure;
 public class OracleTestDbContext : DbContext
 {
+  public OracleTestDbContext(DbContextOptions<OracleTestDbContext> options)
+      : base(options)
+  { }
+
   public DbSet<EmailQueue> EmailQueues => Set<EmailQueue>();
   public DbSet<Login> Logins => Set<Login>();
   public DbSet<Overdue> Overdues => Set<Overdue>();
   public DbSet<Report> Reports => Set<Report>();
   public DbSet<User> Users => Set<User>();
-
-  public OracleTestDbContext(DbContextOptions<OracleTestDbContext> options)
-      : base(options)
-  { }
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
