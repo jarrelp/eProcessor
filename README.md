@@ -21,3 +21,7 @@ dotnet ef migrations add "SampleMigration" --project src\Infrastructure --startu
 dotnet ef migrations remove --project src\Infrastructure --startup-project src\Web
 
 dotnet ef database update --project src\Infrastructure --startup-project src\Web
+
+web:
+cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch.API\src\Web
+dapr run --app-id web dotnet run

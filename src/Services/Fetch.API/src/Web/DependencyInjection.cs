@@ -6,8 +6,6 @@ public static class DependencyInjection
     {
         services.AddDatabaseDeveloperPageExceptionFilter();
 
-        services.AddHttpContextAccessor();
-
         services.AddControllers();
 
         services.AddDaprClient();

@@ -1,6 +1,8 @@
 using Ecmanage.eProcessor.Services.Fetch.API;
 using Ecmanage.eProcessor.Services.Fetch.API.Infrastructure.Data;
 
+var appName = "Fetch API";
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices();
@@ -15,20 +17,30 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseCustomSwagger();
-    await app.InitialiseDatabaseAsync();
 }
 
 app.UseCloudEvents();
-app.UseRouting();
+// app.UseRouting();
 
 app.MapGet("/", () => Results.LocalRedirect("~/swagger"));
 app.MapControllers();
 app.MapSubscribeHandler();
 app.MapCustomHealthChecks("/hc", "/liveness", UIResponseWriter.WriteHealthCheckUIResponse);
 
-app.Run();
+try
+{
+    app.Logger.LogInformation("Applying database migration ({ApplicationName})...", appName);
+    await app.InitialiseDatabaseAsync();
 
+    app.Logger.LogInformation("Starting web host ({ApplicationName})...", appName);
+    app.Run();
+}
+catch (Exception ex)
+{
+    app.Logger.LogCritical(ex, "Host terminated unexpectedly ({ApplicationName})...", appName);
+}
 
 // var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
