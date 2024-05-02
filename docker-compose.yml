@@ -34,17 +34,17 @@ services:
     depends_on:
       - fake-fetch-api
 
-  web:
-    image: ${REGISTRY:-eprocessor}/web:${TAG:-latest}
+  fetch-api:
+    image: ${REGISTRY:-eprocessor}/fetch.api:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Services/Fetch.API/src/Web/Dockerfile
+      dockerfile: src/Services/Fetch/src/Fetch.API/Dockerfile
 
-  web-dapr:
+  fetch-api-dapr:
     image: 'daprio/daprd:1.9.4'
-    network_mode: 'service:web'
+    network_mode: 'service:fetch-api'
     depends_on:
-      - web
+      - fetch-api
 
   webstatus:
     image: ${REGISTRY:-eprocessor}/webstatus:${TAG:-latest}

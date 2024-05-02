@@ -66,7 +66,7 @@ services:
       - './dapr/components/:/components'
       - './dapr/configuration/:/configuration'
 
-  web:
+  fetch-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
@@ -74,12 +74,12 @@ services:
       - '5153:80'
       - '50153:50152'
 
-  web-dapr:
+  fetch-api-dapr:
     command:
       [
         './daprd',
         '-app-id',
-        'web',
+        'fetch-api',
         '-app-port',
         '80',
         '-components-path',
@@ -96,8 +96,8 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - HealthChecksUI__HealthChecks__1__Name=Fake Fetch API
       - HealthChecksUI__HealthChecks__1__Uri=http://fake-fetch-api/hc
-      - HealthChecksUI__HealthChecks__2__Name=Web
-      - HealthChecksUI__HealthChecks__2__Uri=http://web/hc
+      - HealthChecksUI__HealthChecks__2__Name=Fetch API
+      - HealthChecksUI__HealthChecks__2__Uri=http://fetch-api/hc
     ports:
       - '5107:80'
 

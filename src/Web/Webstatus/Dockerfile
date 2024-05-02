@@ -10,10 +10,10 @@ WORKDIR /src
 COPY ["src/BuildingBlocks/EventBus/EventBus.csproj", "src/BuildingBlocks/EventBus/"]
 COPY ["src/BuildingBlocks/Healthchecks/Healthchecks.csproj", "src/BuildingBlocks/Healthchecks/"]
 
-COPY ["src/Services/Fetch.API/src/Web/Web.csproj", "src/Services/Fetch.API/src/Web/"]
-COPY ["src/Services/Fetch.API/src/Infrastructure/Infrastructure.csproj", "src/Services/Fetch.API/src/Infrastructure/"]
-COPY ["src/Services/Fetch.API/src/Domain/Domain.csproj", "src/Services/Fetch.API/src/Domain/"]
-COPY ["src/Services/Fetch.API/src/Application/Application.csproj", "src/Services/Fetch.API/src/Application/"]
+COPY ["src/Services/Fetch/src/Fetch.API/Fetch.API.csproj", "src/Services/Fetch/src/Fetch.API/"]
+COPY ["src/Services/Fetch/src/Fetch.Infrastructure/Fetch.Infrastructure.csproj", "src/Services/Fetch/src/Fetch.Infrastructure/"]
+COPY ["src/Services/Fetch/src/Fetch.Domain/Fetch.Domain.csproj", "src/Services/Fetch/src/Fetch.Domain/"]
+COPY ["src/Services/Fetch/src/Fetch.Application/Fetch.Application.csproj", "src/Services/Fetch/src/Fetch.Application/"]
 
 COPY ["src/Services/FakeFetch.API/FakeFetch.API.csproj", "src/Services/FakeFetch.API/"]
 COPY ["src/Web/Webstatus/Webstatus.csproj", "src/Web/Webstatus/"]

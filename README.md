@@ -14,14 +14,14 @@
 
 migration:
 
-cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch.API
+cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch
 
-dotnet ef migrations add "SampleMigration" --project src\Infrastructure --startup-project src\Web --output-dir Data\Migrations
+dotnet ef migrations add "SampleMigration" --project src\Infrastructure --startup-project src\Fetch.API --output-dir Data\Migrations
 
-dotnet ef migrations remove --project src\Infrastructure --startup-project src\Web
+dotnet ef migrations remove --project src\Infrastructure --startup-project src\Fetch.API
 
-dotnet ef database update --project src\Infrastructure --startup-project src\Web
+dotnet ef database update --project src\Infrastructure --startup-project src\Fetch.API
 
-web:
-cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch.API\src\Web
-dapr run --app-id web dotnet run
+fetch-api:
+cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch\src\Fetch.API
+dapr run --app-id fetch-api dotnet run
