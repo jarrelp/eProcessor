@@ -46,6 +46,18 @@ services:
     depends_on:
       - fake-fetch-api
 
+  fake-fetch-ca-api:
+    image: ${REGISTRY:-eprocessor}/fake-fetch-ca.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/FakeFetch/FakeFetch.API/Dockerfile
+
+  fake-fetch-ca-api-dapr:
+    image: 'daprio/daprd:1.9.4'
+    network_mode: 'service:fake-fetch-ca-api'
+    depends_on:
+      - fake-fetch-ca-api
+
   fetch-api:
     image: ${REGISTRY:-eprocessor}/fetch.api:${TAG:-latest}
     build:
