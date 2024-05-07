@@ -10,10 +10,15 @@ WORKDIR /src
 COPY ["src/BuildingBlocks/EventBus/EventBus.csproj", "src/BuildingBlocks/EventBus/"]
 COPY ["src/BuildingBlocks/Healthchecks/Healthchecks.csproj", "src/BuildingBlocks/Healthchecks/"]
 
-COPY ["src/Services/Fetch/src/Fetch.API/Fetch.API.csproj", "src/Services/Fetch/src/Fetch.API/"]
-COPY ["src/Services/Fetch/src/Fetch.Infrastructure/Fetch.Infrastructure.csproj", "src/Services/Fetch/src/Fetch.Infrastructure/"]
-COPY ["src/Services/Fetch/src/Fetch.Domain/Fetch.Domain.csproj", "src/Services/Fetch/src/Fetch.Domain/"]
-COPY ["src/Services/Fetch/src/Fetch.Application/Fetch.Application.csproj", "src/Services/Fetch/src/Fetch.Application/"]
+COPY ["src/BuildingBlocks/BuildingBlocks/API/API.csproj", "src/BuildingBlocks/BuildingBlocks/API/"]
+COPY ["src/BuildingBlocks/BuildingBlocks/Application/Application.csproj", "src/BuildingBlocks/BuildingBlocks/Application/"]
+COPY ["src/BuildingBlocks/BuildingBlocks/Infrastructure/Infrastructure.csproj", "src/BuildingBlocks/BuildingBlocks/Infrastructure/"]
+COPY ["src/BuildingBlocks/BuildingBlocks/Domain/Domain.csproj", "src/BuildingBlocks/BuildingBlocks/Domain/"]
+
+COPY ["src/Services/Fetch/Fetch.API/Fetch.API.csproj", "src/Services/Fetch/Fetch.API/"]
+COPY ["src/Services/Fetch/Fetch.Infrastructure/Fetch.Infrastructure.csproj", "src/Services/Fetch/Fetch.Infrastructure/"]
+COPY ["src/Services/Fetch/Fetch.Domain/Fetch.Domain.csproj", "src/Services/Fetch/Fetch.Domain/"]
+COPY ["src/Services/Fetch/Fetch.Application/Fetch.Application.csproj", "src/Services/Fetch/Fetch.Application/"]
 
 COPY ["src/Services/FakeFetch.API/FakeFetch.API.csproj", "src/Services/FakeFetch.API/"]
 COPY ["src/Web/Webstatus/Webstatus.csproj", "src/Web/Webstatus/"]

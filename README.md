@@ -23,5 +23,5 @@ dotnet ef migrations remove --project src\Infrastructure --startup-project src\F
 dotnet ef database update --project src\Infrastructure --startup-project src\Fetch.API
 
 fetch-api:
-cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch\src\Fetch.API
+cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch\Fetch.API
 dapr run --app-id fetch-api dotnet run

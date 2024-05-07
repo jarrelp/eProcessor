@@ -70,6 +70,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
+      - SeqServerUrl=http://seq
     ports:
       - '5153:80'
       - '50153:50152'

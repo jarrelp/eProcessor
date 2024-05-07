@@ -63,10 +63,8 @@ public static class ProgramExtensions
     {
         builder.Services.AddDbContext<OracleTestDbContext>(
             options => options.UseSqlServer(
-                // "Server=(localdb)\\mssqllocaldb;Database=OracleFakeDB;Trusted_Connection=True;"
                 builder.Configuration["ConnectionStrings:OracleTestDB"]!
                 ));
-        // options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     }
 
     public static void ApplyDatabaseMigration(this WebApplication app)

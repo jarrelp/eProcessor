@@ -38,7 +38,7 @@ services:
     image: ${REGISTRY:-eprocessor}/fetch.api:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Services/Fetch/src/Fetch.API/Dockerfile
+      dockerfile: src/Services/Fetch/Fetch.API/Dockerfile
 
   fetch-api-dapr:
     image: 'daprio/daprd:1.9.4'
