@@ -15,6 +15,11 @@ COPY ["src/BuildingBlocks/BuildingBlocks/Application/Application.csproj", "src/B
 COPY ["src/BuildingBlocks/BuildingBlocks/Infrastructure/Infrastructure.csproj", "src/BuildingBlocks/BuildingBlocks/Infrastructure/"]
 COPY ["src/BuildingBlocks/BuildingBlocks/Domain/Domain.csproj", "src/BuildingBlocks/BuildingBlocks/Domain/"]
 
+COPY ["src/Services/Todo/Todo.API/Todo.API.csproj", "src/Services/Todo/Todo.API/"]
+COPY ["src/Services/Todo/Todo.Infrastructure/Todo.Infrastructure.csproj", "src/Services/Todo/Todo.Infrastructure/"]
+COPY ["src/Services/Todo/Todo.Domain/Todo.Domain.csproj", "src/Services/Todo/Todo.Domain/"]
+COPY ["src/Services/Todo/Todo.Application/Todo.Application.csproj", "src/Services/Todo/Todo.Application/"]
+
 COPY ["src/Services/Fetch/Fetch.API/Fetch.API.csproj", "src/Services/Fetch/Fetch.API/"]
 COPY ["src/Services/Fetch/Fetch.Infrastructure/Fetch.Infrastructure.csproj", "src/Services/Fetch/Fetch.Infrastructure/"]
 COPY ["src/Services/Fetch/Fetch.Domain/Fetch.Domain.csproj", "src/Services/Fetch/Fetch.Domain/"]

@@ -1,11 +1,11 @@
 // Only use in this file to avoid conflicts with Microsoft.Extensions.Logging
 using Serilog;
 
-namespace Ecmanage.eProcessor.Services.Fetch;
+namespace Ecmanage.eProcessor.Services.Todo;
 
 public static class ProgramExtensions
 {
-    private const string AppName = "Fetch API";
+    private const string AppName = "Todo API";
 
     public static void AddCustomConfiguration(this WebApplicationBuilder builder)
     {
@@ -49,9 +49,9 @@ public static class ProgramExtensions
             .AddCheck("self", () => HealthCheckResult.Healthy())
             .AddDapr()
             .AddSqlite(
-                builder.Configuration["ConnectionStrings:FetchDB"]!,
-                name: "FetchDb-check",
-                tags: new[] { "fetchdb" });
+                builder.Configuration["ConnectionStrings:TodoDB"]!,
+                name: "TodoDb-check",
+                tags: new[] { "tododb" });
 
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {

@@ -20,6 +20,18 @@ services:
   zipkin:
     image: openzipkin/zipkin-slim:latest
 
+  todo-api:
+    image: ${REGISTRY:-eprocessor}/todo.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Todo/Todo.API/Dockerfile
+
+  todo-api-dapr:
+    image: 'daprio/daprd:1.9.4'
+    network_mode: 'service:todo-api'
+    depends_on:
+      - todo-api
+
   fake-fetch-api:
     image: ${REGISTRY:-eprocessor}/fake-fetch.api:${TAG:-latest}
     build:

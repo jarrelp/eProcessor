@@ -1,6 +1,6 @@
 ﻿using Ecmanage.eProcessor.BuildingBlocks.BuildingBlocks.Infrastructure.Interceptors;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Interfaces;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Infrastructure.Data;
+using Ecmanage.eProcessor.Services.Todo.Todo.Application.Common.Interfaces;
+using Ecmanage.eProcessor.Services.Todo.Todo.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +11,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration["ConnectionStrings:FetchDB"]!;
+        var connectionString = configuration["ConnectionStrings:TodoDB"]!;
 
         Guard.Against.Null(connectionString, message: "Connection string 'DefaultConnection' not found.");
 
