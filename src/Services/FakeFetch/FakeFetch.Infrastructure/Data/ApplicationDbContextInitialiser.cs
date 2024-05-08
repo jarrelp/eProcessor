@@ -16,7 +16,7 @@ public static class InitialiserExtensions
 
         await initialiser.InitialiseAsync();
 
-        await initialiser.SeedAsync();
+        // await initialiser.SeedAsync();
     }
 }
 
@@ -44,38 +44,38 @@ public class ApplicationDbContextInitialiser
         }
     }
 
-    public async Task SeedAsync()
-    {
-        try
-        {
-            await TrySeedAsync();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred while seeding the database.");
-            throw;
-        }
-    }
+    // public async Task SeedAsync()
+    // {
+    //     try
+    //     {
+    //         await TrySeedAsync();
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         _logger.LogError(ex, "An error occurred while seeding the database.");
+    //         throw;
+    //     }
+    // }
 
-    public async Task TrySeedAsync()
-    {
-        // Default data
-        // Seed, if necessary
-        if (!_context.FakeFetchLists.Any())
-        {
-            _context.FakeFetchLists.Add(new FakeFetchList
-            {
-                Title = "FakeFetch List",
-                Items =
-                {
-                    new FakeFetchItem { Title = "Make a FakeFetch list 📃" },
-                    new FakeFetchItem { Title = "Check off the first item ✅" },
-                    new FakeFetchItem { Title = "Realise you've already done two things on the list! 🤯"},
-                    new FakeFetchItem { Title = "Reward yourself with a nice, long nap 🏆" },
-                }
-            });
+    // public async Task TrySeedAsync()
+    // {
+    //     // Default data
+    //     // Seed, if necessary
+    //     if (!_context.FakeFetchLists.Any())
+    //     {
+    //         _context.FakeFetchLists.Add(new FakeFetchList
+    //         {
+    //             Title = "FakeFetch List",
+    //             Items =
+    //             {
+    //                 new FakeFetchItem { Title = "Make a FakeFetch list 📃" },
+    //                 new FakeFetchItem { Title = "Check off the first item ✅" },
+    //                 new FakeFetchItem { Title = "Realise you've already done two things on the list! 🤯"},
+    //                 new FakeFetchItem { Title = "Reward yourself with a nice, long nap 🏆" },
+    //             }
+    //         });
 
-            await _context.SaveChangesAsync();
-        }
-    }
+    //         await _context.SaveChangesAsync();
+    //     }
+    // }
 }

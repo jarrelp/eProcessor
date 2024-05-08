@@ -25,3 +25,5 @@ dotnet ef database update --project src\Infrastructure --startup-project src\Fet
 fetch-api:
 cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch\Fetch.API
 dapr run --app-id fetch-api dotnet run
+
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --build sqldata dapr-placement fake-fetch-ca-api fake-fetch-ca-api-dapr redis rabbitmq zipkin seq
