@@ -1,10 +1,17 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Events;
+
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class DependencyInjection
 {
     public static IServiceCollection AddWebServices(this IServiceCollection services)
     {
         services.AddDatabaseDeveloperPageExceptionFilter();
+
+        services.AddScoped<LoginIntegrationEventHandler>();
+        services.AddScoped<OverdueIntegrationEventHandler>();
+        services.AddScoped<ReportIntegrationEventHandler>();
+        services.AddScoped<UserIntegrationEventHandler>();
 
         services.AddControllers();
 

@@ -5,7 +5,7 @@ namespace Ecmanage.eProcessor.Services.Todo.Todo.API.Controllers;
 
 public class IntegrationEventController : ApiControllerBase
 {
-    private const string DAPR_PUBSUB_NAME = "pubsub";
+    private const string DAPR_PUBSUB_NAME = "eprocessor-pubsub";
 
     [HttpPost("ProcessLoginEmail")]
     [Topic(DAPR_PUBSUB_NAME, nameof(LoginEmailIntegrationEvent))]
