@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Ecmanage.eProcessor.BuildingBlocks.BuildingBlocks.Application.Behaviours;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
+using FakeFetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

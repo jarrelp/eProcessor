@@ -5,11 +5,11 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Common.In
 
 public interface IApplicationDbContext
 {
-    // DbSet<EmailQueueItem> EmailQueueItems { get; }
-    // DbSet<Login> Logins { get; }
-    // DbSet<Overdue> Overdues { get; }
-    // DbSet<Report> Reports { get; }
-    // DbSet<User> Users { get; }
+    DbSet<EmailQueueItem> EmailQueueItems { get; }
+    DbSet<Login> Logins { get; }
+    DbSet<Overdue> Overdues { get; }
+    DbSet<Report> Reports { get; }
+    DbSet<User> Users { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

@@ -7,11 +7,10 @@ public class Login : EmailTemplate
     public string Date { get; set; } = string.Empty;
     public string Time { get; set; } = string.Empty;
 
-    public Login(int id, string fullName, string environment,
+    public Login(string fullName, string environment,
     // string ipAddress, 
-    string date, string time) : base(id)
+    string date, string time)
     {
-        Id = id;
         FullName = fullName;
         Environment = environment;
         // IPAddress = ipAddress;

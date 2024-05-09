@@ -49,8 +49,8 @@ public static class ProgramExtensions
             .AddCheck("self", () => HealthCheckResult.Healthy())
             .AddDapr()
             .AddSqlServer(
-                // builder.Configuration["ConnectionStrings:FakeFetchDB"]!,
-                builder.Configuration.GetConnectionString("DefaultConnection")!,
+                builder.Configuration["ConnectionStrings:FakeFetchDB"]!,
+                // builder.Configuration.GetConnectionString("DefaultConnection")!,
                 name: "FakeFetchDb-check",
                 tags: new[] { "fakeFetchdb" });
 

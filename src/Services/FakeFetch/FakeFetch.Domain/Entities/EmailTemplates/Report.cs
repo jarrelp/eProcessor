@@ -9,9 +9,8 @@ public class Report : EmailTemplate
     public string Url { get; set; } = string.Empty;
 
     // Constructor
-    public Report(int id, string portalName, string reportName, string url) : base(id)
+    public Report(string portalName, string reportName, string url)
     {
-        Id = id;
         PortalName = portalName;
         ReportName = reportName;
         Url = url;

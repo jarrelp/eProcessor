@@ -14,9 +14,8 @@ public class User : EmailTemplate
     public string Url { get; set; } = string.Empty;
 
     // Constructor
-    public User(int id, string imageHeader, string email, string fullName, string userName, string password, string company, string url) : base(id)
+    public User(string imageHeader, string email, string fullName, string userName, string password, string company, string url)
     {
-        Id = id;
         ImageHeader = imageHeader;
         Email = email;
         FullName = fullName;

@@ -44,5 +44,13 @@ public class EmailQueueItem : BaseAuditableEntity
     Email = email;
     EmailTemplateId = emailTemplateId;
   }
+
+  public EmailQueueItem(int emailQueueId, string xslName, string email, EmailTemplate emailTemplate)
+  {
+    EmailQueueId = emailQueueId;
+    XslName = xslName;
+    Email = email;
+    EmailTemplate = emailTemplate;
+  }
 }
 

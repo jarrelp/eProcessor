@@ -10,11 +10,11 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    // public DbSet<EmailQueueItem> EmailQueueItems => Set<EmailQueueItem>();
-    // public DbSet<Login> Logins => Set<Login>();
-    // public DbSet<Overdue> Overdues => Set<Overdue>();
-    // public DbSet<Report> Reports => Set<Report>();
-    // public DbSet<User> Users => Set<User>();
+    public DbSet<EmailQueueItem> EmailQueueItems => Set<EmailQueueItem>();
+    public DbSet<Login> Logins => Set<Login>();
+    public DbSet<Overdue> Overdues => Set<Overdue>();
+    public DbSet<Report> Reports => Set<Report>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

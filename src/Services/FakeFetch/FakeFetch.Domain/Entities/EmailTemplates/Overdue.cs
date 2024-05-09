@@ -15,9 +15,8 @@ public class Overdue : EmailTemplate
 
     public string OverdueDate { get; set; } = string.Empty;
 
-    public Overdue(int id, string fullName, string email, string productNumber, string productName, string orderCode, string orderDate, string overdueDate) : base(id)
+    public Overdue(string fullName, string email, string productNumber, string productName, string orderCode, string orderDate, string overdueDate)
     {
-        Id = id;
         FullName = fullName;
         Email = email;
         ProductNumber = productNumber;
