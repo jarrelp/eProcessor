@@ -1,9 +1,9 @@
 // using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.Common.Models;
-// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.TodoItems.Commands.CreateTodoItem;
-// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.TodoItems.Commands.DeleteTodoItem;
-// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.TodoItems.Commands.UpdateTodoItem;
-// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.TodoItems.Commands.UpdateTodoItemDetail;
-// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.TodoItems.Queries.GetTodoItemsWithPagination;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.FetchItems.Commands.CreateFetchItem;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.FetchItems.Commands.DeleteFetchItem;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.FetchItems.Commands.UpdateFetchItem;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.FetchItems.Commands.UpdateFetchItemDetail;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.FetchItems.Queries.GetFetchItemsWithPagination;
 // using Ecmanage.eProcessor.Services.Fetch.Fetch.API.Application.UseCases.ProcessEmailData;
 
 // namespace Ecmanage.eProcessor.Services.Fetch.Fetch.API.Web.Controllers;
@@ -11,13 +11,13 @@
 // public class EmailController : ApiControllerBase
 // {
 //   [HttpGet]
-//   public async Task<ActionResult<PaginatedList<TodoItemBriefDto>>> GetTodoItemsWithPagination([FromQuery] GetTodoItemsWithPaginationQuery query)
+//   public async Task<ActionResult<PaginatedList<FetchItemBriefDto>>> GetFetchItemsWithPagination([FromQuery] GetFetchItemsWithPaginationQuery query)
 //   {
 //     return await Mediator.Send(query);
 //   }
 
 //   [HttpPost]
-//   public async Task<ActionResult<int>> Create(CreateTodoItemCommand command)
+//   public async Task<ActionResult<int>> Create(CreateFetchItemCommand command)
 //   {
 //     return await Mediator.Send(command);
 //   }

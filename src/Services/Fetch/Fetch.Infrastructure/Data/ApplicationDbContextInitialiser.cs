@@ -1,4 +1,5 @@
 ﻿using Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Infrastructure.Data.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,19 +62,56 @@ public class ApplicationDbContextInitialiser
     {
         // Default data
         // Seed, if necessary
-        if (!_context.TodoLists.Any())
+        if (!_context.EmailQueueItems.Any())
         {
-            _context.TodoLists.Add(new TodoList
-            {
-                Title = "Todo List",
-                Items =
-                {
-                    new TodoItem { Title = "Make a todo list 📃" },
-                    new TodoItem { Title = "Check off the first item ✅" },
-                    new TodoItem { Title = "Realise you've already done two things on the list! 🤯"},
-                    new TodoItem { Title = "Reward yourself with a nice, long nap 🏆" },
-                }
-            });
+            var login1 = GenerateSeedData.GenerateLoginData1();
+            var login2 = GenerateSeedData.GenerateLoginData2();
+
+            var overdue1 = GenerateSeedData.GenerateOverdueData1();
+            var overdue2 = GenerateSeedData.GenerateOverdueData2();
+
+            var report1 = GenerateSeedData.GenerateReportData1();
+            var report2 = GenerateSeedData.GenerateReportData2();
+
+            var user1 = GenerateSeedData.GenerateUserData1();
+            var user2 = GenerateSeedData.GenerateUserData2();
+
+            _context.EmailQueueItems.AddRange(new EmailQueueItem(11502, "LOGIN", "aangepast@email.adr", login1),
+                new EmailQueueItem(11503, "LOGIN", "dizzel@dizzel.dizz", login2),
+                new EmailQueueItem(11504, "OVERDUE", "aangepast@email.adr", overdue1),
+                new EmailQueueItem(11505, "OVERDUE", "dizzel@dizzel.dizz", overdue2),
+                new EmailQueueItem(11506, "REPORT", "aangepast@email.adr", report1),
+                new EmailQueueItem(11507, "REPORT", "dizzel@dizzel.dizz", report2),
+                new EmailQueueItem(11508, "USER", "aangepast@email.adr", user1),
+                new EmailQueueItem(11509, "USER", "dizzel@dizzel.dizz", user2));
+
+            // var login1 = GenerateSeedData.GenerateLoginData1();
+            // var login2 = GenerateSeedData.GenerateLoginData2();
+
+            // _context.Logins.AddRange(
+            //     login1, login2
+            // );
+
+            // var overdue1 = GenerateSeedData.GenerateOverdueData1();
+            // var overdue2 = GenerateSeedData.GenerateOverdueData2();
+
+            // _context.Overdues.AddRange(
+            //     overdue1, overdue2
+            // );
+
+            // var report1 = GenerateSeedData.GenerateReportData1();
+            // var report2 = GenerateSeedData.GenerateReportData2();
+
+            // _context.Reports.AddRange(
+            //     report1, report2
+            // );
+
+            // var user1 = GenerateSeedData.GenerateUserData1();
+            // var user2 = GenerateSeedData.GenerateUserData2();
+
+            // _context.Users.AddRange(
+            //     user1, user2
+            // );
 
             await _context.SaveChangesAsync();
         }

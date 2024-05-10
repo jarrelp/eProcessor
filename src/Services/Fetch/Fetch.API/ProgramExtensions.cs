@@ -48,10 +48,11 @@ public static class ProgramExtensions
         builder.Services.AddHealthChecks()
             .AddCheck("self", () => HealthCheckResult.Healthy())
             .AddDapr()
-            .AddSqlite(
+            .AddSqlServer(
                 builder.Configuration["ConnectionStrings:FetchDB"]!,
+                // builder.Configuration.GetConnectionString("DefaultConnection")!,
                 name: "FetchDb-check",
-                tags: new[] { "fetchdb" });
+                tags: new[] { "Fetchdb" });
 
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {

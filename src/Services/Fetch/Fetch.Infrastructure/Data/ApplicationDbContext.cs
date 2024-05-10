@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Interfaces;
 using Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Infrastructure.Data;
@@ -9,9 +10,11 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    public DbSet<TodoList> TodoLists => Set<TodoList>();
-
-    public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+    public DbSet<EmailQueueItem> EmailQueueItems => Set<EmailQueueItem>();
+    public DbSet<Login> Logins => Set<Login>();
+    public DbSet<Overdue> Overdues => Set<Overdue>();
+    public DbSet<Report> Reports => Set<Report>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -1,4 +1,5 @@
-﻿using Ecmanage.eProcessor.Services.Process.Process.Domain.Events;
+﻿using Ecmanage.eProcessor.Services.Process.Process.Application.EventHandling;
+using Ecmanage.eProcessor.Services.Process.Process.Domain.Events;
 
 namespace Ecmanage.eProcessor.Services.Process.Process.API.Controllers;
 

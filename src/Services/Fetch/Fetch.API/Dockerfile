@@ -20,17 +20,17 @@ COPY ["src/Services/Todo/Todo.Infrastructure/Todo.Infrastructure.csproj", "src/S
 COPY ["src/Services/Todo/Todo.Domain/Todo.Domain.csproj", "src/Services/Todo/Todo.Domain/"]
 COPY ["src/Services/Todo/Todo.Application/Todo.Application.csproj", "src/Services/Todo/Todo.Application/"]
 
-COPY ["src/Services/FakeFetch/FakeFetch.API/FakeFetch.API.csproj", "src/Services/FakeFetch/FakeFetch.API/"]
-COPY ["src/Services/FakeFetch/FakeFetch.Infrastructure/FakeFetch.Infrastructure.csproj", "src/Services/FakeFetch/FakeFetch.Infrastructure/"]
-COPY ["src/Services/FakeFetch/FakeFetch.Domain/FakeFetch.Domain.csproj", "src/Services/FakeFetch/FakeFetch.Domain/"]
-COPY ["src/Services/FakeFetch/FakeFetch.Application/FakeFetch.Application.csproj", "src/Services/FakeFetch/FakeFetch.Application/"]
+COPY ["src/Services/Fetch/Fetch.API/Fetch.API.csproj", "src/Services/Fetch/Fetch.API/"]
+COPY ["src/Services/Fetch/Fetch.Infrastructure/Fetch.Infrastructure.csproj", "src/Services/Fetch/Fetch.Infrastructure/"]
+COPY ["src/Services/Fetch/Fetch.Domain/Fetch.Domain.csproj", "src/Services/Fetch/Fetch.Domain/"]
+COPY ["src/Services/Fetch/Fetch.Application/Fetch.Application.csproj", "src/Services/Fetch/Fetch.Application/"]
 
 COPY ["src/Services/Fetch/Fetch.API/Fetch.API.csproj", "src/Services/Fetch/Fetch.API/"]
 COPY ["src/Services/Fetch/Fetch.Infrastructure/Fetch.Infrastructure.csproj", "src/Services/Fetch/Fetch.Infrastructure/"]
 COPY ["src/Services/Fetch/Fetch.Domain/Fetch.Domain.csproj", "src/Services/Fetch/Fetch.Domain/"]
 COPY ["src/Services/Fetch/Fetch.Application/Fetch.Application.csproj", "src/Services/Fetch/Fetch.Application/"]
 
-COPY ["src/Services/FakeFetch.API/FakeFetch.API.csproj", "src/Services/FakeFetch.API/"]
+COPY ["src/Services/Fetch.API/Fetch.API.csproj", "src/Services/Fetch.API/"]
 COPY ["src/Web/Webstatus/Webstatus.csproj", "src/Web/Webstatus/"]
 COPY ["eProcessor.sln", "./"]
 RUN dotnet restore "eProcessor.sln"

@@ -8,11 +8,6 @@ public static class DependencyInjection
     {
         services.AddDatabaseDeveloperPageExceptionFilter();
 
-        services.AddScoped<LoginIntegrationEventHandler>();
-        services.AddScoped<OverdueIntegrationEventHandler>();
-        services.AddScoped<ReportIntegrationEventHandler>();
-        services.AddScoped<UserIntegrationEventHandler>();
-
         services.AddControllers();
 
         services.AddDaprClient();

@@ -1,37 +1,36 @@
-﻿using Ecmanage.eProcessor.Services.Fetch.Fetch.API.IntegrationEvents;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.API.IntegrationEvents.EventHandling;
+﻿using Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Events;
 
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.API.Controllers;
 
 public class IntegrationEventController : ApiControllerBase
 {
-    private const string DAPR_PUBSUB_NAME = "pubsub";
+    private const string DAPR_PUBSUB_NAME = "eprocessor-pubsub";
 
     [HttpPost("ProcessLoginEmail")]
-    [Topic(DAPR_PUBSUB_NAME, nameof(LoginEmailIntegrationEvent))]
+    [Topic(DAPR_PUBSUB_NAME, nameof(LoginIntegrationEvent))]
     public Task HandleAsync(
-        LoginEmailIntegrationEvent @event,
-        [FromServices] LoginEmailIntegrationEventHandler handler)
+        LoginIntegrationEvent @event,
+        [FromServices] LoginIntegrationEventHandler handler)
         => handler.Handle(@event);
 
     [HttpPost("ProcessOverdueEmail")]
-    [Topic(DAPR_PUBSUB_NAME, nameof(OverdueEmailIntegrationEvent))]
+    [Topic(DAPR_PUBSUB_NAME, nameof(OverdueIntegrationEvent))]
     public Task HandleAsync(
-        OverdueEmailIntegrationEvent @event,
-        [FromServices] OverdueEmailIntegrationEventHandler handler)
+        OverdueIntegrationEvent @event,
+        [FromServices] OverdueIntegrationEventHandler handler)
         => handler.Handle(@event);
 
     [HttpPost("ProcessReportEmail")]
-    [Topic(DAPR_PUBSUB_NAME, nameof(ReportEmailIntegrationEvent))]
+    [Topic(DAPR_PUBSUB_NAME, nameof(ReportIntegrationEvent))]
     public Task HandleAsync(
-        ReportEmailIntegrationEvent @event,
-        [FromServices] ReportEmailIntegrationEventHandler handler)
+        ReportIntegrationEvent @event,
+        [FromServices] ReportIntegrationEventHandler handler)
         => handler.Handle(@event);
 
     [HttpPost("ProcessUserEmail")]
-    [Topic(DAPR_PUBSUB_NAME, nameof(UserEmailIntegrationEvent))]
+    [Topic(DAPR_PUBSUB_NAME, nameof(UserIntegrationEvent))]
     public Task HandleAsync(
-        UserEmailIntegrationEvent @event,
-        [FromServices] UserEmailIntegrationEventHandler handler)
+        UserIntegrationEvent @event,
+        [FromServices] UserIntegrationEventHandler handler)
         => handler.Handle(@event);
 }
