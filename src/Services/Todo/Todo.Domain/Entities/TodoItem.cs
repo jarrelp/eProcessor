@@ -1,6 +1,6 @@
 ﻿namespace Ecmanage.eProcessor.Services.Todo.Todo.Domain.Entities;
 
-public class TodoItem : BaseAuditableEntity
+public class TodoItem : BaseEntity
 {
     public int ListId { get; set; }
 

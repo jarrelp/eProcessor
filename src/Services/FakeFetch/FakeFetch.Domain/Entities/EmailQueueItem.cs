@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 
-public class EmailQueueItem : BaseAuditableEntity
+public class EmailQueueItem : BaseEntity
 {
   public int EmailQueueId { get; set; }
 
