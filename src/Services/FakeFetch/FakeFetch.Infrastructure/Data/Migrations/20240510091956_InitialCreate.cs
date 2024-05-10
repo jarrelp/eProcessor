@@ -32,6 +32,9 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmailQueueId = table.Column<int>(type: "int", nullable: false),
+                    Attempts = table.Column<int>(type: "int", nullable: false),
+                    Sent = table.Column<string>(type: "nvarchar(1)", nullable: false),
+                    SendAt = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     XslName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmailTemplateId = table.Column<int>(type: "int", nullable: false),

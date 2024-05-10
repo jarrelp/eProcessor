@@ -1,6 +1,4 @@
-﻿using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
-using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates;
-using FakeFetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
+﻿using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates;
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 

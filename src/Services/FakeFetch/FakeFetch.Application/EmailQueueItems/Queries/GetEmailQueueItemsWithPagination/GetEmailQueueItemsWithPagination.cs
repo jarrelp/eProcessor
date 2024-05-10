@@ -1,5 +1,4 @@
 ﻿using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
-using Ecmanage.eProcessor.BuildingBlocks.EventBus.Events;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Common.Interfaces;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Events;
