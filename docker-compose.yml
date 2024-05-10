@@ -72,6 +72,18 @@ services:
     depends_on:
       - fetch-api
 
+  process-api:
+    image: ${REGISTRY:-eprocessor}/process.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Process/Process.API/Dockerfile
+
+  process-api-dapr:
+    image: 'daprio/daprd:1.9.4'
+    network_mode: 'service:process-api'
+    depends_on:
+      - process-api
+
   webstatus:
     image: ${REGISTRY:-eprocessor}/webstatus:${TAG:-latest}
     build:

@@ -1,11 +1,11 @@
-using Ecmanage.eProcessor.Services.Process.Process.Domain.Entities.EmailTemplates;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
 using Mjml.Net;
 
 namespace Ecmanage.eProcessor.Services.Process.Process.Application.Helpers;
 
 public class LoginTemplate
 {
-    public static string CreateEmailBody(Login data)
+    public static string CreateEmailBody(LoginDto data)
     {
         var mjmlRenderer = new MjmlRenderer();
 

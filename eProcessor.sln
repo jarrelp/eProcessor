@@ -57,8 +57,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Process.Application", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Process.Domain", "src\Services\Process\Process.Domain\Process.Domain.csproj", "{185152A8-BF38-461B-BDE2-03AA4915F174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Process.Infrastructure", "src\Services\Process\Process.Infrastructure\Process.Infrastructure.csproj", "{F129D138-F28C-4B79-A40E-394C90BCACA7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -144,10 +142,6 @@ Global
 		{185152A8-BF38-461B-BDE2-03AA4915F174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{185152A8-BF38-461B-BDE2-03AA4915F174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{185152A8-BF38-461B-BDE2-03AA4915F174}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F129D138-F28C-4B79-A40E-394C90BCACA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F129D138-F28C-4B79-A40E-394C90BCACA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F129D138-F28C-4B79-A40E-394C90BCACA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F129D138-F28C-4B79-A40E-394C90BCACA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{047AB90D-0A8A-4A03-9E5C-4B498EDB0793} = {0C4EC05B-5E69-40CB-BFA6-134D942EBC48}
@@ -176,6 +170,5 @@ Global
 		{E48C065D-E8A3-4898-8D0F-7A112E245B7F} = {A9C0D51D-F553-4D78-978B-B880572CA6CB}
 		{47B7376A-207F-459D-A393-2297C985D3D3} = {A9C0D51D-F553-4D78-978B-B880572CA6CB}
 		{185152A8-BF38-461B-BDE2-03AA4915F174} = {A9C0D51D-F553-4D78-978B-B880572CA6CB}
-		{F129D138-F28C-4B79-A40E-394C90BCACA7} = {A9C0D51D-F553-4D78-978B-B880572CA6CB}
 	EndGlobalSection
 EndGlobal

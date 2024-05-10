@@ -144,17 +144,43 @@ services:
       - './dapr/components/:/components'
       - './dapr/configuration/:/configuration'
 
+  process-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - SeqServerUrl=http://seq
+    ports:
+      - '5161:80'
+      - '50161:50160'
+
+  process-api-dapr:
+    command:
+      [
+        './daprd',
+        '-app-id',
+        'process-api',
+        '-app-port',
+        '80',
+        '-components-path',
+        '/components',
+        '-config',
+        '/configuration/eprocessor-config.yaml',
+      ]
+    volumes:
+      - './dapr/components/:/components'
+      - './dapr/configuration/:/configuration'
+
   webstatus:
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - HealthChecksUI__HealthChecks__1__Name=Fake Fetch API
       - HealthChecksUI__HealthChecks__1__Uri=http://fake-fetch-api/hc
-      - HealthChecksUI__HealthChecks__2__Name=Todo API
-      - HealthChecksUI__HealthChecks__2__Uri=http://todo-api/hc
-      - HealthChecksUI__HealthChecks__3__Name=Fake Fetch CA API
-      - HealthChecksUI__HealthChecks__3__Uri=http://fake-fetch-api-ca/hc
-      - HealthChecksUI__HealthChecks__4__Name=Fetch API
-      - HealthChecksUI__HealthChecks__4__Uri=http://fetch-api/hc
+      - HealthChecksUI__HealthChecks__2__Name=Fake Fetch CA API
+      - HealthChecksUI__HealthChecks__2__Uri=http://fake-fetch-api-ca/hc
+      - HealthChecksUI__HealthChecks__3__Name=Fetch API
+      - HealthChecksUI__HealthChecks__3__Uri=http://fetch-api/hc
+      - HealthChecksUI__HealthChecks__4__Name=Process API
+      - HealthChecksUI__HealthChecks__4__Uri=http://process-api/hc
 
     ports:
       - '5107:80'

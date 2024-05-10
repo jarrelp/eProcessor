@@ -15,20 +15,19 @@ COPY ["src/BuildingBlocks/BuildingBlocks/Application/Application.csproj", "src/B
 COPY ["src/BuildingBlocks/BuildingBlocks/Infrastructure/Infrastructure.csproj", "src/BuildingBlocks/BuildingBlocks/Infrastructure/"]
 COPY ["src/BuildingBlocks/BuildingBlocks/Domain/Domain.csproj", "src/BuildingBlocks/BuildingBlocks/Domain/"]
 
-COPY ["src/Services/Todo/Todo.API/Todo.API.csproj", "src/Services/Todo/Todo.API/"]
-COPY ["src/Services/Todo/Todo.Infrastructure/Todo.Infrastructure.csproj", "src/Services/Todo/Todo.Infrastructure/"]
-COPY ["src/Services/Todo/Todo.Domain/Todo.Domain.csproj", "src/Services/Todo/Todo.Domain/"]
-COPY ["src/Services/Todo/Todo.Application/Todo.Application.csproj", "src/Services/Todo/Todo.Application/"]
+COPY ["src/Services/FakeFetch/FakeFetch.API/FakeFetch.API.csproj", "src/Services/FakeFetch/FakeFetch.API/"]
+COPY ["src/Services/FakeFetch/FakeFetch.Infrastructure/FakeFetch.Infrastructure.csproj", "src/Services/FakeFetch/FakeFetch.Infrastructure/"]
+COPY ["src/Services/FakeFetch/FakeFetch.Domain/FakeFetch.Domain.csproj", "src/Services/FakeFetch/FakeFetch.Domain/"]
+COPY ["src/Services/FakeFetch/FakeFetch.Application/FakeFetch.Application.csproj", "src/Services/FakeFetch/FakeFetch.Application/"]
 
 COPY ["src/Services/Fetch/Fetch.API/Fetch.API.csproj", "src/Services/Fetch/Fetch.API/"]
 COPY ["src/Services/Fetch/Fetch.Infrastructure/Fetch.Infrastructure.csproj", "src/Services/Fetch/Fetch.Infrastructure/"]
 COPY ["src/Services/Fetch/Fetch.Domain/Fetch.Domain.csproj", "src/Services/Fetch/Fetch.Domain/"]
 COPY ["src/Services/Fetch/Fetch.Application/Fetch.Application.csproj", "src/Services/Fetch/Fetch.Application/"]
 
-COPY ["src/Services/Fetch/Fetch.API/Fetch.API.csproj", "src/Services/Fetch/Fetch.API/"]
-COPY ["src/Services/Fetch/Fetch.Infrastructure/Fetch.Infrastructure.csproj", "src/Services/Fetch/Fetch.Infrastructure/"]
-COPY ["src/Services/Fetch/Fetch.Domain/Fetch.Domain.csproj", "src/Services/Fetch/Fetch.Domain/"]
-COPY ["src/Services/Fetch/Fetch.Application/Fetch.Application.csproj", "src/Services/Fetch/Fetch.Application/"]
+COPY ["src/Services/Process/Process.API/Process.API.csproj", "src/Services/Process/Process.API/"]
+COPY ["src/Services/Process/Process.Domain/Process.Domain.csproj", "src/Services/Process/Process.Domain/"]
+COPY ["src/Services/Process/Process.Application/Process.Application.csproj", "src/Services/Process/Process.Application/"]
 
 COPY ["src/Services/Fetch.API/Fetch.API.csproj", "src/Services/Fetch.API/"]
 COPY ["src/Web/Webstatus/Webstatus.csproj", "src/Web/Webstatus/"]

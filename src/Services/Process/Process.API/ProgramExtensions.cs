@@ -47,12 +47,7 @@ public static class ProgramExtensions
     public static void AddCustomHealthChecks(this WebApplicationBuilder builder) =>
         builder.Services.AddHealthChecks()
             .AddCheck("self", () => HealthCheckResult.Healthy())
-            .AddDapr()
-            .AddSqlServer(
-                builder.Configuration["ConnectionStrings:FakeFetchDB"]!,
-                // builder.Configuration.GetConnectionString("DefaultConnection")!,
-                name: "FakeFetchDb-check",
-                tags: new[] { "fakeFetchdb" });
+            .AddDapr();
 
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {

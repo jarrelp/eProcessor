@@ -34,4 +34,11 @@ public class IntegrationEventController : ApiControllerBase
         UserIntegrationEvent @event,
         [FromServices] UserIntegrationEventHandler handler)
         => handler.Handle(@event);
+
+    [HttpPost("SendLoginEmail")]
+    [Topic(DAPR_PUBSUB_NAME, nameof(EmailBodyIntegrationEvent))]
+    public Task HandleAsync(
+        EmailBodyIntegrationEvent @event,
+        [FromServices] EmailBodyIntegrationEventHandler handler)
+        => handler.Handle(@event);
 }

@@ -1,4 +1,6 @@
 using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
+using Ecmanage.eProcessor.Services.Process.Process.Application.Helpers;
 using Ecmanage.eProcessor.Services.Process.Process.Domain.Events;
 using Microsoft.Extensions.Logging;
 using Mjml.Net;
@@ -8,35 +10,22 @@ namespace Ecmanage.eProcessor.Services.Process.Process.Application.EventHandling
 public class LoginIntegrationEventHandler : IIntegrationEventHandler<LoginIntegrationEvent>
 {
     private readonly ILogger<LoginIntegrationEventHandler> _logger;
+    private readonly IMapper _mapper;
+    private readonly IEventBus _eventBus;
 
-    private readonly IMjmlRenderer _mjmlRenderer;
-
-    public LoginIntegrationEventHandler(ILogger<LoginIntegrationEventHandler> logger, IMjmlRenderer mjmlRenderer)
+    public LoginIntegrationEventHandler(ILogger<LoginIntegrationEventHandler> logger, IMapper mapper, IEventBus eventBus)
     {
         _logger = logger;
-        _mjmlRenderer = mjmlRenderer ?? throw new ArgumentNullException(nameof(mjmlRenderer));
+        _mapper = mapper;
+        _eventBus = eventBus;
     }
 
-    // public Task Handle(LoginIntegrationEvent @event)
-    // {
-    //     _logger.LogInformation("Login Template Attributes:");
-    //     _logger.LogInformation($"  FullName: {@event.FullName}");
-    //     _logger.LogInformation($"  Environment: {@event.Environment}");
-    //     _logger.LogInformation($"  Date: {@event.Date}");
-    //     _logger.LogInformation($"  Time: {@event.Time}");
-    //     return Task.CompletedTask;
-    // }
-
-    public Task Handle(LoginIntegrationEvent @event)
+    public async Task Handle(LoginIntegrationEvent @event)
     {
+        LoginDto loginDto = _mapper.Map<LoginDto>(@event);
+        string emailBody = LoginTemplate.CreateEmailBody(loginDto);
+        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBody);
 
-        return Task.CompletedTask;
-    }
-
-    private string RenderEmail(string mjmlTemplatePath, object model)
-    {
-        var mjmlTemplate = File.ReadAllText(mjmlTemplatePath);
-        var htmlContent = _mjmlRenderer.Render(mjmlTemplate, (MjmlOptions?)model);
-        return htmlContent.ToString();
+        await _eventBus.PublishAsync(emailBodyIntegrationEvent);
     }
 }

@@ -1,11 +1,11 @@
-using Ecmanage.eProcessor.Services.Process.Process.Domain.Entities.EmailTemplates;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
 using Mjml.Net;
 
 namespace Ecmanage.eProcessor.Services.Process.Process.Application.Helpers;
 
 public class OverdueTemplate
 {
-    public static string CreateEmailBody(Overdue data)
+    public static string CreateEmailBody(OverdueDto data)
     {
         var mjmlRenderer = new MjmlRenderer();
 
