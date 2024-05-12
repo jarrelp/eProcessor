@@ -1,7 +1,7 @@
 using Ecmanage.eProcessor.Services.FakeFetch;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Infrastructure.Data;
 
-var appName = "FakeFetch API";
+var appName = "FakeFetch CA API";
 
 var builder = WebApplication.CreateBuilder(args);
 

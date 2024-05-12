@@ -5,7 +5,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch;
 
 public static class ProgramExtensions
 {
-    private const string AppName = "FakeFetch API";
+    private const string AppName = "FakeFetch CA API";
 
     public static void AddCustomConfiguration(this WebApplicationBuilder builder)
     {

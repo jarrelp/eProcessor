@@ -170,17 +170,41 @@ services:
       - './dapr/components/:/components'
       - './dapr/configuration/:/configuration'
 
+  send-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - SeqServerUrl=http://seq
+    ports:
+      - '5163:80'
+      - '50163:50162'
+
+  send-api-dapr:
+    command:
+      [
+        './daprd',
+        '-app-id',
+        'send-api',
+        '-app-port',
+        '80',
+        '-components-path',
+        '/components',
+        '-config',
+        '/configuration/eprocessor-config.yaml',
+      ]
+    volumes:
+      - './dapr/components/:/components'
+      - './dapr/configuration/:/configuration'
+
   webstatus:
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:80
-      - HealthChecksUI__HealthChecks__1__Name=Fake Fetch API
-      - HealthChecksUI__HealthChecks__1__Uri=http://fake-fetch-api/hc
-      - HealthChecksUI__HealthChecks__2__Name=Fake Fetch CA API
-      - HealthChecksUI__HealthChecks__2__Uri=http://fake-fetch-api-ca/hc
-      - HealthChecksUI__HealthChecks__3__Name=Fetch API
-      - HealthChecksUI__HealthChecks__3__Uri=http://fetch-api/hc
-      - HealthChecksUI__HealthChecks__4__Name=Process API
-      - HealthChecksUI__HealthChecks__4__Uri=http://process-api/hc
+      - HealthChecksUI__HealthChecks__1__Name=FakeFetch CA API
+      - HealthChecksUI__HealthChecks__1__Uri=http://fake-fetch-ca-api/hc
+      - HealthChecksUI__HealthChecks__2__Name=Process API
+      - HealthChecksUI__HealthChecks__2__Uri=http://process-api/hc
+      - HealthChecksUI__HealthChecks__3__Name=Send API
+      - HealthChecksUI__HealthChecks__3__Uri=http://send-api/hc
 
     ports:
       - '5107:80'

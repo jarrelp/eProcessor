@@ -1,7 +1,7 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: eprocessor-sendmail
+  name: sendmail
   namespace: eprocessor
 spec:
   type: bindings.smtp
@@ -22,4 +22,4 @@ spec:
     - name: skipTLSVerify
       value: true
 auth:
-  secretStore: secretstore
+  secretStore: eprocessor-secretstore

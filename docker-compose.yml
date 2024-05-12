@@ -84,6 +84,18 @@ services:
     depends_on:
       - process-api
 
+  send-api:
+    image: ${REGISTRY:-eprocessor}/send.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Send/Send.API/Dockerfile
+
+  send-api-dapr:
+    image: 'daprio/daprd:1.9.4'
+    network_mode: 'service:send-api'
+    depends_on:
+      - send-api
+
   webstatus:
     image: ${REGISTRY:-eprocessor}/webstatus:${TAG:-latest}
     build:

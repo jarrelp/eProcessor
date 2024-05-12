@@ -1,0 +1,6 @@
+@Send.Domain_HostAddress = http://localhost:5072
+
+GET {{Send.Domain_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

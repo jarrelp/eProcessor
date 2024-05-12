@@ -16,4 +16,4 @@ spec:
     - name: actorStateStore
       value: 'true'
 auth:
-  secretStore: secretstore
+  secretStore: eprocessor-secretstore

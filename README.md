@@ -26,4 +26,5 @@ fetch-api:
 cd D:\AfstudeerstageECManage\Application\eProcessor\src\Services\Fetch\Fetch.API
 dapr run --app-id fetch-api dotnet run
 
-docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --build sqldata dapr-placement fake-fetch-ca-api fake-fetch-ca-api-dapr redis rabbitmq zipkin seq
+docker-compose up:
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --build sqldata maildev send-api send-api-dapr fake-fetch-ca-api redis seq zipkin dapr-placement process-api process-api-dapr rabbitmq webstatus fake-fetch-ca-api-dapr
