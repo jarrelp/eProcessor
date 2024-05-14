@@ -7,7 +7,7 @@ public class IntegrationEventController : ApiControllerBase
 {
     private const string DAPR_PUBSUB_NAME = "eprocessor-pubsub";
 
-    [HttpPost("SendLoginEmail")]
+    [HttpPost("SendEmail")]
     [Topic(DAPR_PUBSUB_NAME, nameof(EmailBodyIntegrationEvent))]
     public Task HandleAsync(
         EmailBodyIntegrationEvent @event,

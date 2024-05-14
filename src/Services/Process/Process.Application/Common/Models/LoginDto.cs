@@ -2,7 +2,7 @@
 
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
 
-public class LoginDto
+public class LoginDto : BaseEmail
 {
     public string FullName { get; init; } = null!;
     public string Environment { get; init; } = null!;

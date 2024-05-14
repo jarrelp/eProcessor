@@ -2,7 +2,7 @@
 
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 
-public class UserDto : EmailTemplateDto
+public class UserDto : XmlDataDto
 {
     public string ImageHeader { get; init; } = null!;
     public string Email { get; init; } = null!;

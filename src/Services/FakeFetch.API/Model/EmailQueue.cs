@@ -20,7 +20,7 @@ public class EmailQueue
 
 
   public int EmailTemplateId { get; set; }
-  public EmailTemplate EmailTemplate { get; set; } = null!;
+  public XmlData XmlData { get; set; } = null!;
 
   // Constructor
   // public EmailQueue(string subject, int attempts, bool sent, int companyId, string sendAt, string email, string isoLanguage, string xslName, string xmlData, int id)

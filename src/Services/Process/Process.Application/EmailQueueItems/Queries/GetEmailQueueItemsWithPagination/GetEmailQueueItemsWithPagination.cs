@@ -1,7 +1,5 @@
 ﻿using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
 using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
-using Ecmanage.eProcessor.Services.Process.Process.Domain.Entities.EmailTemplates;
-using Ecmanage.eProcessor.Services.Process.Process.Domain.Events;
 
 namespace Ecmanage.eProcessor.Services.Process.Process.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 

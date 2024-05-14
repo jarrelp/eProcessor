@@ -108,7 +108,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate", b =>
+            modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,14 +118,14 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmailTemplate");
+                    b.ToTable("XmlData");
 
                     b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Login", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData");
 
                     b.Property<string>("Date")
                         .IsRequired()
@@ -166,7 +166,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Overdue", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -225,7 +225,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Report", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData");
 
                     b.Property<string>("PortalName")
                         .IsRequired()
@@ -260,7 +260,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.User", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData");
 
                     b.Property<string>("Company")
                         .IsRequired()
@@ -319,18 +319,18 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailQueue", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate", "EmailTemplate")
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData", "XmlData")
                         .WithMany()
                         .HasForeignKey("EmailTemplateId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("EmailTemplate");
+                    b.Navigation("XmlData");
                 });
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Login", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Login", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -339,7 +339,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Overdue", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Overdue", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -348,7 +348,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Report", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.Report", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -357,7 +357,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.User", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.API.Model.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.API.Model.EmailTemplates.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade)

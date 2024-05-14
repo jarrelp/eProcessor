@@ -24,7 +24,7 @@ public class LoginTemplate
 
                 <mj-section>
                     <mj-column>
-                        <mj-text font-size=""20px"">Accountbevestiging</mj-text>
+                        <mj-text font-size=""20px"">Login</mj-text>
                     </mj-column>
                 </mj-section>
                 <mj-section>

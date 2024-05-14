@@ -1,4 +1,6 @@
 using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
+using Ecmanage.eProcessor.Services.Process.Process.Application.Helpers;
 using Ecmanage.eProcessor.Services.Process.Process.Domain.Events;
 using Microsoft.Extensions.Logging;
 
@@ -7,22 +9,31 @@ namespace Ecmanage.eProcessor.Services.Process.Process.Application.EventHandling
 public class OverdueIntegrationEventHandler : IIntegrationEventHandler<OverdueIntegrationEvent>
 {
     private readonly ILogger<OverdueIntegrationEventHandler> _logger;
+    private readonly IMapper _mapper;
+    private readonly IEventBus _eventBus;
 
-    public OverdueIntegrationEventHandler(ILogger<OverdueIntegrationEventHandler> logger)
+    public OverdueIntegrationEventHandler(ILogger<OverdueIntegrationEventHandler> logger, IMapper mapper, IEventBus eventBus)
     {
         _logger = logger;
+        _mapper = mapper;
+        _eventBus = eventBus;
     }
 
-    public Task Handle(OverdueIntegrationEvent @event)
+    public async Task Handle(OverdueIntegrationEvent @event)
     {
-        _logger.LogInformation("Overdue Template Attributes:");
-        _logger.LogInformation($"  FullName: {@event.FullName}");
-        _logger.LogInformation($"  Email: {@event.Email}");
-        _logger.LogInformation($"  ProductNumber: {@event.ProductNumber}");
-        _logger.LogInformation($"  ProductName: {@event.ProductName}");
-        _logger.LogInformation($"  OrderCode: {@event.OrderCode}");
-        _logger.LogInformation($"  OrderDate: {@event.OrderDate}");
-        _logger.LogInformation($"  OverdueDate: {@event.OverdueDate}");
-        return Task.CompletedTask;
+        OverdueDto overdueDto = _mapper.Map<OverdueDto>(@event);
+        string emailBody = OverdueTemplate.CreateEmailBody(overdueDto);
+
+        var emailBodyDto = new EmailBodyDto()
+        {
+            EmailBody = emailBody,
+            EmailFrom = overdueDto.EmailFrom,
+            EmailTo = overdueDto.EmailTo,
+            Subject = overdueDto.Subject
+        };
+
+        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto);
+
+        await _eventBus.PublishAsync(emailBodyIntegrationEvent);
     }
 }

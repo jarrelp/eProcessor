@@ -13,7 +13,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "EmailTemplate",
+                name: "XmlData",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -40,7 +40,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
                     table.ForeignKey(
                         name: "FK_EmailQueue_EmailTemplate_EmailTemplateId",
                         column: x => x.EmailTemplateId,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -61,7 +61,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
                     table.ForeignKey(
                         name: "FK_Login_EmailTemplate_Id",
                         column: x => x.Id,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -85,7 +85,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
                     table.ForeignKey(
                         name: "FK_Overdue_EmailTemplate_Id",
                         column: x => x.Id,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -105,7 +105,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
                     table.ForeignKey(
                         name: "FK_Report_EmailTemplate_Id",
                         column: x => x.Id,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -129,13 +129,13 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
                     table.ForeignKey(
                         name: "FK_User_EmailTemplate_Id",
                         column: x => x.Id,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "EmailTemplate",
+                table: "XmlData",
                 column: "Id",
                 values: new object[]
                 {
@@ -225,7 +225,7 @@ namespace Ecmanage.eProcessor.Services.FakeFetch.API.Migrations
                 name: "User");
 
             migrationBuilder.DropTable(
-                name: "EmailTemplate");
+                name: "XmlData");
         }
     }
 }

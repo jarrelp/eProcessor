@@ -1,6 +1,8 @@
-﻿namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
+﻿using Ecmanage.eProcessor.Services.Process.Process.Domain.Events;
 
-public class OverdueDto
+namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
+
+public class OverdueDto : BaseEmail
 {
     public string FullName { get; init; } = null!;
     public string Email { get; init; } = null!;
@@ -9,4 +11,12 @@ public class OverdueDto
     public string OrderCode { get; init; } = null!;
     public string OrderDate { get; init; } = null!;
     public string OverdueDate { get; init; } = null!;
+
+    private class Mapping : Profile
+    {
+        public Mapping()
+        {
+            CreateMap<OverdueIntegrationEvent, OverdueDto>().ReverseMap();
+        }
+    }
 }

@@ -3,7 +3,6 @@ using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
 using Ecmanage.eProcessor.Services.Process.Process.Application.Helpers;
 using Ecmanage.eProcessor.Services.Process.Process.Domain.Events;
 using Microsoft.Extensions.Logging;
-using Mjml.Net;
 
 namespace Ecmanage.eProcessor.Services.Process.Process.Application.EventHandling;
 
@@ -24,7 +23,16 @@ public class LoginIntegrationEventHandler : IIntegrationEventHandler<LoginIntegr
     {
         LoginDto loginDto = _mapper.Map<LoginDto>(@event);
         string emailBody = LoginTemplate.CreateEmailBody(loginDto);
-        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBody);
+
+        var emailBodyDto = new EmailBodyDto()
+        {
+            EmailBody = emailBody,
+            EmailFrom = loginDto.EmailFrom,
+            EmailTo = loginDto.EmailTo,
+            Subject = loginDto.Subject
+        };
+
+        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto);
 
         await _eventBus.PublishAsync(emailBodyIntegrationEvent);
     }

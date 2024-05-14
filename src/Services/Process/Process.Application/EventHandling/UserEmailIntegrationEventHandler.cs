@@ -1,4 +1,6 @@
 using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
+using Ecmanage.eProcessor.Services.Process.Process.Application.Helpers;
 using Ecmanage.eProcessor.Services.Process.Process.Domain.Events;
 using Microsoft.Extensions.Logging;
 
@@ -7,22 +9,31 @@ namespace Ecmanage.eProcessor.Services.Process.Process.Application.EventHandling
 public class UserIntegrationEventHandler : IIntegrationEventHandler<UserIntegrationEvent>
 {
     private readonly ILogger<UserIntegrationEventHandler> _logger;
+    private readonly IMapper _mapper;
+    private readonly IEventBus _eventBus;
 
-    public UserIntegrationEventHandler(ILogger<UserIntegrationEventHandler> logger)
+    public UserIntegrationEventHandler(ILogger<UserIntegrationEventHandler> logger, IMapper mapper, IEventBus eventBus)
     {
         _logger = logger;
+        _mapper = mapper;
+        _eventBus = eventBus;
     }
 
-    public Task Handle(UserIntegrationEvent @event)
+    public async Task Handle(UserIntegrationEvent @event)
     {
-        _logger.LogInformation("User Template Attributes:");
-        _logger.LogInformation($"  ImageHeader: {@event.ImageHeader}");
-        _logger.LogInformation($"  Email: {@event.Email}");
-        _logger.LogInformation($"  FullName: {@event.FullName}");
-        _logger.LogInformation($"  UserName: {@event.UserName}");
-        _logger.LogInformation($"  Password: {@event.Password}");
-        _logger.LogInformation($"  Company: {@event.Company}");
-        _logger.LogInformation($"  Url: {@event.Url}");
-        return Task.CompletedTask;
+        UserDto userDto = _mapper.Map<UserDto>(@event);
+        string emailBody = UserTemplate.CreateEmailBody(userDto);
+
+        var emailBodyDto = new EmailBodyDto()
+        {
+            EmailBody = emailBody,
+            EmailFrom = userDto.EmailFrom,
+            EmailTo = userDto.EmailTo,
+            Subject = userDto.Subject
+        };
+
+        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto);
+
+        await _eventBus.PublishAsync(emailBodyIntegrationEvent);
     }
 }

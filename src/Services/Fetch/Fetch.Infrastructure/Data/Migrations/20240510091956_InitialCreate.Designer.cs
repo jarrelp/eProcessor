@@ -72,7 +72,7 @@ namespace Fetch.Infrastructure.Data.Migrations
                     b.ToTable("EmailQueueItem", (string)null);
                 });
 
-            modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate", b =>
+            modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,14 +88,14 @@ namespace Fetch.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmailTemplate");
+                    b.ToTable("XmlData");
 
                     b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Login", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData");
 
                     b.Property<string>("Date")
                         .IsRequired()
@@ -118,7 +118,7 @@ namespace Fetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Overdue", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -153,7 +153,7 @@ namespace Fetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Report", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData");
 
                     b.Property<string>("PortalName")
                         .IsRequired()
@@ -172,7 +172,7 @@ namespace Fetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.User", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData");
 
                     b.Property<string>("Company")
                         .IsRequired()
@@ -207,18 +207,18 @@ namespace Fetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailQueueItem", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate", "EmailTemplate")
+                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData", "XmlData")
                         .WithOne("EmailQueueItem")
                         .HasForeignKey("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailQueueItem", "EmailTemplateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EmailTemplate");
+                    b.Navigation("XmlData");
                 });
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Login", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Login", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -227,7 +227,7 @@ namespace Fetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Overdue", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Overdue", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -236,7 +236,7 @@ namespace Fetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Report", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.Report", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -245,14 +245,14 @@ namespace Fetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.User", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplate", b =>
+            modelBuilder.Entity("Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.XmlData", b =>
                 {
                     b.Navigation("EmailQueueItem")
                         .IsRequired();

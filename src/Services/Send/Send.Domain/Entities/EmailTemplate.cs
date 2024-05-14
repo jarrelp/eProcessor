@@ -1,10 +1,8 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Ecmanage.eProcessor.Services.Send.Send.Domain.Entities;
 
-public abstract class EmailTemplate : BaseEntity
+public abstract class XmlData : BaseEntity
 {
-  public EmailTemplate()
+  public XmlData()
   {
   }
 

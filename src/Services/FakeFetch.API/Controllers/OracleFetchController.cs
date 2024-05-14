@@ -57,9 +57,9 @@ public class OracleFetchController : ControllerBase
   //   {
   //     await _oracleFetchService.AddEmailQueueAsync(emailQueue);
 
-  //     var emailTemplate = MapToRecord(emailQueue.EmailTemplate);
+  //     var xmlData = MapToRecord(emailQueue.XmlData);
 
-  //     await _eventBus.PublishAsync(emailTemplate);
+  //     await _eventBus.PublishAsync(xmlData);
 
   //     return CreatedAtAction(nameof(GetEmailQueueById), new { id = emailQueue.Id }, emailQueue);
   //   }
@@ -106,9 +106,9 @@ public class OracleFetchController : ControllerBase
     }
   }
 
-  // private IntegrationEvent MapToRecord(EmailTemplate emailTemplate)
+  // private IntegrationEvent MapToRecord(XmlData xmlData)
   // {
-  //   switch (emailTemplate)
+  //   switch (xmlData)
   //   {
   //     case Login loginTemplate:
   //       return new LoginEmail(loginTemplate.Id, loginTemplate.FullName, loginTemplate.Environment, loginTemplate.Date, loginTemplate.Time);

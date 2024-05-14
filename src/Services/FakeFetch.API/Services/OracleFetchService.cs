@@ -24,7 +24,7 @@ public class OracleFetchService : IOracleFetchService
                 XslName = emailQueue.XslName,
                 EmailQueueId = emailQueue.Id,
                 EmailTemplateId = emailQueue.EmailTemplateId,
-                EmailTemplate = MapToDto(emailQueue.EmailTemplate)
+                XmlData = MapToDto(emailQueue.XmlData)
             };
 
             emailQueueViewModels.Add(emailQueueDto);
@@ -48,7 +48,7 @@ public class OracleFetchService : IOracleFetchService
             XslName = emailQueue.XslName,
             EmailQueueId = emailQueue.Id,
             EmailTemplateId = emailQueue.EmailTemplateId,
-            EmailTemplate = MapToDto(emailQueue.EmailTemplate)
+            XmlData = MapToDto(emailQueue.XmlData)
         };
 
         // // Mapping van het domeinmodel naar een DTO-object
@@ -81,9 +81,9 @@ public class OracleFetchService : IOracleFetchService
         }
     }
 
-    private object MapToDto(EmailTemplate emailTemplate)
+    private object MapToDto(XmlData xmlData)
     {
-        switch (emailTemplate)
+        switch (xmlData)
         {
             case Login loginTemplate:
                 return new LoginViewModel
@@ -127,7 +127,7 @@ public class OracleFetchService : IOracleFetchService
                     Url = userTemplate.Url
                 };
             default:
-                return null; // Of eventueel een leeg EmailTemplateDto object, afhankelijk van de logica van je applicatie
+                return null; // Of eventueel een leeg XmlDataDto object, afhankelijk van de logica van je applicatie
         }
     }
 }

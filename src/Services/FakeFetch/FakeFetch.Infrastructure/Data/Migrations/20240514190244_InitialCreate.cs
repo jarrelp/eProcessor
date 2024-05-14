@@ -12,7 +12,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "EmailTemplate",
+                name: "XmlData",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -22,7 +22,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmailTemplate", x => x.Id);
+                    table.PrimaryKey("PK_XmlData", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -32,12 +32,20 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmailQueueId = table.Column<int>(type: "int", nullable: false),
-                    Attempts = table.Column<int>(type: "int", nullable: false),
-                    Sent = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    SendAt = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     XslName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailTemplateId = table.Column<int>(type: "int", nullable: false),
+                    IsoLanguage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SendAt = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
+                    Sent = table.Column<string>(type: "nvarchar(1)", nullable: false),
+                    Attempts = table.Column<int>(type: "int", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Create_On = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Created_By = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Modified_On = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Modified_By = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    XmlDataId = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     LastModified = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
@@ -45,9 +53,9 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 {
                     table.PrimaryKey("PK_EmailQueueItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmailQueueItem_EmailTemplate_EmailTemplateId",
-                        column: x => x.EmailTemplateId,
-                        principalTable: "EmailTemplate",
+                        name: "FK_EmailQueueItem_XmlData_XmlDataId",
+                        column: x => x.XmlDataId,
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -66,9 +74,9 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 {
                     table.PrimaryKey("PK_Login", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Login_EmailTemplate_Id",
+                        name: "FK_Login_XmlData_Id",
                         column: x => x.Id,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -90,9 +98,9 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 {
                     table.PrimaryKey("PK_Overdue", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Overdue_EmailTemplate_Id",
+                        name: "FK_Overdue_XmlData_Id",
                         column: x => x.Id,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -110,9 +118,9 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 {
                     table.PrimaryKey("PK_Report", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Report_EmailTemplate_Id",
+                        name: "FK_Report_XmlData_Id",
                         column: x => x.Id,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -134,17 +142,17 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_User_EmailTemplate_Id",
+                        name: "FK_User_XmlData_Id",
                         column: x => x.Id,
-                        principalTable: "EmailTemplate",
+                        principalTable: "XmlData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmailQueueItem_EmailTemplateId",
+                name: "IX_EmailQueueItem_XmlDataId",
                 table: "EmailQueueItem",
-                column: "EmailTemplateId",
+                column: "XmlDataId",
                 unique: true);
         }
 
@@ -167,7 +175,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 name: "User");
 
             migrationBuilder.DropTable(
-                name: "EmailTemplate");
+                name: "XmlData");
         }
     }
 }

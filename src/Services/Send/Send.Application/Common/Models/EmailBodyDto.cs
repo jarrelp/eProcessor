@@ -1,6 +1,16 @@
-﻿namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
+﻿using Ecmanage.eProcessor.Services.Send.Send.Domain.Events;
 
-public class EmailBodyDto
+namespace Ecmanage.eProcessor.Services.Send.Send.Application.Common.Models;
+
+public class EmailBodyDto : BaseEmail
 {
     public string EmailBody { get; init; } = null!;
+
+    private class Mapping : Profile
+    {
+        public Mapping()
+        {
+            CreateMap<EmailBodyDto, EmailBodyIntegrationEvent>();
+        }
+    }
 }

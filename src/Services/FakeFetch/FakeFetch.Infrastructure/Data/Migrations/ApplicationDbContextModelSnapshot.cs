@@ -33,8 +33,19 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                     b.Property<int>("Attempts")
                         .HasColumnType("int");
 
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Create_On")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTimeOffset>("Created")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Created_By")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -43,11 +54,24 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                     b.Property<int>("EmailQueueId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EmailTemplateId")
-                        .HasColumnType("int");
+                    b.Property<string>("IsoLanguage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("LastModified")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modified_By")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modified_On")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SendAt")
                         .IsRequired()
@@ -57,19 +81,26 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("XmlDataId")
+                        .HasColumnType("int");
+
                     b.Property<string>("XslName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmailTemplateId")
+                    b.HasIndex("XmlDataId")
                         .IsUnique();
 
                     b.ToTable("EmailQueueItem", (string)null);
                 });
 
-            modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate", b =>
+            modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,14 +116,14 @@ namespace FakeFetch.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmailTemplate");
+                    b.ToTable("XmlData");
 
                     b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Login", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData");
 
                     b.Property<string>("Date")
                         .IsRequired()
@@ -115,7 +146,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Overdue", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -150,7 +181,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Report", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData");
 
                     b.Property<string>("PortalName")
                         .IsRequired()
@@ -169,7 +200,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.User", b =>
                 {
-                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate");
+                    b.HasBaseType("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData");
 
                     b.Property<string>("Company")
                         .IsRequired()
@@ -204,18 +235,18 @@ namespace FakeFetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailQueueItem", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate", "EmailTemplate")
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData", "XmlData")
                         .WithOne("EmailQueueItem")
-                        .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailQueueItem", "EmailTemplateId")
+                        .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailQueueItem", "XmlDataId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EmailTemplate");
+                    b.Navigation("XmlData");
                 });
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Login", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Login", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -224,7 +255,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Overdue", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Overdue", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -233,7 +264,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Report", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.Report", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -242,14 +273,14 @@ namespace FakeFetch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.User", b =>
                 {
-                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate", null)
+                    b.HasOne("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData", null)
                         .WithOne()
                         .HasForeignKey("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplate", b =>
+            modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData", b =>
                 {
                     b.Navigation("EmailQueueItem")
                         .IsRequired();

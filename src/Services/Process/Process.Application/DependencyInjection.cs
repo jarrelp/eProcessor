@@ -14,7 +14,6 @@ public static class DependencyInjection
         services.AddScoped<OverdueIntegrationEventHandler>();
         services.AddScoped<ReportIntegrationEventHandler>();
         services.AddScoped<UserIntegrationEventHandler>();
-        services.AddScoped<EmailBodyIntegrationEventHandler>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

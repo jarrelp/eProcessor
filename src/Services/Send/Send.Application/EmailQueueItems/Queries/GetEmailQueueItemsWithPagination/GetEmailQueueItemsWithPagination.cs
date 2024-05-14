@@ -1,5 +1,5 @@
 ﻿using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Models;
+using Ecmanage.eProcessor.Services.Send.Send.Application.Common.Models;
 using Ecmanage.eProcessor.Services.Send.Send.Domain.Entities.EmailTemplates;
 using Ecmanage.eProcessor.Services.Send.Send.Domain.Events;
 

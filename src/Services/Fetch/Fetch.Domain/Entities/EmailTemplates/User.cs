@@ -1,6 +1,6 @@
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates;
 
-public class User : EmailTemplate
+public class User : XmlData
 {
     public string ImageHeader { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;

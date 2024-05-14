@@ -10,10 +10,6 @@ public static class DependencyInjection
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-        services.AddScoped<LoginIntegrationEventHandler>();
-        services.AddScoped<OverdueIntegrationEventHandler>();
-        services.AddScoped<ReportIntegrationEventHandler>();
-        services.AddScoped<UserIntegrationEventHandler>();
         services.AddScoped<EmailBodyIntegrationEventHandler>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

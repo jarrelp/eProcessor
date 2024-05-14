@@ -2,7 +2,7 @@
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 
-public class LoginDto : EmailTemplateDto
+public class LoginDto : XmlDataDto
 {
     public string FullName { get; init; } = null!;
     public string Environment { get; init; } = null!;

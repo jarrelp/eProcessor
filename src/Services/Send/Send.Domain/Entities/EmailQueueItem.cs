@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Ecmanage.eProcessor.Services.Send.Send.Domain.Entities;
 
 public class EmailQueueItem : BaseEntity
@@ -19,14 +17,14 @@ public class EmailQueueItem : BaseEntity
   // public string XmlData { get; set; } // xml data
 
   public int EmailTemplateId { get; set; }
-  public EmailTemplate EmailTemplate { get; set; } = null!;
+  public XmlData XmlData { get; set; } = null!;
 
-  public EmailQueueItem(int emailQueueId, string xslName, string email, EmailTemplate emailTemplate)
+  public EmailQueueItem(int emailQueueId, string xslName, string email, XmlData xmlData)
   {
     EmailQueueId = emailQueueId;
     XslName = xslName;
     Email = email;
-    EmailTemplate = emailTemplate;
+    XmlData = xmlData;
   }
 
   public EmailQueueItem()

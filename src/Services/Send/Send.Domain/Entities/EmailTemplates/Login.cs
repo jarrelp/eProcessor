@@ -1,6 +1,6 @@
 namespace Ecmanage.eProcessor.Services.Send.Send.Domain.Entities.EmailTemplates;
 
-public class Login : EmailTemplate
+public class Login : XmlData
 {
     public string FullName { get; set; } = string.Empty;
     public string Environment { get; set; } = string.Empty;

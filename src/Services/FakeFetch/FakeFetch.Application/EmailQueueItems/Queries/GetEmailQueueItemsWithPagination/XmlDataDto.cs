@@ -3,13 +3,13 @@ using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemp
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 
-public class EmailTemplateDto
+public class XmlDataDto
 {
   private class Mapping : Profile
   {
     public Mapping()
     {
-      CreateMap<EmailTemplate, object>()
+      CreateMap<XmlData, object>()
         .Include<Login, LoginDto>()
         .Include<Overdue, OverdueDto>()
         .Include<Report, ReportDto>()

@@ -1,6 +1,6 @@
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates;
 
-public class Report : EmailTemplate
+public class Report : XmlData
 {
     public string PortalName { get; set; } = string.Empty;
 

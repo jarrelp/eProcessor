@@ -27,14 +27,14 @@ public class GetEmailQueueItemsWithPaginationQueryHandler : IRequestHandler<GetE
     public async Task<PaginatedList<EmailQueueItemDto>> Handle(GetEmailQueueItemsWithPaginationQuery request, CancellationToken cancellationToken)
     {
         var emailQueueItems = _context.EmailQueueItems
-            .Include(e => e.EmailTemplate)
+            .Include(e => e.XmlData)
             .OrderBy(x => x.Id);
 
         foreach (var emailQueueItem in emailQueueItems)
         {
-            if (emailQueueItem.EmailTemplate != null)
+            if (emailQueueItem.XmlData != null)
             {
-                switch (emailQueueItem.EmailTemplate)
+                switch (emailQueueItem.XmlData)
                 {
                     case Login loginTemplate:
                         var loginIntegrationEvent =

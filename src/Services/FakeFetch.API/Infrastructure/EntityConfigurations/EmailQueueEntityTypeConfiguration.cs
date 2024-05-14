@@ -8,15 +8,15 @@ public class EmailQueueEntityTypeConfiguration : IEntityTypeConfiguration<EmailQ
 
     builder.HasKey(emailQueue => emailQueue.Id);
 
-    builder.HasOne(e => e.EmailTemplate)
+    builder.HasOne(e => e.XmlData)
     .WithOne()
-    .HasForeignKey<EmailTemplate>(e => e.Id);
+    .HasForeignKey<XmlData>(e => e.Id);
 
-    // builder.HasOne(emailQueue => emailQueue.EmailTemplate)
+    // builder.HasOne(emailQueue => emailQueue.XmlData)
     //     .WithOne()
-    //     .HasForeignKey<EmailTemplate>(emailTemplate => emailTemplate.Id);
+    //     .HasForeignKey<XmlData>(xmlData => xmlData.Id);
 
-    // builder.OwnsOne(e => e.EmailTemplate);
+    // builder.OwnsOne(e => e.XmlData);
 
     builder.HasData(
     new EmailQueue(11502, "LOGIN", "aangepast@email.adr", 1),

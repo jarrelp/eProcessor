@@ -1,6 +1,6 @@
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates;
 
-public class Overdue : EmailTemplate
+public class Overdue : XmlData
 {
     public string FullName { get; set; } = string.Empty;
 

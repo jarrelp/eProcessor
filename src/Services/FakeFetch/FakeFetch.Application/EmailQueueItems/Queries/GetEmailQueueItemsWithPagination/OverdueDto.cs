@@ -2,7 +2,7 @@
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 
-public class OverdueDto : EmailTemplateDto
+public class OverdueDto : XmlDataDto
 {
     public string FullName { get; init; } = null!;
     public string Email { get; init; } = null!;

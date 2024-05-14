@@ -10,12 +10,5 @@ public class OverdueEntityTypeConfiguration : IEntityTypeConfiguration<Overdue>
     public void Configure(EntityTypeBuilder<Overdue> builder)
     {
         builder.ToTable("Overdue");
-
-        // var overdue1 = GenerateSeedData.GenerateOverdueData1();
-        // var overdue2 = GenerateSeedData.GenerateOverdueData2();
-
-        // builder.HasData(
-        //     overdue1, overdue2
-        // );
     }
 }

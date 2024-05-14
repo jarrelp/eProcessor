@@ -28,18 +28,9 @@ public class EmailBodyIntegrationEventHandler : IIntegrationEventHandler<EmailBo
             @event.EmailBody,
             new Dictionary<string, string>
             {
-                ["emailFrom"] = "eshopondapr@example.com",
-                ["emailTo"] = "eshopondapr@example.com",
-                ["subject"] = "Login Email"
+                ["emailFrom"] = @event.EmailFrom,
+                ["emailTo"] = @event.EmailTo,
+                ["subject"] = @event.Subject
             });
     }
-
-    // public Task Handle(EmailBodyIntegrationEvent @event)
-    // {
-    //     _logger.LogInformation("--------------------------------------------------------------------------------------------------------------------");
-    //     _logger.LogInformation("EmailBodyIntegrationEvent Attributes:");
-    //     _logger.LogInformation($"  EmailBody: {@event.EmailBody}");
-    //     _logger.LogInformation("--------------------------------------------------------------------------------------------------------------------");
-    //     return Task.CompletedTask;
-    // }
 }

@@ -1,6 +1,4 @@
-﻿using Ecmanage.eProcessor.Services.Send.Send.Domain.Events;
-
-namespace Microsoft.Extensions.DependencyInjection;
+﻿namespace Microsoft.Extensions.DependencyInjection;
 
 public static class DependencyInjection
 {

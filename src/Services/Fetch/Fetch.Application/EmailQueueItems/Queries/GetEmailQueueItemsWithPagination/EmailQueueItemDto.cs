@@ -19,7 +19,7 @@ public class EmailQueueItemDto
         public Mapping()
         {
             CreateMap<EmailQueueItem, EmailQueueItemDto>()
-            .ForMember(dest => dest.XmlData, opt => opt.MapFrom(src => src.EmailTemplate));
+            .ForMember(dest => dest.XmlData, opt => opt.MapFrom(src => src.XmlData));
         }
     }
 }

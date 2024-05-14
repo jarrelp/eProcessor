@@ -12,28 +12,28 @@ public class OracleFetchRepository : IOracleFetchRepository
   public async Task<List<EmailQueue>> GetAllAsync()
   {
     var emailQueues = await _context.EmailQueues
-        .Include(eq => eq.EmailTemplate)
+        .Include(eq => eq.XmlData)
         .ToListAsync();
 
     // foreach (var emailQueue in emailQueues)
     // {
-    //   if (emailQueue.EmailTemplate != null)
+    //   if (emailQueue.XmlData != null)
     //   {
-    //     Console.WriteLine($"EmailQueueId: {emailQueue.EmailQueueId}, EmailTemplate Type: {emailQueue.EmailTemplate.GetType().Name}");
+    //     Console.WriteLine($"EmailQueueId: {emailQueue.EmailQueueId}, XmlData Type: {emailQueue.XmlData.GetType().Name}");
     //   }
     //   else
     //   {
-    //     Console.WriteLine($"EmailQueueId: {emailQueue.EmailQueueId}, EmailTemplate: null");
+    //     Console.WriteLine($"EmailQueueId: {emailQueue.EmailQueueId}, XmlData: null");
     //   }
     // }
 
     foreach (var emailQueue in emailQueues)
     {
-      if (emailQueue.EmailTemplate != null)
+      if (emailQueue.XmlData != null)
       {
-        Console.WriteLine($"EmailQueueId: {emailQueue.Id}, EmailTemplate Type: {emailQueue.EmailTemplate.GetType().Name}");
+        Console.WriteLine($"EmailQueueId: {emailQueue.Id}, XmlData Type: {emailQueue.XmlData.GetType().Name}");
 
-        switch (emailQueue.EmailTemplate)
+        switch (emailQueue.XmlData)
         {
           case Login loginTemplate:
             Console.WriteLine($"Login Template Attributes:");
@@ -72,27 +72,27 @@ public class OracleFetchRepository : IOracleFetchRepository
       }
       else
       {
-        Console.WriteLine($"EmailQueueId: {emailQueue.Id}, EmailTemplate: null");
+        Console.WriteLine($"EmailQueueId: {emailQueue.Id}, XmlData: null");
       }
     }
 
     // foreach (var emailQueue in emailQueues)
     // {
-    //   if (emailQueue != null && emailQueue.EmailTemplate != null)
+    //   if (emailQueue != null && emailQueue.XmlData != null)
     //   {
-    //     switch (emailQueue.EmailTemplate)
+    //     switch (emailQueue.XmlData)
     //     {
     //       case Login loginTemplate:
-    //         emailQueue.EmailTemplate = loginTemplate;
+    //         emailQueue.XmlData = loginTemplate;
     //         break;
     //       case Overdue overdueTemplate:
-    //         emailQueue.EmailTemplate = overdueTemplate;
+    //         emailQueue.XmlData = overdueTemplate;
     //         break;
     //       case Report reportTemplate:
-    //         emailQueue.EmailTemplate = reportTemplate;
+    //         emailQueue.XmlData = reportTemplate;
     //         break;
     //       case User userTemplate:
-    //         emailQueue.EmailTemplate = userTemplate;
+    //         emailQueue.XmlData = userTemplate;
     //         break;
     //     }
     //   }
@@ -104,10 +104,10 @@ public class OracleFetchRepository : IOracleFetchRepository
   public async Task<EmailQueue> GetByIdAsync(int id)
   {
     // return await _context.EmailQueues
-    //   .Include(eq => eq.EmailTemplate)
+    //   .Include(eq => eq.XmlData)
     //   .FirstOrDefaultAsync(eq => eq.EmailQueueId == id);
     var emailQueue = await _context.EmailQueues
-        .Include(eq => eq.EmailTemplate)
+        .Include(eq => eq.XmlData)
         .FirstOrDefaultAsync(eq => eq.Id == id) ?? throw new Exception();
     return emailQueue;
   }

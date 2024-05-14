@@ -2,7 +2,7 @@
 
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 
-public class ReportDto : EmailTemplateDto
+public class ReportDto : XmlDataDto
 {
     public string PortalName { get; init; } = null!;
     public string ReportName { get; init; } = null!;
