@@ -1,7 +1,7 @@
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates;
 
-namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
+namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Common.Models;
 
 public class XmlDataDto
 {
