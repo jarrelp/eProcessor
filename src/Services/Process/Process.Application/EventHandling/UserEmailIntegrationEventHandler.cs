@@ -27,6 +27,7 @@ public class UserIntegrationEventHandler : IIntegrationEventHandler<UserIntegrat
         var emailBodyDto = new EmailBodyDto()
         {
             EmailBody = emailBody,
+            EmailQueueId = userDto.EmailQueueId,
             EmailFrom = userDto.EmailFrom,
             EmailTo = userDto.EmailTo,
             Subject = userDto.Subject

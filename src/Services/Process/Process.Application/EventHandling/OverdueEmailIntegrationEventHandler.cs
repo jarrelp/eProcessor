@@ -27,6 +27,7 @@ public class OverdueIntegrationEventHandler : IIntegrationEventHandler<OverdueIn
         var emailBodyDto = new EmailBodyDto()
         {
             EmailBody = emailBody,
+            EmailQueueId = overdueDto.EmailQueueId,
             EmailFrom = overdueDto.EmailFrom,
             EmailTo = overdueDto.EmailTo,
             Subject = overdueDto.Subject

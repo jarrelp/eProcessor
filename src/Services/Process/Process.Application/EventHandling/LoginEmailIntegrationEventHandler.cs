@@ -27,6 +27,7 @@ public class LoginIntegrationEventHandler : IIntegrationEventHandler<LoginIntegr
         var emailBodyDto = new EmailBodyDto()
         {
             EmailBody = emailBody,
+            EmailQueueId = loginDto.EmailQueueId,
             EmailFrom = loginDto.EmailFrom,
             EmailTo = loginDto.EmailTo,
             Subject = loginDto.Subject

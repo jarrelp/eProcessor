@@ -30,6 +30,7 @@ COPY ["src/Services/Process/Process.Domain/Process.Domain.csproj", "src/Services
 COPY ["src/Services/Process/Process.Application/Process.Application.csproj", "src/Services/Process/Process.Application/"]
 
 COPY ["src/Services/Send/Send.API/Send.API.csproj", "src/Services/Send/Send.API/"]
+COPY ["src/Services/Send/Send.Infrastructure/Send.Infrastructure.csproj", "src/Services/Send/Send.Infrastructure/"]
 COPY ["src/Services/Send/Send.Domain/Send.Domain.csproj", "src/Services/Send/Send.Domain/"]
 COPY ["src/Services/Send/Send.Application/Send.Application.csproj", "src/Services/Send/Send.Application/"]
 

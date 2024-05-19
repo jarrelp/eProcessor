@@ -27,6 +27,7 @@ public class ReportIntegrationEventHandler : IIntegrationEventHandler<ReportInte
         var emailBodyDto = new EmailBodyDto()
         {
             EmailBody = emailBody,
+            EmailQueueId = reportDto.EmailQueueId,
             EmailFrom = reportDto.EmailFrom,
             EmailTo = reportDto.EmailTo,
             Subject = reportDto.Subject

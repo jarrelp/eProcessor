@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Send.Application\Send.Application.csproj" />
+    <ProjectReference Include="..\Send.Infrastructure\Send.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Healthchecks\Healthchecks.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\API\API.csproj" />

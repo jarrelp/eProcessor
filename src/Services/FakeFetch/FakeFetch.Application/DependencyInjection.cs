@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Ecmanage.eProcessor.BuildingBlocks.BuildingBlocks.Application.Behaviours;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EventHandling;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,10 @@ public static class DependencyInjection
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+        services.AddScoped<AllRetriesFailedIntegrationEventHandler>();
+        services.AddScoped<EmailIsSendIntegrationEventHandler>();
+        services.AddScoped<SendEmailAttemptIntegrationEventHandler>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

@@ -2,8 +2,13 @@
 
 public class SampleException : Exception
 {
-    public SampleException(string text)
-        : base($"This \"{text}\" is unsupported.")
+    public SampleException()
+        : base($"Mail failed to send to email client.")
     {
     }
+
+    // public SampleException(string text)
+    //     : base($"This \"{text}\" is unsupported.")
+    // {
+    // }
 }

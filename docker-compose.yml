@@ -89,6 +89,8 @@ services:
     build:
       context: .
       dockerfile: src/Services/Send/Send.API/Dockerfile
+    depends_on:
+      - sqldata
 
   send-api-dapr:
     image: 'daprio/daprd:1.9.4'

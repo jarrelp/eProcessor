@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Send.Application", "Send.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Send.Domain", "Send.Domain\Send.Domain.csproj", "{3DD5F797-5A8C-4F3E-B5A2-B22E4737E884}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Send.Infrastructure", "Send.Infrastructure\Send.Infrastructure.csproj", "{FAC4AC4E-02D3-4AA8-AB4A-DE6F1A10227A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3DD5F797-5A8C-4F3E-B5A2-B22E4737E884}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DD5F797-5A8C-4F3E-B5A2-B22E4737E884}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DD5F797-5A8C-4F3E-B5A2-B22E4737E884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC4AC4E-02D3-4AA8-AB4A-DE6F1A10227A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC4AC4E-02D3-4AA8-AB4A-DE6F1A10227A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC4AC4E-02D3-4AA8-AB4A-DE6F1A10227A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC4AC4E-02D3-4AA8-AB4A-DE6F1A10227A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

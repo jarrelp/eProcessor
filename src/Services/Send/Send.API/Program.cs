@@ -1,4 +1,5 @@
 using Ecmanage.eProcessor.Services.Send;
+using Ecmanage.eProcessor.Services.Send.Send.Infrastructure.Data;
 
 var appName = "Send API";
 
@@ -11,6 +12,7 @@ builder.AddCustomHealthChecks();
 builder.AddCustomApplicationServices();
 
 builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
 
 var app = builder.Build();
@@ -33,6 +35,9 @@ app.MapCustomHealthChecks("/hc", "/liveness", UIResponseWriter.WriteHealthCheckU
 
 try
 {
+    app.Logger.LogInformation("Applying database migration ({ApplicationName})...", appName);
+    await app.InitialiseDatabaseAsync();
+
     app.Logger.LogInformation("Starting web host ({ApplicationName})...", appName);
     app.Run();
 }

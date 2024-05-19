@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Ecmanage.eProcessor.BuildingBlocks.BuildingBlocks.Application.Behaviours;
+using Ecmanage.eProcessor.Services.Send.Send.Application.Common.Interfaces;
 using Ecmanage.eProcessor.Services.Send.Send.Application.EventHandling;
+using Send.Application.Services;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +13,12 @@ public static class DependencyInjection
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         services.AddScoped<EmailBodyIntegrationEventHandler>();
+
+        services.AddScoped<IEmailSnapshotService, EmailSnapshotService>();
+
+        services.AddHostedService<EmailCleanupService>();
+
+        services.AddScoped<IEmailCleanupService, EmailCleanupService>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

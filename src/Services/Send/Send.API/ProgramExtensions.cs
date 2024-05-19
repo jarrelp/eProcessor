@@ -47,7 +47,12 @@ public static class ProgramExtensions
     public static void AddCustomHealthChecks(this WebApplicationBuilder builder) =>
         builder.Services.AddHealthChecks()
             .AddCheck("self", () => HealthCheckResult.Healthy())
-            .AddDapr();
+            .AddDapr()
+            .AddSqlServer(
+                builder.Configuration["ConnectionStrings:SendDB"]!,
+                // builder.Configuration.GetConnectionString("DefaultConnection")!,
+                name: "SendDb-check",
+                tags: new[] { "senddb" });
 
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {
