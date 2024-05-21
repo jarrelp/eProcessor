@@ -2,6 +2,7 @@ using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueIte
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.AddOverdueEmail;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.AddReportEmail;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.AddUserEmail;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.DeleteAllEmailQueueItems;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SendAllEmailQueueItems;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SendFirstFewEmailQueueItems;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SetSentValueToNotYetPickedUp;
@@ -74,6 +75,14 @@ public class EmailQueueItemsController : ApiControllerBase
 
   [HttpPost("AddUserEmail")]
   public async Task<Result> AddUserEmail(AddUserEmailCommand command)
+  {
+    await Mediator.Send(command);
+
+    return Result.Success();
+  }
+
+  [HttpDelete()]
+  public async Task<Result> Delete(DeleteAllEmailQueueItemsCommand command)
   {
     await Mediator.Send(command);
 
