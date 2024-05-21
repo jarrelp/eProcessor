@@ -1,4 +1,9 @@
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.AddLoginEmail;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.AddOverdueEmail;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.AddReportEmail;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.AddUserEmail;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SendAllEmailQueueItems;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SendFirstFewEmailQueueItems;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SetSentValueToNotYetPickedUp;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Queries.GetNonProcessedEmailQueueItemsItemsWithPagination;
@@ -27,8 +32,48 @@ public class EmailQueueItemsController : ApiControllerBase
     return Result.Success();
   }
 
+  [HttpPut("SendFirstFewEmailQueueItems")]
+  public async Task<Result> SendFirstFewEmailQueueItems(SendFirstFewEmailQueueItemsCommand command)
+  {
+    await Mediator.Send(command);
+
+    return Result.Success();
+  }
+
   [HttpPut("SetSentValueToNotYetPickedUp")]
   public async Task<Result> SetSentValueToNotYetPickedUp(SetSentValueToNotYetPickedUpCommand command)
+  {
+    await Mediator.Send(command);
+
+    return Result.Success();
+  }
+
+  [HttpPost("AddLoginEmail")]
+  public async Task<Result> AddLoginEmail(AddLoginEmailCommand command)
+  {
+    await Mediator.Send(command);
+
+    return Result.Success();
+  }
+
+  [HttpPost("AddOverdueEmail")]
+  public async Task<Result> AddOverdueEmail(AddOverdueEmailCommand command)
+  {
+    await Mediator.Send(command);
+
+    return Result.Success();
+  }
+
+  [HttpPost("AddReportEmail")]
+  public async Task<Result> AddReportEmail(AddReportEmailCommand command)
+  {
+    await Mediator.Send(command);
+
+    return Result.Success();
+  }
+
+  [HttpPost("AddUserEmail")]
+  public async Task<Result> AddUserEmail(AddUserEmailCommand command)
   {
     await Mediator.Send(command);
 

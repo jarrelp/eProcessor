@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 
 public class EmailQueueItem : BaseEntity
@@ -22,9 +20,8 @@ public class EmailQueueItem : BaseEntity
   public int XmlDataId { get; set; }
   public XmlData XmlData { get; set; } = null!;
 
-  public EmailQueueItem(int emailQueueId, string xslName, string isoLanguage, string email, int companyId, string subject, string message, XmlData xmlData)
+  public EmailQueueItem(string xslName, string isoLanguage, string email, int companyId, string subject, string message, XmlData xmlData)
   {
-    EmailQueueId = emailQueueId;
     XslName = xslName;
     IsoLanguage = isoLanguage;
     Email = email;

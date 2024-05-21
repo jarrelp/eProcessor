@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FakeFetch.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240514190244_InitialCreate")]
+    [Migration("20240521215111_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -55,7 +55,8 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmailQueueId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
 
                     b.Property<string>("IsoLanguage")
                         .IsRequired()
@@ -100,7 +101,11 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                     b.HasIndex("XmlDataId")
                         .IsUnique();
 
-                    b.ToTable("EmailQueueItem", (string)null);
+                    b.ToTable("EmailQueueItem", null, t =>
+                        {
+                            t.Property("Id")
+                                .HasColumnName("Id1");
+                        });
                 });
 
             modelBuilder.Entity("Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.XmlData", b =>
@@ -137,6 +142,10 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IPAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -29,9 +29,9 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 name: "EmailQueueItem",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id1 = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EmailQueueId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     XslName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsoLanguage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -51,7 +51,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmailQueueItem", x => x.Id);
+                    table.PrimaryKey("PK_EmailQueueItem", x => x.Id1);
                     table.ForeignKey(
                         name: "FK_EmailQueueItem_XmlData_XmlDataId",
                         column: x => x.XmlDataId,
@@ -67,6 +67,7 @@ namespace FakeFetch.Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Environment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IPAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Time = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

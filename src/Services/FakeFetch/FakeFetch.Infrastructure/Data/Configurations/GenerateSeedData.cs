@@ -14,7 +14,7 @@ public static class GenerateSeedData
         string company = "Example Company";
         string url = "http://example.com";
 
-        User userData = new User(imageHeader, email, fullName, userName, password, company, url);
+        User userData = new(imageHeader, email, fullName, userName, password, company, url);
         return userData;
     }
 
@@ -28,7 +28,7 @@ public static class GenerateSeedData
         string company = "Example Company";
         string url = "http://example.com";
 
-        User userData = new User(imageHeader, email, fullName, userName, password, company, url);
+        User userData = new(imageHeader, email, fullName, userName, password, company, url);
         return userData;
     }
     public static Report GenerateReportData1()
@@ -37,7 +37,7 @@ public static class GenerateSeedData
         string reportName = "Monthly Sales Report";
         string url = "http://example.com/reports/monthly-sales";
 
-        Report reportData = new Report(portalName, reportName, url);
+        Report reportData = new(portalName, reportName, url);
         return reportData;
     }
 
@@ -47,7 +47,7 @@ public static class GenerateSeedData
         string reportName = "Monthly Sales Report";
         string url = "http://example.com/reports/monthly-sales";
 
-        Report reportData = new Report(portalName, reportName, url);
+        Report reportData = new(portalName, reportName, url);
         return reportData;
     }
 
@@ -61,7 +61,7 @@ public static class GenerateSeedData
         string orderDate = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd");
         string overdueDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-        Overdue overdueData = new Overdue(fullName, email, productNumber, productName, orderCode, orderDate, overdueDate);
+        Overdue overdueData = new(fullName, email, productNumber, productName, orderCode, orderDate, overdueDate);
         return overdueData;
     }
 
@@ -75,7 +75,7 @@ public static class GenerateSeedData
         string orderDate = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd");
         string overdueDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-        Overdue overdueData = new Overdue(fullName, email, productNumber, productName, orderCode, orderDate, overdueDate);
+        Overdue overdueData = new(fullName, email, productNumber, productName, orderCode, orderDate, overdueDate);
         return overdueData;
     }
 
@@ -83,10 +83,11 @@ public static class GenerateSeedData
     {
         string fullName = "John Doe";
         string environment = "Production";
+        string iPAddress = "192.168.23.45";
         string date = DateTime.Now.ToString("yyyy-MM-dd");
         string time = DateTime.Now.ToString("HH:mm:ss");
 
-        Login loginData = new Login(fullName, environment, date, time);
+        Login loginData = new(fullName, environment, iPAddress, date, time);
         return loginData;
     }
 
@@ -94,10 +95,11 @@ public static class GenerateSeedData
     {
         string fullName = "Gerrit Janssen";
         string environment = "Production";
+        string iPAddress = "10.0.15.32";
         string date = DateTime.Now.ToString("yyyy-MM-dd");
         string time = DateTime.Now.ToString("HH:mm:ss");
 
-        Login loginData = new Login(fullName, environment, date, time);
+        Login loginData = new(fullName, environment, iPAddress, date, time);
         return loginData;
     }
 }
