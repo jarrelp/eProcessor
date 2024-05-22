@@ -28,11 +28,13 @@ COPY ["src/Services/Fetch/Fetch.Application/Fetch.Application.csproj", "src/Serv
 COPY ["src/Services/Process/Process.API/Process.API.csproj", "src/Services/Process/Process.API/"]
 COPY ["src/Services/Process/Process.Domain/Process.Domain.csproj", "src/Services/Process/Process.Domain/"]
 COPY ["src/Services/Process/Process.Application/Process.Application.csproj", "src/Services/Process/Process.Application/"]
+COPY ["src/Services/Process/tests/tests.csproj", "src/Services/Process/tests/"]
 
 COPY ["src/Services/Send/Send.API/Send.API.csproj", "src/Services/Send/Send.API/"]
 COPY ["src/Services/Send/Send.Infrastructure/Send.Infrastructure.csproj", "src/Services/Send/Send.Infrastructure/"]
 COPY ["src/Services/Send/Send.Domain/Send.Domain.csproj", "src/Services/Send/Send.Domain/"]
 COPY ["src/Services/Send/Send.Application/Send.Application.csproj", "src/Services/Send/Send.Application/"]
+COPY ["src/Services/Send/tests/tests.csproj", "src/Services/Send/tests/"]
 
 COPY ["src/Services/Fetch.API/Fetch.API.csproj", "src/Services/Fetch.API/"]
 COPY ["src/Web/Webstatus/Webstatus.csproj", "src/Web/Webstatus/"]
