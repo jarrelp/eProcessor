@@ -14,7 +14,7 @@ public class EmailSnapshotService : IEmailSnapshotService
 
     public async Task SaveEmailSnapshotAsync(EmailSnapshot emailSnapshot, CancellationToken cancellationToken = default)
     {
-        if (emailSnapshot == null) throw new ArgumentNullException(nameof(emailSnapshot));
+        ArgumentNullException.ThrowIfNull(emailSnapshot);
 
         _context.EmailSnapshots.Add(emailSnapshot);
         await _context.SaveChangesAsync(cancellationToken);

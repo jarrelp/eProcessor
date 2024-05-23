@@ -19,9 +19,9 @@ public class OverdueIntegrationEventHandler : IIntegrationEventHandler<OverdueIn
         _eventBus = eventBus;
     }
 
-    public async Task Handle(OverdueIntegrationEvent @event)
+    public async Task Handle(OverdueIntegrationEvent @event, CancellationToken cancellationToken)
     {
-        OverdueDto overdueDto = _mapper.Map<OverdueDto>(@event);
+        OverdueDto overdueDto = _mapper.Map<OverdueDto>(@event) ?? throw new Exception("Unsupported OverdueIntegrationEvent type for OverdueDto mapping."); ;
         string emailBody = OverdueTemplate.CreateEmailBody(overdueDto);
 
         var emailBodyDto = new EmailBodyDto()
@@ -33,8 +33,15 @@ public class OverdueIntegrationEventHandler : IIntegrationEventHandler<OverdueIn
             Subject = overdueDto.Subject
         };
 
-        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto);
+        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto) ?? throw new Exception("Unsupported EmailBodyDto type for EmailBodyIntegrationEvent mapping.");
 
-        await _eventBus.PublishAsync(emailBodyIntegrationEvent);
+        try
+        {
+            await _eventBus.PublishAsync(emailBodyIntegrationEvent, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error publishing IntegrationEvent", ex);
+        }
     }
 }

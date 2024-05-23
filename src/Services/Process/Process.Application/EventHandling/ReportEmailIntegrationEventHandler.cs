@@ -19,9 +19,9 @@ public class ReportIntegrationEventHandler : IIntegrationEventHandler<ReportInte
         _eventBus = eventBus;
     }
 
-    public async Task Handle(ReportIntegrationEvent @event)
+    public async Task Handle(ReportIntegrationEvent @event, CancellationToken cancellationToken)
     {
-        ReportDto reportDto = _mapper.Map<ReportDto>(@event);
+        ReportDto reportDto = _mapper.Map<ReportDto>(@event) ?? throw new Exception("Unsupported ReportIntegrationEvent type for ReportDto mapping.");
         string emailBody = ReportTemplate.CreateEmailBody(reportDto);
 
         var emailBodyDto = new EmailBodyDto()
@@ -33,8 +33,15 @@ public class ReportIntegrationEventHandler : IIntegrationEventHandler<ReportInte
             Subject = reportDto.Subject
         };
 
-        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto);
+        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto) ?? throw new Exception("Unsupported EmailBodyDto type for EmailBodyIntegrationEvent mapping.");
 
-        await _eventBus.PublishAsync(emailBodyIntegrationEvent);
+        try
+        {
+            await _eventBus.PublishAsync(emailBodyIntegrationEvent, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error publishing IntegrationEvent", ex);
+        }
     }
 }

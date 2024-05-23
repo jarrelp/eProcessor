@@ -6,9 +6,4 @@ public class SampleException : Exception
         : base($"Mail failed to send to email client.")
     {
     }
-
-    // public SampleException(string text)
-    //     : base($"This \"{text}\" is unsupported.")
-    // {
-    // }
 }

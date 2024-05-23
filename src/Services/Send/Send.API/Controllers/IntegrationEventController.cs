@@ -1,4 +1,5 @@
-﻿using Ecmanage.eProcessor.Services.Send.Send.Application.EventHandling;
+﻿using System.Threading;
+using Ecmanage.eProcessor.Services.Send.Send.Application.EventHandling;
 using Ecmanage.eProcessor.Services.Send.Send.Domain.Events;
 
 namespace Ecmanage.eProcessor.Services.Send.Send.API.Controllers;
@@ -11,6 +12,6 @@ public class IntegrationEventController : ApiControllerBase
     [Topic(DAPR_PUBSUB_NAME, nameof(EmailBodyIntegrationEvent))]
     public Task HandleAsync(
         EmailBodyIntegrationEvent @event,
-        [FromServices] EmailBodyIntegrationEventHandler handler)
-        => handler.Handle(@event);
+        [FromServices] EmailBodyIntegrationEventHandler handler, CancellationToken cancellationToken)
+        => handler.Handle(@event, cancellationToken);
 }

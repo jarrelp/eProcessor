@@ -1,4 +1,3 @@
-using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

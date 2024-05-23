@@ -19,9 +19,9 @@ public class LoginIntegrationEventHandler : IIntegrationEventHandler<LoginIntegr
         _eventBus = eventBus;
     }
 
-    public async Task Handle(LoginIntegrationEvent @event)
+    public async Task Handle(LoginIntegrationEvent @event, CancellationToken cancellationToken)
     {
-        LoginDto loginDto = _mapper.Map<LoginDto>(@event);
+        LoginDto loginDto = _mapper.Map<LoginDto>(@event) ?? throw new Exception("Unsupported LoginIntegrationEvent type for LoginDto mapping.");
         string emailBody = LoginTemplate.CreateEmailBody(loginDto);
 
         var emailBodyDto = new EmailBodyDto()
@@ -33,8 +33,15 @@ public class LoginIntegrationEventHandler : IIntegrationEventHandler<LoginIntegr
             Subject = loginDto.Subject
         };
 
-        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto);
+        EmailBodyIntegrationEvent emailBodyIntegrationEvent = _mapper.Map<EmailBodyIntegrationEvent>(emailBodyDto) ?? throw new Exception("Unsupported EmailBodyDto type for EmailBodyIntegrationEvent mapping.");
 
-        await _eventBus.PublishAsync(emailBodyIntegrationEvent);
+        try
+        {
+            await _eventBus.PublishAsync(emailBodyIntegrationEvent, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error publishing IntegrationEvent", ex);
+        }
     }
 }

@@ -1,8 +1,6 @@
-using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Common.Interfaces;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities.EmailTemplates;
-using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Events;
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.AddReportEmail;
 
@@ -22,7 +20,7 @@ public class AddReportEmailCommandHandler : IRequestHandler<AddReportEmailComman
     {
         Report reportData = new("Portal X", "Monthly Sales Report", "http://example.com/reports/monthly-sales");
 
-        _context.EmailQueueItems.Add(new EmailQueueItem("REPORT", "en-US", "aangepast@email.adr", 14451, "Report Email for aangepast@email.adr", "Random Message", reportData));
+        await _context.EmailQueueItems.AddAsync(new EmailQueueItem("REPORT", "en-US", "aangepast@email.adr", 14451, "Report Email for aangepast@email.adr", "Random Message", reportData), cancellationToken);
 
         await _context.SaveChangesAsync(cancellationToken);
     }

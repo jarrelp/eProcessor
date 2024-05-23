@@ -1,5 +1,7 @@
+using Ardalis.GuardClauses;
 using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Common.Interfaces;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Events;
 using Microsoft.Extensions.Logging;
 
@@ -16,24 +18,22 @@ public class SendEmailAttemptIntegrationEventHandler : IIntegrationEventHandler<
     _context = context ?? throw new ArgumentNullException(nameof(context));
   }
 
-  public async Task Handle(SendEmailAttemptIntegrationEvent @event)
+  public async Task Handle(SendEmailAttemptIntegrationEvent @event, CancellationToken cancellationToken)
   {
-    _logger.LogInformation("--------------- SendEmailAttemptIntegrationEventHandler ---------------");
-
-    var emailQueueItem = _context.EmailQueueItems.FirstOrDefault(x => x.EmailQueueId == @event.EmailQueueId);
+    var emailQueueItem = await _context.EmailQueueItems.FirstOrDefaultAsync(x => x.EmailQueueId == @event.EmailQueueId, cancellationToken);
 
     if (emailQueueItem == null)
     {
       _logger.LogError($"EmailQueueItem with ID {@event.EmailQueueId} not found.");
-      throw new InvalidOperationException($"EmailQueueItem with ID {@event.EmailQueueId} not found.");
+      throw new NotFoundException(@event.EmailQueueId.ToString(), nameof(EmailQueueItem));
     }
 
     emailQueueItem.Attempts = @event.Attempt;
 
     try
     {
-      await _context.SaveChangesAsync(CancellationToken.None);
-      _logger.LogInformation($"EmailQueueItem with ID {@event.EmailQueueId} marked as sent.");
+      await _context.SaveChangesAsync(cancellationToken);
+      _logger.LogInformation($"EmailQueueItem with ID {@event.EmailQueueId} attempts updated to {@event.Attempt}.");
     }
     catch (Exception ex)
     {

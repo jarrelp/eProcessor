@@ -12,20 +12,20 @@ public class IntegrationEventController : ApiControllerBase
     [Topic(DAPR_PUBSUB_NAME, nameof(SendEmailAttemptIntegrationEvent))]
     public Task HandleAsync(
         SendEmailAttemptIntegrationEvent @event,
-        [FromServices] SendEmailAttemptIntegrationEventHandler handler)
-        => handler.Handle(@event);
+        [FromServices] SendEmailAttemptIntegrationEventHandler handler, CancellationToken cancellationToken)
+        => handler.Handle(@event, cancellationToken);
 
     [HttpPost("EmailIsSend")]
     [Topic(DAPR_PUBSUB_NAME, nameof(EmailIsSendIntegrationEvent))]
     public Task HandleAsync(
         EmailIsSendIntegrationEvent @event,
-        [FromServices] EmailIsSendIntegrationEventHandler handler)
-        => handler.Handle(@event);
+        [FromServices] EmailIsSendIntegrationEventHandler handler, CancellationToken cancellationToken)
+        => handler.Handle(@event, cancellationToken);
 
     [HttpPost("AllRetriesFailed")]
     [Topic(DAPR_PUBSUB_NAME, nameof(AllRetriesFailedIntegrationEvent))]
     public Task HandleAsync(
         AllRetriesFailedIntegrationEvent @event,
-        [FromServices] AllRetriesFailedIntegrationEventHandler handler)
-        => handler.Handle(@event);
+        [FromServices] AllRetriesFailedIntegrationEventHandler handler, CancellationToken cancellationToken)
+        => handler.Handle(@event, cancellationToken);
 }

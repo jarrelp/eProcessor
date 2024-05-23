@@ -59,7 +59,7 @@ public class OracleFetchController : ControllerBase
 
   //     var xmlData = MapToRecord(emailQueue.XmlData);
 
-  //     await _eventBus.PublishAsync(xmlData);
+  //     await _eventBus.PublishAsync(xmlData, cancellationToken);
 
   //     return CreatedAtAction(nameof(GetEmailQueueById), new { id = emailQueue.Id }, emailQueue);
   //   }

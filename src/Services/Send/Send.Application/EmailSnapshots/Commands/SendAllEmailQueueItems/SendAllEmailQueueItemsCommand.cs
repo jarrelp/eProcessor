@@ -71,7 +71,7 @@
 //                             loginTemplate.Id, loginTemplate.FullName,
 //                             loginTemplate.Environment, loginTemplate.Date,
 //                             loginTemplate.Time, emailQueueItem.Email, emailQueueItem.Subject);
-//                         await _eventBus.PublishAsync(loginIntegrationEvent);
+//                         await _eventBus.PublishAsync(loginIntegrationEvent, cancelationToken);
 //                         break;
 
 //                     case Overdue overdueTemplate:
@@ -82,7 +82,7 @@
 //                             overdueTemplate.ProductName, overdueTemplate.OrderCode,
 //                             overdueTemplate.OrderDate, overdueTemplate.OverdueDate,
 //                             emailQueueItem.Email, emailQueueItem.Subject);
-//                         await _eventBus.PublishAsync(overdueIntegrationEvent);
+//                         await _eventBus.PublishAsync(overdueIntegrationEvent, cancelationToken);
 //                         break;
 
 //                     case Report reportTemplate:
@@ -91,7 +91,7 @@
 //                             reportTemplate.Id, reportTemplate.PortalName,
 //                             reportTemplate.ReportName, reportTemplate.Url,
 //                             emailQueueItem.Email, emailQueueItem.Subject);
-//                         await _eventBus.PublishAsync(reportIntegrationEvent);
+//                         await _eventBus.PublishAsync(reportIntegrationEvent, cancelationToken);
 //                         break;
 
 //                     case User userTemplate:
@@ -102,7 +102,7 @@
 //                             userTemplate.UserName, userTemplate.Password,
 //                             userTemplate.Company, userTemplate.Url,
 //                             emailQueueItem.Email, emailQueueItem.Subject);
-//                         await _eventBus.PublishAsync(userIntegrationEvent);
+//                         await _eventBus.PublishAsync(userIntegrationEvent, cancelationToken);
 //                         break;
 //                 }
 

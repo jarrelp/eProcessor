@@ -42,7 +42,7 @@ public class GetEmailQueueItemsWithPaginationQueryHandler : IRequestHandler<GetE
                             loginTemplate.Id, loginTemplate.FullName,
                             loginTemplate.Environment, loginTemplate.Date,
                             loginTemplate.Time);
-                        await _eventBus.PublishAsync(loginIntegrationEvent);
+                        await _eventBus.PublishAsync(loginIntegrationEvent, cancellationToken);
                         break;
                     case Overdue overdueTemplate:
                         var overdueIntegrationEvent =
@@ -51,14 +51,14 @@ public class GetEmailQueueItemsWithPaginationQueryHandler : IRequestHandler<GetE
                             overdueTemplate.Email, overdueTemplate.ProductNumber,
                             overdueTemplate.ProductName, overdueTemplate.OrderCode,
                             overdueTemplate.OrderDate, overdueTemplate.OverdueDate);
-                        await _eventBus.PublishAsync(overdueIntegrationEvent);
+                        await _eventBus.PublishAsync(overdueIntegrationEvent, cancellationToken);
                         break;
                     case Report reportTemplate:
                         var reportIntegrationEvent =
                         new ReportIntegrationEvent(
                             reportTemplate.Id, reportTemplate.PortalName,
                             reportTemplate.ReportName, reportTemplate.Url);
-                        await _eventBus.PublishAsync(reportIntegrationEvent);
+                        await _eventBus.PublishAsync(reportIntegrationEvent, cancellationToken);
                         break;
                     case User userTemplate:
                         var userIntegrationEvent =
@@ -67,7 +67,7 @@ public class GetEmailQueueItemsWithPaginationQueryHandler : IRequestHandler<GetE
                             userTemplate.Email, userTemplate.FullName,
                             userTemplate.UserName, userTemplate.Password,
                             userTemplate.Company, userTemplate.Url);
-                        await _eventBus.PublishAsync(userIntegrationEvent);
+                        await _eventBus.PublishAsync(userIntegrationEvent, cancellationToken);
                         break;
                 }
             }

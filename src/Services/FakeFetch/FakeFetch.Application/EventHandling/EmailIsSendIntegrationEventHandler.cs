@@ -1,5 +1,7 @@
+using Ardalis.GuardClauses;
 using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Common.Interfaces;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Events;
 using Microsoft.Extensions.Logging;
 
@@ -16,16 +18,14 @@ public class EmailIsSendIntegrationEventHandler : IIntegrationEventHandler<Email
     _context = context ?? throw new ArgumentNullException(nameof(context));
   }
 
-  public async Task Handle(EmailIsSendIntegrationEvent @event)
+  public async Task Handle(EmailIsSendIntegrationEvent @event, CancellationToken cancellationToken)
   {
-    _logger.LogInformation("--------------- EmailIsSendIntegrationEventHandler ---------------");
-
-    var emailQueueItem = _context.EmailQueueItems.FirstOrDefault(x => x.EmailQueueId == @event.EmailQueueId);
+    var emailQueueItem = await _context.EmailQueueItems.FirstOrDefaultAsync(x => x.EmailQueueId == @event.EmailQueueId, cancellationToken);
 
     if (emailQueueItem == null)
     {
       _logger.LogError($"EmailQueueItem with ID {@event.EmailQueueId} not found.");
-      throw new InvalidOperationException($"EmailQueueItem with ID {@event.EmailQueueId} not found.");
+      throw new NotFoundException(@event.EmailQueueId.ToString(), nameof(EmailQueueItem));
     }
 
     emailQueueItem.Sent = 'Y';
@@ -33,7 +33,7 @@ public class EmailIsSendIntegrationEventHandler : IIntegrationEventHandler<Email
 
     try
     {
-      await _context.SaveChangesAsync(CancellationToken.None);
+      await _context.SaveChangesAsync(cancellationToken);
       _logger.LogInformation($"EmailQueueItem with ID {@event.EmailQueueId} marked as sent.");
     }
     catch (Exception ex)

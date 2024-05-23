@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 
 public abstract class XmlData : BaseEntity

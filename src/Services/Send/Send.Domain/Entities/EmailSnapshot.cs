@@ -9,8 +9,6 @@ public class EmailSnapshot : BaseEntity
   public string Body { get; set; } = null!;
   public DateTime SentDate { get; set; }
 
-  public EmailSnapshot()
-  {
-  }
+  public EmailSnapshot() { }
 }
 

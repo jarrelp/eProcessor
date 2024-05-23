@@ -15,7 +15,7 @@ public class DeleteAllEmailQueueItemsCommandHandler : IRequestHandler<DeleteAllE
 
     public async Task Handle(DeleteAllEmailQueueItemsCommand request, CancellationToken cancellationToken)
     {
-        var emailQueueItems = await _context.EmailQueueItems.ToListAsync();
+        var emailQueueItems = await _context.EmailQueueItems.ToListAsync(cancellationToken);
 
         _context.EmailQueueItems.RemoveRange(emailQueueItems);
 

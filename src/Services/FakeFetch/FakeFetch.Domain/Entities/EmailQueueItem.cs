@@ -35,7 +35,7 @@ public class EmailQueueItem : BaseEntity
 
   public EmailQueueItem()
   {
-    // Lege constructor vereist door Entity Framework Core
+    // Parameterless constructor required by Entity Framework Core
   }
 }
 

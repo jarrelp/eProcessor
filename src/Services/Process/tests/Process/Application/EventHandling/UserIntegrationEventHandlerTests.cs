@@ -36,9 +36,9 @@ public class UserIntegrationEventHandlerTests
         _mapperMock.Setup(m => m.Map<EmailBodyIntegrationEvent>(It.IsAny<EmailBodyDto>())).Returns(emailBodyEvent);
 
         // Act
-        await _handler.Handle(userEvent);
+        await _handler.Handle(userEvent, CancellationToken.None);
 
         // Assert
-        _eventBusMock.Verify(e => e.PublishAsync(emailBodyEvent), Times.Once);
+        _eventBusMock.Verify(e => e.PublishAsync(emailBodyEvent, CancellationToken.None), Times.Once);
     }
 }

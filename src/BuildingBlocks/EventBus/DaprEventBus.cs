@@ -13,7 +13,7 @@ public class DaprEventBus : IEventBus
         _logger = logger;
     }
 
-    public async Task PublishAsync(IntegrationEvent integrationEvent)
+    public async Task PublishAsync(IntegrationEvent integrationEvent, CancellationToken cancellationToken = default)
     {
         var topicName = integrationEvent.GetType().Name;
 
@@ -23,6 +23,6 @@ public class DaprEventBus : IEventBus
             PubSubName,
             topicName);
 
-        await _dapr.PublishEventAsync(PubSubName, topicName, (object)integrationEvent);
+        await _dapr.PublishEventAsync(PubSubName, topicName, (object)integrationEvent, cancellationToken);
     }
 }

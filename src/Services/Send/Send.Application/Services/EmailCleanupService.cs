@@ -24,14 +24,12 @@ public class EmailCleanupService : BackgroundService, IEmailCleanupService
 
     public async Task CleanupOldEmails(CancellationToken stoppingToken)
     {
-        using (var scope = _serviceProvider.CreateScope())
-        {
-            var context = scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
-            var thirtyDaysAgo = DateTime.UtcNow.AddSeconds(-5);
+        using var scope = _serviceProvider.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
+        var thirtyDaysAgo = DateTime.UtcNow.AddSeconds(-5);
 
-            var oldEmailSnapshots = context.EmailSnapshots.Where(emailSnapshots => emailSnapshots.SentDate < thirtyDaysAgo);
-            context.EmailSnapshots.RemoveRange(oldEmailSnapshots);
-            await context.SaveChangesAsync(stoppingToken);
-        }
+        var oldEmailSnapshots = context.EmailSnapshots.Where(emailSnapshots => emailSnapshots.SentDate < thirtyDaysAgo);
+        context.EmailSnapshots.RemoveRange(oldEmailSnapshots);
+        await context.SaveChangesAsync(stoppingToken);
     }
 }
