@@ -49,10 +49,10 @@ public static class ProgramExtensions
             .AddCheck("self", () => HealthCheckResult.Healthy())
             .AddDapr()
             .AddSqlServer(
-                builder.Configuration["ConnectionStrings:FetchDB"]!,
+                builder.Configuration["ConnectionStrings:OracleTestDB"]!,
                 // builder.Configuration.GetConnectionString("DefaultConnection")!,
-                name: "FetchDb-check",
-                tags: new[] { "Fetchdb" });
+                name: "OracleTestDb-check",
+                tags: new[] { "oracletestdb" });
 
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {

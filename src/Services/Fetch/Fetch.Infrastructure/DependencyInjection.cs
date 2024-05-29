@@ -11,23 +11,15 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration["ConnectionStrings:FetchDB"]!;
+        var connectionString = configuration["ConnectionStrings:OracleTestDB"]!;
         // var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         Guard.Against.Null(connectionString, message: "Connection string not found.");
 
-        services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
-
-        services.AddDbContext<ApplicationDbContext>((sp, options) =>
+        services.AddScoped<IOracleDCDataProvider>(provider =>
         {
-            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-
-            options.UseSqlServer(connectionString);
+            return new OracleDCDataProvider(connectionString);
         });
-
-        services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
-
-        services.AddScoped<ApplicationDbContextInitialiser>();
 
         services.AddSingleton(TimeProvider.System);
 

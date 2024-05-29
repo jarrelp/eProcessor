@@ -1,12 +1,14 @@
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.SendFirstFewEmailQueueItems;
 
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.API.Controllers;
 
 public class EmailQueueItemsController : ApiControllerBase
 {
-  [HttpGet]
-  public async Task<ActionResult<PaginatedList<EmailQueueItemDto>>> GetFetchItemsWithPagination([FromQuery] GetEmailQueueItemsWithPaginationQuery query)
+  [HttpPut("SendFirstFewEmailQueueItems")]
+  public async Task<Result> SendFirstFewEmailQueueItems(SendFirstFewEmailQueueItemsCommand command)
   {
-    return await Mediator.Send(query);
+    await Mediator.Send(command);
+
+    return Result.Success();
   }
 }

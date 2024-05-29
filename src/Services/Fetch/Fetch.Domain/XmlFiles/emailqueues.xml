@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailQueues>
+    <EmailQueue>
+        <EmailQueueId>1</EmailQueueId>
+        <XmlData>Xmlfiles/login.xml</XmlData>
+        <XslName>LoginTemplate</XslName>
+        <IsoLanguage>en</IsoLanguage>
+        <Email>evert.vanes@example.com</Email>
+        <SendAt>2024-03-26T07:48:00</SendAt>
+        <CompanyId>101</CompanyId>
+        <Sent>false</Sent>
+        <Attempts>0</Attempts>
+        <Subject>Login Notification</Subject>
+        <Message></Message>
+        <Created_On>2024-03-25T10:30:00</Created_On>
+        <Created_By>admin</Created_By>
+        <Modified_On>2024-03-25T11:00:00</Modified_On>
+        <Modified_By>admin</Modified_By>
+    </EmailQueue>
+    <EmailQueue>
+        <EmailQueueId>2</EmailQueueId>
+        <XmlData>Xmlfiles/overdue.xml</XmlData>
+        <XslName>OverdueTemplate</XslName>
+        <IsoLanguage>en</IsoLanguage>
+        <Email>jarrel.pothoff@example.com</Email>
+        <SendAt>2024-03-23T09:00:00</SendAt>
+        <CompanyId>102</CompanyId>
+        <Sent>false</Sent>
+        <Attempts>0</Attempts>
+        <Subject>Overdue Notice</Subject>
+        <Message></Message>
+        <Created_On>2024-03-22T14:00:00</Created_On>
+        <Created_By>admin</Created_By>
+        <Modified_On>2024-03-22T15:00:00</Modified_On>
+        <Modified_By>admin</Modified_By>
+    </EmailQueue>
+    <EmailQueue>
+        <EmailQueueId>3</EmailQueueId>
+        <XmlData>Xmlfiles/report.xml</XmlData>
+        <XslName>ReportTemplate</XslName>
+        <IsoLanguage>en</IsoLanguage>
+        <Email>report@example.com</Email>
+        <SendAt>2024-03-27T08:30:00</SendAt>
+        <CompanyId>103</CompanyId>
+        <Sent>false</Sent>
+        <Attempts>0</Attempts>
+        <Subject>Report: Sizes and Prices</Subject>
+        <Message></Message>
+        <Created_On>2024-03-26T12:00:00</Created_On>
+        <Created_By>admin</Created_By>
+        <Modified_On>2024-03-26T13:00:00</Modified_On>
+        <Modified_By>admin</Modified_By>
+    </EmailQueue>
+    <EmailQueue>
+        <EmailQueueId>4</EmailQueueId>
+        <XmlData>Xmlfiles/user.xml</XmlData>
+        <XslName>UserTemplate</XslName>
+        <IsoLanguage>en</IsoLanguage>
+        <Email>dennis.coert@example.com</Email>
+        <SendAt>2024-03-24T10:15:00</SendAt>
+        <CompanyId>104</CompanyId>
+        <Sent>false</Sent>
+        <Attempts>0</Attempts>
+        <Subject>Welcome User</Subject>
+        <Message></Message>
+        <Created_On>2024-03-23T09:45:00</Created_On>
+        <Created_By>admin</Created_By>
+        <Modified_On>2024-03-23T10:45:00</Modified_On>
+        <Modified_By>admin</Modified_By>
+    </EmailQueue>
+</EmailQueues>

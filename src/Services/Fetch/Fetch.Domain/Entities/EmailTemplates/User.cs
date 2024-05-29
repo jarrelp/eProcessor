@@ -1,27 +1,25 @@
+using System.Xml.Serialization;
+
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates;
 
-public class User : XmlData
+[XmlRoot("user")]
+public class User
 {
-    public string ImageHeader { get; set; } = string.Empty;
+    [XmlElement("email")]
     public string Email { get; set; } = string.Empty;
-    public string FullName { get; set; } = string.Empty;
-    public string UserName { get; set; } = string.Empty;
 
+    [XmlElement("fullname")]
+    public string FullName { get; set; } = string.Empty;
+
+    [XmlElement("username")]
+    public string Username { get; set; } = string.Empty;
+
+    [XmlElement("password")]
     public string Password { get; set; } = string.Empty;
 
+    [XmlElement("company")]
     public string Company { get; set; } = string.Empty;
 
+    [XmlElement("url")]
     public string Url { get; set; } = string.Empty;
-
-    // Constructor
-    public User(string imageHeader, string email, string fullName, string userName, string password, string company, string url)
-    {
-        ImageHeader = imageHeader;
-        Email = email;
-        FullName = fullName;
-        UserName = userName;
-        Password = password;
-        Company = company;
-        Url = url;
-    }
 }

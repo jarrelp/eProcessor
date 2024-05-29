@@ -1,27 +1,27 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>40</x><y>250</y><w>530</w><h>100</h></coordinates><panel_attributes>IntegrationEventController
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>11</x><y>154</y><w>583</w><h>110</h></coordinates><panel_attributes>IntegrationEventController
 -
 + HandleAsync(@event: LoginIntegrationEvent, handler: LoginIntegrationHandler)
 + HandleAsync(@event: OvderdueIntegrationEvent, handler: OvderdueIntegrationHandler)
 + HandleAsync(@event: ReportIntegrationEvent, handler: ReportIntegrationHandler)
-+ HandleAsync(@event: UserIntegrationEvent, handler: UserIntegrationHandler)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>380</y><w>310</w><h>100</h></coordinates><panel_attributes>LoginIntegrationEventHandler
++ HandleAsync(@event: UserIntegrationEvent, handler: UserIntegrationHandler)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>11</x><y>297</y><w>341</w><h>110</h></coordinates><panel_attributes>LoginIntegrationEventHandler
 -
 - _eventBus: IEventBus
 - _logger: ILogger
 -
 + LoginIntegrationEventHandler()
-+ Handle(@event: LoginIntegrationEvent): Task</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>510</y><w>310</w><h>100</h></coordinates><panel_attributes>OverdueIntegrationEventHandler
++ Handle(@event: LoginIntegrationEvent): Task</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>11</x><y>440</y><w>341</w><h>110</h></coordinates><panel_attributes>OverdueIntegrationEventHandler
 -
 - _eventBus: IEventBus
 - _logger: ILogger
 -
 + OverdueIntegrationEventHandler()
-+ Handle(@event: OverdueIntegrationEvent): Task</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>380</y><w>310</w><h>100</h></coordinates><panel_attributes>ReportIntegrationEventHandler
++ Handle(@event: OverdueIntegrationEvent): Task</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>374</x><y>297</y><w>341</w><h>110</h></coordinates><panel_attributes>ReportIntegrationEventHandler
 -
 - _eventBus: IEventBus
 - _logger: ILogger
 -
 + ReportIntegrationEventHandler()
-+ Handle(@event: ReportIntegrationEvent): Task</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>510</y><w>310</w><h>100</h></coordinates><panel_attributes>UserIntegrationEventHandler
++ Handle(@event: ReportIntegrationEvent): Task</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>374</x><y>440</y><w>341</w><h>110</h></coordinates><panel_attributes>UserIntegrationEventHandler
 -
 - _eventBus: IEventBus
 - _logger: ILogger

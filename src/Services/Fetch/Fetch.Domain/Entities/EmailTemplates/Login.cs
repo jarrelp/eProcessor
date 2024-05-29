@@ -1,20 +1,22 @@
+using System.Xml.Serialization;
+
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Entities.EmailTemplates;
 
-public class Login : XmlData
+[XmlRoot("login")]
+public class Login
 {
+    [XmlElement("fullname")]
     public string FullName { get; set; } = string.Empty;
-    public string Environment { get; set; } = string.Empty;
-    public string Date { get; set; } = string.Empty;
-    public string Time { get; set; } = string.Empty;
 
-    public Login(string fullName, string environment,
-    // string ipAddress, 
-    string date, string time)
-    {
-        FullName = fullName;
-        Environment = environment;
-        // IPAddress = ipAddress;
-        Date = date;
-        Time = time;
-    }
+    [XmlElement("environment")]
+    public string Environment { get; set; } = string.Empty;
+
+    [XmlElement("ipaddress")]
+    public string IpAddress { get; set; } = string.Empty;
+
+    [XmlElement("date")]
+    public string Date { get; set; } = string.Empty;
+
+    [XmlElement("time")]
+    public string Time { get; set; } = string.Empty;
 }

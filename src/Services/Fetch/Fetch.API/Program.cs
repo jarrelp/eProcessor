@@ -1,7 +1,7 @@
 using Ecmanage.eProcessor.Services.Fetch;
 using Ecmanage.eProcessor.Services.Fetch.Fetch.Infrastructure.Data;
 
-var appName = "Fetch API";
+var appName = "Fetch CA API";
 
 var builder = WebApplication.CreateBuilder(args);
 

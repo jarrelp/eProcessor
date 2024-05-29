@@ -1,5 +1,22 @@
-using Ecmanage.eProcessor.BuildingBlocks.EventBus.Events;
-
 namespace Ecmanage.eProcessor.Services.Fetch.Fetch.Domain.Events;
 
-public record LoginIntegrationEvent(int EmailId, string FullName, string Environment, string Date, string Time) : IntegrationEvent;
+public record LoginIntegrationEvent : BaseEmailIntegrationEvent
+{
+  public int EmailId { get; init; }
+  public string FullName { get; init; } = string.Empty;
+  public string Environment { get; init; } = string.Empty;
+  public string Date { get; init; } = string.Empty;
+  public string Time { get; init; } = string.Empty;
+
+  public LoginIntegrationEvent() : base(0, string.Empty, string.Empty) { }
+
+  public LoginIntegrationEvent(int emailQueueId, int emailId, string fullName, string environment, string date, string time, string emailTo, string subject)
+      : base(emailQueueId, emailTo, subject)
+  {
+    EmailId = emailId;
+    FullName = fullName;
+    Environment = environment;
+    Date = date;
+    Time = time;
+  }
+}
