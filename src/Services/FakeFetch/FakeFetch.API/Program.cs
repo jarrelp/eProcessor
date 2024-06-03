@@ -1,4 +1,5 @@
 using Ecmanage.eProcessor.Services.FakeFetch;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SendFirstFewEmailQueueItems;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Infrastructure.Data;
 
 var appName = "FakeFetch CA API";

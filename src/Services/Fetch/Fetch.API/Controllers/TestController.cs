@@ -1,82 +1,82 @@
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.AddLoginEmail;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.AddOverdueEmail;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.AddReportEmail;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.AddUserEmail;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.DeleteAllEmailQueueItems;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.SendAllEmailQueueItems;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.SetSentValueToNotYetPickedUp;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Queries.GetNonProcessedEmailQueueItemsItemsWithPagination;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.AddLoginEmail;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.AddOverdueEmail;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.AddReportEmail;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.AddUserEmail;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.DeleteAllEmailQueueItems;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.SendAllEmailQueueItems;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Commands.SetSentValueToNotYetPickedUp;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Queries.GetEmailQueueItemsWithPagination;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EmailQueueItems.Queries.GetNonProcessedEmailQueueItemsItemsWithPagination;
 
-namespace Ecmanage.eProcessor.Services.Fetch.Fetch.API.Controllers;
+// namespace Ecmanage.eProcessor.Services.Fetch.Fetch.API.Controllers;
 
-public class TestController : ApiControllerBase
-{
-    [HttpGet("GetEmailQueueItemsWithPagination")]
-    public async Task<ActionResult<PaginatedList<EmailQueueItemDto>>> GetEmailQueueItemsWithPagination([FromQuery] GetEmailQueueItemsWithPaginationQuery query)
-    {
-        return await Mediator.Send(query);
-    }
+// public class TestController : ApiControllerBase
+// {
+//     [HttpGet("GetEmailQueueItemsWithPagination")]
+//     public async Task<ActionResult<PaginatedList<EmailQueueItemDto>>> GetEmailQueueItemsWithPagination([FromQuery] GetEmailQueueItemsWithPaginationQuery query)
+//     {
+//         return await Mediator.Send(query);
+//     }
 
-    [HttpGet("GetNonProcessedEmailQueueItemsItemsWithPagination")]
-    public async Task<ActionResult<PaginatedList<EmailQueueItemDto>>> GetNonProcessedEmailQueueItemsItemsWithPagination([FromQuery] GetNonProcessedEmailQueueItemsItemsWithPaginationQuery query)
-    {
-        return await Mediator.Send(query);
-    }
+//     [HttpGet("GetNonProcessedEmailQueueItemsItemsWithPagination")]
+//     public async Task<ActionResult<PaginatedList<EmailQueueItemDto>>> GetNonProcessedEmailQueueItemsItemsWithPagination([FromQuery] GetNonProcessedEmailQueueItemsItemsWithPaginationQuery query)
+//     {
+//         return await Mediator.Send(query);
+//     }
 
-    [HttpPut("SendAllEmailQueueItems")]
-    public async Task<IResult> SendAllEmailQueueItems(SendAllEmailQueueItemsCommand command)
-    {
-        await Mediator.Send(command);
+//     [HttpPut("SendAllEmailQueueItems")]
+//     public async Task<IResult> SendAllEmailQueueItems(SendAllEmailQueueItemsCommand command)
+//     {
+//         await Mediator.Send(command);
 
-        return Results.NoContent();
-    }
+//         return Results.NoContent();
+//     }
 
-    [HttpPut("SetSentValueToNotYetPickedUp")]
-    public async Task<IResult> SetSentValueToNotYetPickedUp(SetSentValueToNotYetPickedUpCommand command)
-    {
-        await Mediator.Send(command);
+//     [HttpPut("SetSentValueToNotYetPickedUp")]
+//     public async Task<IResult> SetSentValueToNotYetPickedUp(SetSentValueToNotYetPickedUpCommand command)
+//     {
+//         await Mediator.Send(command);
 
-        return Results.NoContent();
-    }
+//         return Results.NoContent();
+//     }
 
-    [HttpPost("AddLoginEmail")]
-    public async Task<IResult> AddLoginEmail(AddLoginEmailCommand command)
-    {
-        await Mediator.Send(command);
+//     [HttpPost("AddLoginEmail")]
+//     public async Task<IResult> AddLoginEmail(AddLoginEmailCommand command)
+//     {
+//         await Mediator.Send(command);
 
-        return Results.NoContent();
-    }
+//         return Results.NoContent();
+//     }
 
-    [HttpPost("AddOverdueEmail")]
-    public async Task<IResult> AddOverdueEmail(AddOverdueEmailCommand command)
-    {
-        await Mediator.Send(command);
+//     [HttpPost("AddOverdueEmail")]
+//     public async Task<IResult> AddOverdueEmail(AddOverdueEmailCommand command)
+//     {
+//         await Mediator.Send(command);
 
-        return Results.NoContent();
-    }
+//         return Results.NoContent();
+//     }
 
-    [HttpPost("AddReportEmail")]
-    public async Task<IResult> AddReportEmail(AddReportEmailCommand command)
-    {
-        await Mediator.Send(command);
+//     [HttpPost("AddReportEmail")]
+//     public async Task<IResult> AddReportEmail(AddReportEmailCommand command)
+//     {
+//         await Mediator.Send(command);
 
-        return Results.NoContent();
-    }
+//         return Results.NoContent();
+//     }
 
-    [HttpPost("AddUserEmail")]
-    public async Task<IResult> AddUserEmail(AddUserEmailCommand command)
-    {
-        await Mediator.Send(command);
+//     [HttpPost("AddUserEmail")]
+//     public async Task<IResult> AddUserEmail(AddUserEmailCommand command)
+//     {
+//         await Mediator.Send(command);
 
-        return Results.NoContent();
-    }
+//         return Results.NoContent();
+//     }
 
-    [HttpDelete()]
-    public async Task<IResult> Delete(DeleteAllEmailQueueItemsCommand command)
-    {
-        await Mediator.Send(command);
+//     [HttpDelete()]
+//     public async Task<IResult> Delete(DeleteAllEmailQueueItemsCommand command)
+//     {
+//         await Mediator.Send(command);
 
-        return Results.NoContent();
-    }
-}
+//         return Results.NoContent();
+//     }
+// }

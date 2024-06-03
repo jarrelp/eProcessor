@@ -1,21 +1,33 @@
 using Ardalis.GuardClauses;
 using Ecmanage.eProcessor.BuildingBlocks.EventBus.Abstractions;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Common.Interfaces;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SendFirstFewEmailQueueItems;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Helpers;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Services;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Events;
 using Microsoft.Extensions.Logging;
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EventHandling;
 
+
 public class EmailIsSendIntegrationEventHandler : IIntegrationEventHandler<EmailIsSendIntegrationEvent>
 {
   private readonly ILogger<EmailIsSendIntegrationEventHandler> _logger;
   private readonly IApplicationDbContext _context;
+  private readonly IEmailQueueManager _emailQueueManager;
+  private readonly IEmailProcessingService _emailProcessingService;
 
-  public EmailIsSendIntegrationEventHandler(ILogger<EmailIsSendIntegrationEventHandler> logger, IApplicationDbContext context)
+  public EmailIsSendIntegrationEventHandler(
+      ILogger<EmailIsSendIntegrationEventHandler> logger,
+      IApplicationDbContext context,
+      IEmailQueueManager emailQueueManager,
+      IEmailProcessingService emailProcessingService)
   {
     _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     _context = context ?? throw new ArgumentNullException(nameof(context));
+    _emailQueueManager = emailQueueManager ?? throw new ArgumentNullException(nameof(emailQueueManager));
+    _emailProcessingService = emailProcessingService ?? throw new ArgumentNullException(nameof(emailProcessingService));
   }
 
   public async Task Handle(EmailIsSendIntegrationEvent @event, CancellationToken cancellationToken)
@@ -35,6 +47,11 @@ public class EmailIsSendIntegrationEventHandler : IIntegrationEventHandler<Email
     {
       await _context.SaveChangesAsync(cancellationToken);
       _logger.LogInformation($"EmailQueueItem with ID {@event.EmailQueueId} marked as sent.");
+      var isBatchComplete = _emailQueueManager.DecrementPendingEmailsAsync();
+      if (isBatchComplete)
+      {
+        await _emailProcessingService.FetchAndPublishEmailsAsync(cancellationToken);
+      }
     }
     catch (Exception ex)
     {
@@ -43,3 +60,40 @@ public class EmailIsSendIntegrationEventHandler : IIntegrationEventHandler<Email
     }
   }
 }
+
+// public class EmailIsSendIntegrationEventHandler : IIntegrationEventHandler<EmailIsSendIntegrationEvent>
+// {
+//   private readonly ILogger<EmailIsSendIntegrationEventHandler> _logger;
+//   private readonly IApplicationDbContext _context;
+
+//   public EmailIsSendIntegrationEventHandler(ILogger<EmailIsSendIntegrationEventHandler> logger, IApplicationDbContext context)
+//   {
+//     _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+//     _context = context ?? throw new ArgumentNullException(nameof(context));
+//   }
+
+//   public async Task Handle(EmailIsSendIntegrationEvent @event, CancellationToken cancellationToken)
+//   {
+//     var emailQueueItem = await _context.EmailQueueItems.FirstOrDefaultAsync(x => x.EmailQueueId == @event.EmailQueueId, cancellationToken);
+
+//     if (emailQueueItem == null)
+//     {
+//       _logger.LogError($"EmailQueueItem with ID {@event.EmailQueueId} not found.");
+//       throw new NotFoundException(@event.EmailQueueId.ToString(), nameof(EmailQueueItem));
+//     }
+
+//     emailQueueItem.Sent = 'Y';
+//     emailQueueItem.SendAt = @event.Timestamp.ToString("yyyy-MM-dd HH:mm:ss");
+
+//     try
+//     {
+//       await _context.SaveChangesAsync(cancellationToken);
+//       _logger.LogInformation($"EmailQueueItem with ID {@event.EmailQueueId} marked as sent.");
+//     }
+//     catch (Exception ex)
+//     {
+//       _logger.LogError(ex, "Error occurred while updating EmailQueueItem.");
+//       throw;
+//     }
+//   }
+// }

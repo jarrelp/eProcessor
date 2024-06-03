@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Ecmanage.eProcessor.BuildingBlocks.BuildingBlocks.Application.Behaviours;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EventHandling;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Helpers;
+using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Services;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +15,10 @@ public static class DependencyInjection
         services.AddScoped<AllRetriesFailedIntegrationEventHandler>();
         services.AddScoped<EmailIsSendIntegrationEventHandler>();
         services.AddScoped<SendEmailAttemptIntegrationEventHandler>();
+
+        services.AddSingleton<IEmailQueueManager, EmailQueueManager>();
+
+        services.AddScoped<IEmailProcessingService, EmailProcessingService>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Ecmanage.eProcessor.BuildingBlocks.BuildingBlocks.Application.Behaviours;
-using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EventHandling;
+// using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EventHandling;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -10,9 +10,9 @@ public static class DependencyInjection
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-        services.AddScoped<AllRetriesFailedIntegrationEventHandler>();
-        services.AddScoped<EmailIsSendIntegrationEventHandler>();
-        services.AddScoped<SendEmailAttemptIntegrationEventHandler>();
+        // services.AddScoped<AllRetriesFailedIntegrationEventHandler>();
+        // services.AddScoped<EmailIsSendIntegrationEventHandler>();
+        // services.AddScoped<SendEmailAttemptIntegrationEventHandler>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

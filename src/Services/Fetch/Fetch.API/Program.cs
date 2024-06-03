@@ -36,7 +36,7 @@ app.MapCustomHealthChecks("/hc", "/liveness", UIResponseWriter.WriteHealthCheckU
 try
 {
     app.Logger.LogInformation("Applying database migration ({ApplicationName})...", appName);
-    await app.InitialiseDatabaseAsync();
+    // await app.InitialiseDatabaseAsync();
 
     app.Logger.LogInformation("Starting web host ({ApplicationName})...", appName);
     app.Run();
