@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Ecmanage.eProcessor.BuildingBlocks.BuildingBlocks.Application.Behaviours;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Common.Interfaces;
+using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.Repositories;
 // using Ecmanage.eProcessor.Services.Fetch.Fetch.Application.EventHandling;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,8 @@ public static class DependencyInjection
         // services.AddScoped<AllRetriesFailedIntegrationEventHandler>();
         // services.AddScoped<EmailIsSendIntegrationEventHandler>();
         // services.AddScoped<SendEmailAttemptIntegrationEventHandler>();
+
+        services.AddScoped<IEmailDataRepository, EmailDataRepository>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

@@ -17,3 +17,7 @@
 //     }
 //   }
 // }
+
+public abstract class XmlDataDto
+{
+}
