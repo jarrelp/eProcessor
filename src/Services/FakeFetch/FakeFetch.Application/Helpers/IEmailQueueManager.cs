@@ -4,4 +4,6 @@ public interface IEmailQueueManager
 {
     void IncrementPendingEmailsAsync(int count);
     bool DecrementPendingEmailsAsync();
+    bool GetIsBusy();
+    void SetIsBusy(bool value);
 }

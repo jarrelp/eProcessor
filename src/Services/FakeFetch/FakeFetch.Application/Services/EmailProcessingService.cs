@@ -36,6 +36,11 @@ public class EmailProcessingService : IEmailProcessingService
 
     public async Task FetchAndPublishEmailsAsync(CancellationToken cancellationToken)
     {
+        if (!_emailQueueManager.GetIsBusy())
+        {
+            _emailQueueManager.SetIsBusy(true);
+        }
+
         var emailQueueItems = await _context.EmailQueueItems
             .Where(x => x.Sent == 'N')
             .Take(_batchSize)
@@ -43,13 +48,14 @@ public class EmailProcessingService : IEmailProcessingService
             .Include(e => e.XmlData)
             .ToListAsync(cancellationToken);
 
-        _emailQueueManager.IncrementPendingEmailsAsync(emailQueueItems.Count);
-
         if (!emailQueueItems.Any())
         {
             _logger.LogInformation("No email queue items found to process.");
+            _emailQueueManager.SetIsBusy(false);
             return;
         }
+
+        _emailQueueManager.IncrementPendingEmailsAsync(emailQueueItems.Count);
 
         foreach (var emailQueueItem in emailQueueItems)
         {
@@ -74,6 +80,7 @@ public class EmailProcessingService : IEmailProcessingService
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error publishing IntegrationEvent");
+                _emailQueueManager.SetIsBusy(false);
                 continue;
             }
         }

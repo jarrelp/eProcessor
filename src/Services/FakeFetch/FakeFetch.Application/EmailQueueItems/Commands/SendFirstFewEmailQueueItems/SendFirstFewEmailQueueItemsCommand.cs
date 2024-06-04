@@ -14,13 +14,16 @@ public record SendFirstFewEmailQueueItemsCommand() : IRequest;
 public class SendFirstFewEmailQueueItemsCommandHandler : IRequestHandler<SendFirstFewEmailQueueItemsCommand>
 {
     private readonly IEmailProcessingService _emailProcessingService;
+    private readonly IEmailQueueManager _emailQueueManager;
     private readonly ILogger<SendFirstFewEmailQueueItemsCommandHandler> _logger;
 
     public SendFirstFewEmailQueueItemsCommandHandler(
         IEmailProcessingService emailProcessingService,
+        IEmailQueueManager emailQueueManager,
         ILogger<SendFirstFewEmailQueueItemsCommandHandler> logger)
     {
         _emailProcessingService = emailProcessingService;
+        _emailQueueManager = emailQueueManager;
         _logger = logger;
     }
 
@@ -28,6 +31,11 @@ public class SendFirstFewEmailQueueItemsCommandHandler : IRequestHandler<SendFir
     {
         try
         {
+            if (_emailQueueManager.GetIsBusy())
+            {
+                _logger.LogInformation("Email Processor System is busy!");
+                return;
+            }
             await _emailProcessingService.FetchAndPublishEmailsAsync(cancellationToken);
         }
         catch (Exception ex)
