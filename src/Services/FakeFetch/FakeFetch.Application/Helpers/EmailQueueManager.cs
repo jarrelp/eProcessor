@@ -1,5 +1,6 @@
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EmailQueueItems.Commands.SendFirstFewEmailQueueItems;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Helpers;

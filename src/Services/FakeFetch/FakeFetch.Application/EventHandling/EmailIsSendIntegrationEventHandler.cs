@@ -6,6 +6,7 @@ using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Helpers;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.Services;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Entities;
 using Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Domain.Events;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Ecmanage.eProcessor.Services.FakeFetch.FakeFetch.Application.EventHandling;
@@ -17,17 +18,22 @@ public class EmailIsSendIntegrationEventHandler : IIntegrationEventHandler<Email
   private readonly IApplicationDbContext _context;
   private readonly IEmailQueueManager _emailQueueManager;
   private readonly IEmailProcessingService _emailProcessingService;
+  private readonly IConfiguration _configuration;
+  private readonly int _timeout;
 
   public EmailIsSendIntegrationEventHandler(
       ILogger<EmailIsSendIntegrationEventHandler> logger,
       IApplicationDbContext context,
       IEmailQueueManager emailQueueManager,
-      IEmailProcessingService emailProcessingService)
+      IEmailProcessingService emailProcessingService,
+      IConfiguration configuration)
   {
     _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     _context = context ?? throw new ArgumentNullException(nameof(context));
     _emailQueueManager = emailQueueManager ?? throw new ArgumentNullException(nameof(emailQueueManager));
     _emailProcessingService = emailProcessingService ?? throw new ArgumentNullException(nameof(emailProcessingService));
+    _configuration = configuration;
+    _timeout = int.TryParse(_configuration["EmailProcessing:Timeout"], out var timeout) ? timeout : 2;
   }
 
   public async Task Handle(EmailIsSendIntegrationEvent @event, CancellationToken cancellationToken)
@@ -50,6 +56,7 @@ public class EmailIsSendIntegrationEventHandler : IIntegrationEventHandler<Email
       var isBatchComplete = _emailQueueManager.DecrementPendingEmailsAsync();
       if (isBatchComplete)
       {
+        Thread.Sleep(_timeout);
         await _emailProcessingService.FetchAndPublishEmailsAsync(cancellationToken);
       }
     }
