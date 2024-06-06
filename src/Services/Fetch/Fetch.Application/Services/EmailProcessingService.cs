@@ -41,56 +41,45 @@ public class EmailProcessingService : IEmailProcessingService
             _emailQueueManager.SetIsBusy(true);
         }
 
-        //! dit weghalen:
-        await Task.CompletedTask;
-        var emailQueueItems = _emailDataRepository.GetAll().Take(5).ToList();
-
         // Todo: gebruik IOracleDCDataProvider
 
-        // var emailQueueItems = await _context.EmailQueueItems
-        //     .Where(x => x.Sent == 'N')
-        //     .Take(_batchSize)
-        //     .OrderBy(e => e.EmailQueueId)
-        //     .Include(e => e.XmlData)
-        //     .ToListAsync(cancellationToken);
+        var emailQueueItems = _context.
 
-        // if (!emailQueueItems.Any())
-        // {
-        //     _logger.LogInformation("No email queue items found to process.");
-        //     _emailQueueManager.SetIsBusy(false);
-        //     return;
-        // }
+        if (!emailQueueItems.Any())
+        {
+            _logger.LogInformation("No email queue items found to process.");
+            _emailQueueManager.SetIsBusy(false);
+            return;
+        }
 
-        // _emailQueueManager.IncrementPendingEmailsAsync(emailQueueItems.Count);
+        _emailQueueManager.IncrementPendingEmailsAsync(emailQueueItems.Count);
 
-        // foreach (var emailQueueItem in emailQueueItems)
-        // {
-        //     if (emailQueueItem.XmlData == null)
-        //     {
-        //         _logger.LogError("Cannot publish events, XmlData is null!");
-        //         continue;
-        //     }
+        foreach (var emailQueueItem in emailQueueItems)
+        {
+            if (emailQueueItem.XmlData == null)
+            {
+                _logger.LogError("Cannot publish events, XmlData is null!");
+                continue;
+            }
 
-        //     var integrationEvent = _mapper.Map<IntegrationEvent>(emailQueueItem.XmlData);
-        //     if (integrationEvent == null)
-        //     {
-        //         _logger.LogError("Unsupported XmlData type for integration event mapping.");
-        //         continue;
-        //     }
+            var integrationEvent = _mapper.Map<IntegrationEvent>(emailQueueItem.XmlData);
+            if (integrationEvent == null)
+            {
+                _logger.LogError("Unsupported XmlData type for integration event mapping.");
+                continue;
+            }
 
-        //     try
-        //     {
-        //         await _eventBus.PublishAsync(integrationEvent, cancellationToken);
-        //         emailQueueItem.Sent = 'B';
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError(ex, "Error publishing IntegrationEvent");
-        //         _emailQueueManager.SetIsBusy(false);
-        //         continue;
-        //     }
-        // }
-
-        // await _context.SaveChangesAsync(cancellationToken);
+            try
+            {
+                await _eventBus.PublishAsync(integrationEvent, cancellationToken);
+                emailQueueItem.Sent = 'B';
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error publishing IntegrationEvent");
+                _emailQueueManager.SetIsBusy(false);
+                continue;
+            }
+        }
     }
 }
