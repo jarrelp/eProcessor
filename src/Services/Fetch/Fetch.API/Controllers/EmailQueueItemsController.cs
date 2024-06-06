@@ -14,9 +14,9 @@ public class EmailQueueItemsController : ApiControllerBase
   }
 
   [HttpGet("IntegrationEvents")]
-  public async Task<ActionResult<List<IntegrationEvent>>> GetIntegrationEvents([FromQuery] int count = 5)
+  public ActionResult<List<IntegrationEvent>> GetIntegrationEvents([FromQuery] int count = 5)
   {
-    var integrationEvents = await _emailDataRepository.GetIntegrationEvents(count);
+    var integrationEvents = _emailDataRepository.GetIntegrationEvents(count);
 
     if (integrationEvents == null || integrationEvents.Count == 0)
     {
@@ -80,7 +80,7 @@ public class EmailQueueItemsController : ApiControllerBase
   {
     try
     {
-      _emailDataRepository.SetAttempt(id, attempts);
+      _emailDataRepository.SetAttempts(id, attempts);
       return Ok(new { Message = "Attempts updated successfully", EmailQueueId = id, Attempts = attempts });
     }
     catch (Exception ex)

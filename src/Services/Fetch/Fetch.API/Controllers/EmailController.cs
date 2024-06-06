@@ -4,8 +4,8 @@ namespace Ecmanage.eProcessor.Services.Fetch.Fetch.API.Controllers;
 
 public class EmailController : ApiControllerBase
 {
-    [HttpPut("SendFirstFewEmailQueueItems")]
-    public async Task<Result> SendFirstFewEmailQueueItems(SendFirstFewEmailQueueItemsCommand command)
+    [HttpPut("Work")]
+    public async Task<Result> Work(SendFirstFewEmailQueueItemsCommand command)
     {
         await Mediator.Send(command);
 

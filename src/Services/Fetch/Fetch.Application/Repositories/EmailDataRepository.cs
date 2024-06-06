@@ -19,7 +19,7 @@ public class EmailDataRepository : IEmailDataRepository
     _mapper = mapper;
   }
 
-  public async Task<List<IntegrationEvent>> GetIntegrationEvents(int count = 5)
+  public List<IntegrationEvent> GetIntegrationEvents(int count = 5)
   {
     var integrationEvents = new List<IntegrationEvent>();
 
@@ -98,7 +98,7 @@ public class EmailDataRepository : IEmailDataRepository
     return integrationEvents;
   }
 
-  private XmlData ConvertXmlData(string xmlData)
+  private XmlData? ConvertXmlData(string xmlData)
   {
     if (string.IsNullOrEmpty(xmlData))
       return null;
@@ -236,7 +236,7 @@ public class EmailDataRepository : IEmailDataRepository
     _oracleDCDataprovider.ExecuteQuery(loCmd);
   }
 
-  public void SetAttempt(int id, int attempts)
+  public void SetAttempts(int id, int attempts)
   {
     OracleCommand loCmd = new OracleCommand($"UPDATE gnt_emailqueue SET attempts = '{attempts}', modified_on = TO_DATE('{DateTime.Now:yyyy-MM-dd HH:mm:ss}', 'YYYY-MM-DD HH24:MI:SS'), modified_by = 'EmailApi' WHERE emailqueueid = {id}");
     _oracleDCDataprovider.ExecuteQuery(loCmd);
