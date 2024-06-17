@@ -28,8 +28,28 @@ public class LoginIntegrationEventHandlerTests
     {
         // Arrange
         var loginEvent = new LoginIntegrationEvent(1, "John Doe", "Production", "2024-05-21", "10:00");
-        var loginDto = new LoginDto { EmailQueueId = 1, EmailFrom = "test@test.com", EmailTo = "recipient@test.com", Subject = "Login", FullName = "John Doe", Environment = "Production", Date = "2024-05-21", Time = "10:00" };
-        var emailBodyDto = new EmailBodyDto { EmailBody = "Email Body", EmailQueueId = 1, EmailFrom = "test@test.com", EmailTo = "recipient@test.com", Subject = "Login" };
+        var loginDto = new LoginDto
+        {
+            EmailQueueId = 1,
+            EmailFrom = "test@test.com",
+
+            EmailTo = "recipient@test.com",
+            Subject = "Login",
+            FullName = "John Doe",
+            Environment = "Production",
+            Date = "2024-05-21",
+            Time = "10:00"
+        };
+
+        var emailBodyDto = new EmailBodyDto
+        {
+            EmailBody = "Email Body",
+            EmailQueueId = 1,
+            EmailFrom = "test@test.com",
+            EmailTo = "recipient@test.com",
+            Subject = "Login"
+        };
+
         var emailBodyEvent = new EmailBodyIntegrationEvent("Email Body");
 
         _mapperMock.Setup(m => m.Map<LoginDto>(loginEvent)).Returns(loginDto);

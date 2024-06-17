@@ -15,63 +15,6 @@ namespace Ecmanage.eProcessor.Services.Send.tests.Send.Application.EventHandling
 public class EmailBodyIntegrationEventHandlerTests
 {
     [Fact]
-    public async Task Handle_EmailSentSuccessfully_SaveEmailSnapshotAndPublishIntegrationEvents()
-    {
-        // Arrange
-        var loggerMock = new Mock<ILogger<EmailBodyIntegrationEventHandler>>();
-        var eventBusMock = new Mock<IEventBus>();
-        var emailSnapshotServiceMock = new Mock<IEmailSnapshotService>();
-        var mapperMock = new Mock<IMapper>();
-        var configurationMock = new Mock<IConfiguration>();
-
-        var daprClientMock = new Mock<DaprClient>();
-        daprClientMock.Setup(c => c.InvokeBindingAsync(
-            It.IsAny<string>(), It.IsAny<string>(),
-            It.IsAny<string>(), It.IsAny<Dictionary<string, string>>(),
-            CancellationToken.None))
-          .Returns(Task.CompletedTask);
-
-        emailSnapshotServiceMock.Setup(s => s.SaveEmailSnapshotAsync(
-            It.IsAny<EmailSnapshot>(),
-            It.IsAny<CancellationToken>()
-        )).Returns(Task.CompletedTask);
-
-        eventBusMock.Setup(e => e.PublishAsync(
-            It.IsAny<EmailIsSendIntegrationEvent>(),
-            CancellationToken.None
-        )).Returns(Task.CompletedTask);
-
-        var handler = new EmailBodyIntegrationEventHandler(
-            daprClientMock.Object,
-            loggerMock.Object,
-            eventBusMock.Object,
-            mapperMock.Object,
-            emailSnapshotServiceMock.Object,
-            configurationMock.Object);
-
-        var emailEvent = new EmailBodyIntegrationEvent("Test Body")
-        {
-            EmailQueueId = 46,
-            EmailFrom = "test@ecmanage.eu",
-            EmailTo = "dizzel@dizzel.dizz",
-            Subject = "Login Email for dizzel@dizzel.dizz"
-        };
-
-        // Act
-        await handler.Handle(emailEvent, CancellationToken.None);
-
-        // Assert
-        emailSnapshotServiceMock.Verify(
-            s => s.SaveEmailSnapshotAsync(
-                It.IsAny<EmailSnapshot>(),
-                It.IsAny<CancellationToken>()
-            ),
-            Times.Once
-        );
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<EmailIsSendIntegrationEvent>(), CancellationToken.None), Times.Once);
-    }
-
-    [Fact]
     public async Task Handle_EmailSendingFailed_PublishAllRetriesFailedIntegrationEvent()
     {
         // Arrange

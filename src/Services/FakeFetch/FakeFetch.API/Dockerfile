@@ -52,7 +52,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-# Voeg de volgende lijnen toe om `dotnet ef migrations add` uit te voeren
-# RUN dotnet ef migrations add "InitialCreate" --project FakeFetch.Infrastructure --startup-project FakeFetch.API --output-dir Data\Migrations
-
 ENTRYPOINT ["dotnet", "FakeFetch.API.dll"]
