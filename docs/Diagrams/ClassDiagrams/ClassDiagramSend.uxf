@@ -1,9 +1,0 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>170</x><y>200</y><w>560</w><h>50</h></coordinates><panel_attributes>IntegrationEventController
--
-+ HandleAsync(@event: EmailBodyIntegrationEvent, handler: EmailBodyIntegrationEventHandler)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>280</y><w>310</w><h>100</h></coordinates><panel_attributes>EmailBodyIntegrationEventHandler
--
-- _daprClient: DaprClient
-- _logger: ILogger
--
-+ EmailBodyIntegrationEventHandler()
-+ Handle(@event: EmailBodyIntegrationEvent): Task</panel_attributes><additional_attributes></additional_attributes></element></diagram>
