@@ -21,24 +21,24 @@ public class OracleDCDataProvider : IOracleDCDataProvider
         };
         retVal.Open();
 
-        // Zorg dat de NLS settings van de connection juist zijn
+
         OracleGlobalization loSessionInfo = retVal.GetSessionInfo();
         loSessionInfo.Language = "AMERICAN";
         loSessionInfo.Territory = "AMERICA";
         loSessionInfo.Currency = "$";
         loSessionInfo.ISOCurrency = "AMERICA";
         loSessionInfo.NumericCharacters = ".,";
-        //loSessionInfo.Calendar = "GREGORIAN";
+
         loSessionInfo.DateFormat = "DD-MON-RR";
         loSessionInfo.DateLanguage = "AMERICAN";
-        //loSessionInfo.Sort = "BINARY";
-        //loSessionInfo.timeformat = "";
+
+
         loSessionInfo.TimeStampFormat = "DD-MON-RR HH.MI.SSXFF AM";
-        //loSessionInfo.timetzformat = "";
+
         loSessionInfo.TimeStampTZFormat = "DD-MON-RR HH.MI.SSXFF AM TZR";
         loSessionInfo.DualCurrency = "$";
-        //loSessionInfo.Comparison = "BINARY";
-        //loSessionInfo.LengthSemantics = "BYTE";
+
+
         loSessionInfo.NCharConversionException = false;
         retVal.SetSessionInfo(loSessionInfo);
 
@@ -70,33 +70,33 @@ public class OracleDCDataProvider : IOracleDCDataProvider
                 }
             }
 
-            // IDataReader reader = GetReader(new OracleCommand(sql, _dbConnection));
+
         }
 
         return columnNames;
     }
 
-    // using (OracleConnection conn = new OracleConnection(connectionString))
-    // {
-    //     conn.Open();
-    //     string tableName = "GNT_EMAILQUEUE";
-    //     string sql = $@"
-    //     SELECT column_name
-    //     FROM all_tab_columns
-    //     WHERE table_name = '{tableName}'";
 
-    //     using (OracleCommand cmd = new OracleCommand(sql, conn))
-    //     {
-    //         using (OracleDataReader reader = cmd.ExecuteReader())
-    //         {
-    //             while (reader.Read())
-    //             {
-    //                 string columnName = reader["column_name"].ToString();
-    //                 Console.WriteLine(columnName);
-    //             }
-    //         }
-    //     }
-    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void Close()
     {
@@ -125,8 +125,8 @@ public class OracleDCDataProvider : IOracleDCDataProvider
                     sqlParam.Size = param.Size;
                 }
 
-                // Evert, zie https://forums.oracle.com/thread/408872
-                // sqlParam.OracleDbType = GetOracleType(param.DataType);
+
+
                 if (param.DbType == DbType.Object)
                 {
                     sqlParam.OracleDbType = param.OracleDbType;
@@ -168,7 +168,7 @@ public class OracleDCDataProvider : IOracleDCDataProvider
 
         using (OracleCommand cmd = new OracleCommand(qry.CommandText))
         {
-            //cmd.BindByName = true;
+
             cmd.CommandType = qry.CommandType;
 
             AddParams(cmd, qry);
@@ -200,7 +200,7 @@ public class OracleDCDataProvider : IOracleDCDataProvider
         OracleDataSet ds = new OracleDataSet();
         OracleCommand cmd = new OracleCommand(qry.CommandText)
         {
-            //cmd.BindByName = true;
+
             CommandType = qry.CommandType
         };
         OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -250,12 +250,12 @@ public class OracleDCDataProvider : IOracleDCDataProvider
             }
             loResult = poQuery.ExecuteScalar();
 
-            // Marc added: 
-            // The SQLServer version of ExcuteScalar ...Executes the query, and returns the first column
-            // of the first row of the resultset returned. Additional colums or rows are
-            // ignored...
-            // The following simulates the same behaviour (getting the primary key)
-            //
+
+
+
+
+
+
             foreach (OracleParameter param in poQuery.Parameters)
             {
                 if (param.Direction == ParameterDirection.Output)
@@ -289,9 +289,9 @@ public class OracleDCDataProvider : IOracleDCDataProvider
             }
 
             poQuery.Connection = _dbConnection;
-            // Modified Marc: 6-12-2007
-            // CheckoutOutputParams added
-            //
+
+
+
             int result = -1;
             try
             {
@@ -299,7 +299,7 @@ public class OracleDCDataProvider : IOracleDCDataProvider
             }
             catch (Exception)
             {
-                // Catch to be able to debug-log the query, otherwise we have no clue what values caused the exception
+
                 loSW.Stop();
 
                 throw;

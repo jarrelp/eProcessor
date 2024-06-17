@@ -72,7 +72,7 @@ public class ReportTemplate
 
         var (html, errors) = mjmlRenderer.Render(text, options);
 
-        // Retourneer de HTML-body
+
         return html;
     }
 }

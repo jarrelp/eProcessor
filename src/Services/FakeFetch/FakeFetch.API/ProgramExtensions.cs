@@ -1,4 +1,4 @@
-// Only use in this file to avoid conflicts with Microsoft.Extensions.Logging
+
 using Serilog;
 
 namespace Ecmanage.eProcessor.Services.FakeFetch;
@@ -50,7 +50,6 @@ public static class ProgramExtensions
             .AddDapr()
             .AddSqlServer(
                 builder.Configuration["ConnectionStrings:FakeFetchDB"]!,
-                // builder.Configuration.GetConnectionString("DefaultConnection")!,
                 name: "FakeFetchDb-check",
                 tags: new[] { "fakeFetchdb" });
 

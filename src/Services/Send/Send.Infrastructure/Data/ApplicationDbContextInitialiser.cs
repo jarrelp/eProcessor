@@ -17,7 +17,7 @@ public static class InitialiserExtensions
 
         await initialiser.InitialiseAsync();
 
-        // await initialiser.SeedAsync();
+
     }
 }
 
@@ -60,11 +60,11 @@ public class ApplicationDbContextInitialiser
 
     public async Task TrySeedAsync()
     {
-        // Default data
-        // Seed, if necessary
+
+
         if (!_context.EmailSnapshots.Any())
         {
-            //* seed here
+
             await _context.SaveChangesAsync();
         }
     }

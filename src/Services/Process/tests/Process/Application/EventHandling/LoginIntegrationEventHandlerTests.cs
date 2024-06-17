@@ -26,7 +26,7 @@ public class LoginIntegrationEventHandlerTests
     [Fact]
     public async Task Handle_ShouldPublishEmailBodyIntegrationEvent()
     {
-        // Arrange
+
         var loginEvent = new LoginIntegrationEvent(1, "John Doe", "Production", "2024-05-21", "10:00");
         var loginDto = new LoginDto
         {
@@ -55,10 +55,10 @@ public class LoginIntegrationEventHandlerTests
         _mapperMock.Setup(m => m.Map<LoginDto>(loginEvent)).Returns(loginDto);
         _mapperMock.Setup(m => m.Map<EmailBodyIntegrationEvent>(It.IsAny<EmailBodyDto>())).Returns(emailBodyEvent);
 
-        // Act
+
         await _handler.Handle(loginEvent, CancellationToken.None);
 
-        // Assert
+
         _eventBusMock.Verify(e => e.PublishAsync(emailBodyEvent, CancellationToken.None), Times.Once);
     }
 }

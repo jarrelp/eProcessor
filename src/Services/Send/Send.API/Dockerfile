@@ -36,7 +36,6 @@ COPY ["src/Services/Send/Send.Domain/Send.Domain.csproj", "src/Services/Send/Sen
 COPY ["src/Services/Send/Send.Application/Send.Application.csproj", "src/Services/Send/Send.Application/"]
 COPY ["src/Services/Send/tests/tests.csproj", "src/Services/Send/tests/"]
 
-COPY ["src/Services/FakeFetch.API/FakeFetch.API.csproj", "src/Services/FakeFetch.API/"]
 COPY ["src/Web/Webstatus/Webstatus.csproj", "src/Web/Webstatus/"]
 COPY ["eProcessor.sln", "./"]
 RUN dotnet restore "eProcessor.sln"

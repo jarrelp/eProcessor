@@ -8,7 +8,6 @@ public class Report : XmlData
 
     public string Url { get; set; } = string.Empty;
 
-    // Constructor
     public Report(string portalName, string reportName, string url)
     {
         PortalName = portalName;

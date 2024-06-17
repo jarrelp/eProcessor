@@ -59,8 +59,8 @@ namespace Ecmanage.eProcessor.Services.Send.Send.Application.EventHandling
                         throw new Exception("Error publishing IntegrationEvent", ex);
                     }
 
-                    // Uncomment this to trigger the retry
-                    // throw new SendMailFailedException("Simulated failure");
+
+
 
                     await _daprClient.InvokeBindingAsync(
                         SendMailBinding,
@@ -116,9 +116,9 @@ namespace Ecmanage.eProcessor.Services.Send.Send.Application.EventHandling
 
         private static TimeSpan GetDelayWithJitter(int attempt)
         {
-            // Base delay with exponential backoff
+
             var baseDelay = TimeSpan.FromSeconds(Math.Pow(2, attempt));
-            // Jitter range is between 0 and 1000 milliseconds
+
             var jitter = TimeSpan.FromMilliseconds(Jitterer.Next(0, 1000));
             return baseDelay + jitter;
         }

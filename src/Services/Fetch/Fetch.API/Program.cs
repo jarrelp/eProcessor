@@ -24,7 +24,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCloudEvents();
-// app.UseRouting();
 
 app.UseExceptionHandler(options => { });
 
@@ -36,7 +35,6 @@ app.MapCustomHealthChecks("/hc", "/liveness", UIResponseWriter.WriteHealthCheckU
 try
 {
     app.Logger.LogInformation("Applying database migration ({ApplicationName})...", appName);
-    // await app.InitialiseDatabaseAsync();
 
     app.Logger.LogInformation("Starting web host ({ApplicationName})...", appName);
     app.Run();
@@ -45,19 +43,3 @@ catch (Exception ex)
 {
     app.Logger.LogCritical(ex, "Host terminated unexpectedly ({ApplicationName})...", appName);
 }
-
-// var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy(name: MyAllowSpecificOrigins,
-//     policy =>
-//     {
-//         policy.AllowAnyHeader();
-//         policy.AllowAnyOrigin();
-//         policy.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "TRACE", "CONNECT", "HEAD");
-//         policy.SetIsOriginAllowed(origin => true);
-//     });
-// });
-
-// app.UseCors(MyAllowSpecificOrigins);

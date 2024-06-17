@@ -17,7 +17,7 @@ public class EmailBodyIntegrationEventHandlerTests
     [Fact]
     public async Task Handle_EmailSendingFailed_PublishAllRetriesFailedIntegrationEvent()
     {
-        // Arrange
+
         var loggerMock = new Mock<ILogger<EmailBodyIntegrationEventHandler>>();
         var eventBusMock = new Mock<IEventBus>();
         var emailSnapshotServiceMock = new Mock<IEmailSnapshotService>();
@@ -49,8 +49,10 @@ public class EmailBodyIntegrationEventHandlerTests
             Subject = "Test Subject"
         };
 
-        // Act & Assert
-        await Assert.ThrowsAsync<SendMailFailedException>(() => handler.Handle(emailEvent, CancellationToken.None));
-        eventBusMock.Verify(e => e.PublishAsync(It.IsAny<AllRetriesFailedIntegrationEvent>(), CancellationToken.None), Times.Once);
+
+        await Assert.ThrowsAsync<SendMailFailedException>(() =>
+            handler.Handle(emailEvent, CancellationToken.None));
+        eventBusMock.Verify(e =>
+            e.PublishAsync(It.IsAny<AllRetriesFailedIntegrationEvent>(), CancellationToken.None), Times.Once);
     }
 }

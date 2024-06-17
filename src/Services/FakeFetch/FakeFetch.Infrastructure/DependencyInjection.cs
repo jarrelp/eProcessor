@@ -12,7 +12,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration["ConnectionStrings:FakeFetchDB"]!;
-        // var connectionString = configuration.GetConnectionString("DefaultConnection");
+
 
         Guard.Against.Null(connectionString, message: "Connection string not found.");
 

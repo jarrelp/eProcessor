@@ -1,4 +1,4 @@
-// Only use in this file to avoid conflicts with Microsoft.Extensions.Logging
+
 using Serilog;
 
 namespace Ecmanage.eProcessor.Services.Fetch;
@@ -50,7 +50,7 @@ public static class ProgramExtensions
             .AddDapr()
             .AddSqlServer(
                 builder.Configuration["ConnectionStrings:OracleTestDB"]!,
-                // builder.Configuration.GetConnectionString("DefaultConnection")!,
+
                 name: "OracleTestDb-check",
                 tags: new[] { "oracletestdb" });
 

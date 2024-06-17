@@ -26,7 +26,7 @@ public class UserIntegrationEventHandlerTests
     [Fact]
     public async Task Handle_ShouldPublishEmailBodyIntegrationEvent()
     {
-        // Arrange
+
         var userEvent = new UserIntegrationEvent(1, "Sample Header", "user@example.com", "John Doe", "johndoe", "password123", "Sample Company", "http://example.com");
         var userDto = new UserDto { EmailQueueId = 1, EmailFrom = "no-reply@example.com", EmailTo = "user@example.com", Subject = "Welcome", ImageHeader = "Sample Header", FullName = "John Doe", UserName = "johndoe", Password = "password123", Company = "Sample Company", Url = "http://example.com" };
         var emailBodyDto = new EmailBodyDto { EmailBody = "Email Body", EmailQueueId = 1, EmailFrom = "no-reply@example.com", EmailTo = "user@example.com", Subject = "Welcome" };
@@ -35,10 +35,10 @@ public class UserIntegrationEventHandlerTests
         _mapperMock.Setup(m => m.Map<UserDto>(userEvent)).Returns(userDto);
         _mapperMock.Setup(m => m.Map<EmailBodyIntegrationEvent>(It.IsAny<EmailBodyDto>())).Returns(emailBodyEvent);
 
-        // Act
+
         await _handler.Handle(userEvent, CancellationToken.None);
 
-        // Assert
+
         _eventBusMock.Verify(e => e.PublishAsync(emailBodyEvent, CancellationToken.None), Times.Once);
     }
 }

@@ -13,7 +13,6 @@ public class User : XmlData
 
     public string Url { get; set; } = string.Empty;
 
-    // Constructor
     public User(string imageHeader, string email, string fullName, string userName, string password, string company, string url)
     {
         ImageHeader = imageHeader;

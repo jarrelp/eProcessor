@@ -25,7 +25,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCloudEvents();
-// app.UseRouting();
 
 app.UseExceptionHandler(options => { });
 
@@ -46,19 +45,3 @@ catch (Exception ex)
 {
     app.Logger.LogCritical(ex, "Host terminated unexpectedly ({ApplicationName})...", appName);
 }
-
-// var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy(name: MyAllowSpecificOrigins,
-//     policy =>
-//     {
-//         policy.AllowAnyHeader();
-//         policy.AllowAnyOrigin();
-//         policy.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "TRACE", "CONNECT", "HEAD");
-//         policy.SetIsOriginAllowed(origin => true);
-//     });
-// });
-
-// app.UseCors(MyAllowSpecificOrigins);

@@ -269,8 +269,7 @@ public class EmailDataRepository : IEmailDataRepository
   }
 }
 
-// OracleCommand loCmd = new OracleCommand("UPDATE gnt_emailqueue SET sent = :sent, modified_on = :modifiedon, modified_by = 'EmailApi' WHERE emailqueueid = :emailqueueid");
-// loCmd.Parameters.Add(new OracleParameter("sent", newSentValue));
-// loCmd.Parameters.Add(new OracleParameter("modifiedon", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")));
-// loCmd.Parameters.Add(new OracleParameter("modifiedby", "email-api"));
-// loCmd.Parameters.Add(new OracleParameter("emailqueueid", id));
+
+
+
+

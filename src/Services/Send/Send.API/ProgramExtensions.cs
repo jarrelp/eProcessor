@@ -1,4 +1,4 @@
-// Only use in this file to avoid conflicts with Microsoft.Extensions.Logging
+
 using Serilog;
 
 namespace Ecmanage.eProcessor.Services.Send;
@@ -50,7 +50,7 @@ public static class ProgramExtensions
             .AddDapr()
             .AddSqlServer(
                 builder.Configuration["ConnectionStrings:SendDB"]!,
-                // builder.Configuration.GetConnectionString("DefaultConnection")!,
+
                 name: "SendDb-check",
                 tags: new[] { "senddb" });
 

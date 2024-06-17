@@ -26,7 +26,7 @@ public class OverdueIntegrationEventHandlerTests
     [Fact]
     public async Task Handle_ShouldPublishEmailBodyIntegrationEvent()
     {
-        // Arrange
+
         var overdueEvent = new OverdueIntegrationEvent(1, "John Doe", "john.doe@example.com", "12345", "Sample Product", "ORD001", "2024-05-01", "2024-05-21");
         var overdueDto = new OverdueDto { EmailQueueId = 1, EmailFrom = "no-reply@example.com", EmailTo = "john.doe@example.com", Subject = "Overdue Notice", FullName = "John Doe", Email = "john.doe@example.com", ProductNumber = "12345", ProductName = "Sample Product", OrderCode = "ORD001", OrderDate = "2024-05-01", OverdueDate = "2024-05-21" };
         var emailBodyDto = new EmailBodyDto { EmailBody = "Email Body", EmailQueueId = 1, EmailFrom = "no-reply@example.com", EmailTo = "john.doe@example.com", Subject = "Overdue Notice" };
@@ -35,10 +35,10 @@ public class OverdueIntegrationEventHandlerTests
         _mapperMock.Setup(m => m.Map<OverdueDto>(overdueEvent)).Returns(overdueDto);
         _mapperMock.Setup(m => m.Map<EmailBodyIntegrationEvent>(It.IsAny<EmailBodyDto>())).Returns(emailBodyEvent);
 
-        // Act
+
         await _handler.Handle(overdueEvent, CancellationToken.None);
 
-        // Assert
+
         _eventBusMock.Verify(e => e.PublishAsync(emailBodyEvent, CancellationToken.None), Times.Once);
     }
 }

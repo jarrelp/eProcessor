@@ -14,7 +14,7 @@ public class EmailSnapshotDto : BaseEmailDto
         {
             CreateMap<EmailSnapshot, EmailSnapshotDto>()
                 .ForMember(dest => dest.EmailBody, opt => opt.MapFrom(src => src.Body));
-            //.ForMember(dest => dest.EmailBody, opt => opt.Ignore());
+
         }
     }
 }

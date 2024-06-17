@@ -1,4 +1,4 @@
-// Only use in this file to avoid conflicts with Microsoft.Extensions.Logging
+
 using Serilog;
 
 namespace Ecmanage.eProcessor.Services.Process;

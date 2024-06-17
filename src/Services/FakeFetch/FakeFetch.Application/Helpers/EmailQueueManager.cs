@@ -31,36 +31,3 @@ public class EmailQueueManager : IEmailQueueManager
         _isBusy = value;
     }
 }
-
-// public class EmailQueueManager : IEmailQueueManager
-// {
-//     private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
-//     private int _pendingEmails = 0;
-
-//     public async Task IncrementPendingEmailsAsync(int count)
-//     {
-//         await _semaphore.WaitAsync();
-//         try
-//         {
-//             Interlocked.Add(ref _pendingEmails, count);
-//         }
-//         finally
-//         {
-//             _semaphore.Release();
-//         }
-//     }
-
-//     public async Task<bool> DecrementPendingEmailsAsync()
-//     {
-//         await _semaphore.WaitAsync();
-//         try
-//         {
-//             Interlocked.Decrement(ref _pendingEmails);
-//             return _pendingEmails == 0;
-//         }
-//         finally
-//         {
-//             _semaphore.Release();
-//         }
-//     }
-// }

@@ -76,7 +76,7 @@ public class LoginTemplate
 
         var (html, errors) = mjmlRenderer.Render(text, options);
 
-        // Retourneer de HTML-body
+
         return html;
     }
 }

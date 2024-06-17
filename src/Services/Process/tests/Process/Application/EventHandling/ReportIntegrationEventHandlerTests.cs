@@ -26,7 +26,7 @@ public class ReportIntegrationEventHandlerTests
     [Fact]
     public async Task Handle_ShouldPublishEmailBodyIntegrationEvent()
     {
-        // Arrange
+
         var reportEvent = new ReportIntegrationEvent(1, "Sample Portal", "Sample Report", "http://example.com");
         var reportDto = new ReportDto { EmailQueueId = 1, EmailFrom = "no-reply@example.com", EmailTo = "user@example.com", Subject = "Report Notice", PortalName = "Sample Portal", ReportName = "Sample Report", Url = "http://example.com" };
         var emailBodyDto = new EmailBodyDto { EmailBody = "Email Body", EmailQueueId = 1, EmailFrom = "no-reply@example.com", EmailTo = "user@example.com", Subject = "Report Notice" };
@@ -35,10 +35,10 @@ public class ReportIntegrationEventHandlerTests
         _mapperMock.Setup(m => m.Map<ReportDto>(reportEvent)).Returns(reportDto);
         _mapperMock.Setup(m => m.Map<EmailBodyIntegrationEvent>(It.IsAny<EmailBodyDto>())).Returns(emailBodyEvent);
 
-        // Act
+
         await _handler.Handle(reportEvent, CancellationToken.None);
 
-        // Assert
+
         _eventBusMock.Verify(e => e.PublishAsync(emailBodyEvent, CancellationToken.None), Times.Once);
     }
 }
