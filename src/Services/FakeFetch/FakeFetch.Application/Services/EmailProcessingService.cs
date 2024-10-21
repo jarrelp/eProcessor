@@ -31,7 +31,8 @@ public class EmailProcessingService : IEmailProcessingService
         _mapper = mapper;
         _configuration = configuration;
         _emailQueueManager = emailQueueManager;
-        _batchSize = int.TryParse(_configuration["EmailProcessing:BatchSize"], out var batchSize) ? batchSize : 2;
+        _batchSize = int.TryParse(_configuration["EmailProcessing:BatchSize"],
+        out var batchSize) ? batchSize : 2;
     }
 
     public async Task FetchAndPublishEmailsAsync(CancellationToken cancellationToken)

@@ -15,14 +15,16 @@ namespace Ecmanage.eProcessor.Services.Send.tests.Send.Application.EventHandling
 public class EmailBodyIntegrationEventHandlerTests
 {
     [Fact]
-    public async Task Handle_EmailSendingFailed_PublishAllRetriesFailedIntegrationEvent()
+    public async Task Handle_EmailSendingFailedAfterRetries_PublishAllRetriesFailedIntegrationEvent()
     {
-
+        // Mock setup
         var loggerMock = new Mock<ILogger<EmailBodyIntegrationEventHandler>>();
         var eventBusMock = new Mock<IEventBus>();
         var emailSnapshotServiceMock = new Mock<IEmailSnapshotService>();
         var mapperMock = new Mock<IMapper>();
         var configurationMock = new Mock<IConfiguration>();
+
+        configurationMock.Setup(c => c["EmailSending:Retries"]).Returns("3");
 
         var daprClientMock = new Mock<DaprClient>();
         daprClientMock.Setup(c => c.InvokeBindingAsync(
@@ -39,7 +41,8 @@ public class EmailBodyIntegrationEventHandlerTests
             eventBusMock.Object,
             mapperMock.Object,
             emailSnapshotServiceMock.Object,
-            configurationMock.Object);
+            configurationMock.Object
+        );
 
         var emailEvent = new EmailBodyIntegrationEvent("Test Body")
         {
@@ -49,9 +52,13 @@ public class EmailBodyIntegrationEventHandlerTests
             Subject = "Test Subject"
         };
 
-
+        // Act
         await Assert.ThrowsAsync<SendMailFailedException>(() =>
             handler.Handle(emailEvent, CancellationToken.None));
+
+        eventBusMock.Verify(e =>
+            e.PublishAsync(It.IsAny<SendEmailAttemptIntegrationEvent>(), CancellationToken.None), Times.Exactly(4));
+
         eventBusMock.Verify(e =>
             e.PublishAsync(It.IsAny<AllRetriesFailedIntegrationEvent>(), CancellationToken.None), Times.Once);
     }

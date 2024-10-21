@@ -17,7 +17,7 @@ public class EmailCleanupService : BackgroundService, IEmailCleanupService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken);
+            await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
             await CleanupOldEmails(stoppingToken);
         }
     }
@@ -26,9 +26,10 @@ public class EmailCleanupService : BackgroundService, IEmailCleanupService
     {
         using var scope = _serviceProvider.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
-        var thirtyDaysAgo = DateTime.UtcNow.AddSeconds(-5);
+        var thirtyDaysAgo = DateTime.UtcNow.AddSeconds(-60);
 
-        var oldEmailSnapshots = context.EmailSnapshots.Where(emailSnapshots => emailSnapshots.SentDate < thirtyDaysAgo);
+        var oldEmailSnapshots = context.EmailSnapshots.Where(emailSnapshots =>
+        emailSnapshots.SentDate < thirtyDaysAgo);
         context.EmailSnapshots.RemoveRange(oldEmailSnapshots);
         await context.SaveChangesAsync(stoppingToken);
     }

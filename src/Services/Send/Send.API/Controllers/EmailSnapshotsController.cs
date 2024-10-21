@@ -7,7 +7,8 @@ namespace Ecmanage.eProcessor.Services.Send.Send.API.Controllers;
 public class EmailSnapshotsController : ApiControllerBase
 {
   [HttpGet("GetEmailSnapshotsWithPagination")]
-  public async Task<ActionResult<PaginatedList<EmailSnapshotDto>>> GetEmailSnapshotsWithPagination([FromQuery] GetEmailSnapshotsWithPaginationQuery query)
+  public async Task<ActionResult<PaginatedList<EmailSnapshotDto>>> GetEmailSnapshotsWithPagination
+  ([FromQuery] GetEmailSnapshotsWithPaginationQuery query)
   {
     return await Mediator.Send(query);
   }
