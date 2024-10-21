@@ -1,0 +1,163 @@
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>5</x><y>215</y><w>749</w><h>70</h></coordinates><panel_attributes>EmailQueueItemsController
+-
++ GetEmailQueueItemsWithPagination(query: GetEmailQueueItemsWithPaginationQuery): Task&lt;ActionResult&lt;PaginatedList&lt;EmailQueueItemDto&gt;&gt;&gt;
++ GetNonProcessedEmailQueueItemsItemsWithPagination(query: GetNonProcessedEmailQueueItemsItemsWithPaginationQuery): Task&lt;ActionResult&lt;PaginatedList&lt;EmailQueueItemDto&gt;&gt;&gt; 
++ SendAllEmailQueueItems(command: SendAllEmailQueueItemsCommand): Task&lt;Result&gt; 
++ SetSentValueToNotYetPickedUp(command: SetSentValueToNotYetPickedUpCommand): Task&lt;Result&gt; </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>5</x><y>299</y><w>217</w><h>49</h></coordinates><panel_attributes>SendAllEmailQueueItemsCommand
+-
++ Id: int
+-
++ SendAllEmailQueueItemsCommand(int Id) </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>271</x><y>299</y><w>399</w><h>63</h></coordinates><panel_attributes>SendAllEmailQueueItemsCommandHandler
+-
+- context: IApplicationDbContext
+- eventBus: IEventBus
+-
++ Handle(request: SendAllEmailQueueItemsCommand, cancellationToken: CancellationToken): Task</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>5</x><y>369</y><w>217</w><h>49</h></coordinates><panel_attributes>SetSentValueToNotYetPickedUpCommand
+-
++ Id: int
+-
++ SetSentValueToNotYetPickedUpCommand(int Id) </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>271</x><y>369</y><w>427</w><h>49</h></coordinates><panel_attributes>SetSentValueToNotYetPickedUpCommandHandler
+-
+- context: IApplicationDbContext
+-
++ Handle(request: SetSentValueToNotYetPickedUpCommand, cancellationToken: CancellationToken): Task</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>5</x><y>425</y><w>217</w><h>56</h></coordinates><panel_attributes>GetEmailQueueItemsWithPaginationQuery
+-
++ PageNumber: int
++ PageSize: int
+-
++ GetEmailQueueItemsWithPaginationQuery()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>271</x><y>425</y><w>574</w><h>56</h></coordinates><panel_attributes>GetEmailQueueItemsWithPaginationQueryHandler
+-
+- context: IApplicationDbContext
+- eventBus: IEventBus
+-
++ Handle(request: GetEmailQueueItemsWithPaginationQuery, cancellationToken: CancellationToken): Task&lt;PaginatedList&lt;EmailQueueItemDto&gt;&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>5</x><y>488</y><w>259</w><h>56</h></coordinates><panel_attributes>GetNonProcessedEmailQueueItemsItemsWithPaginationQuery
+-
++ PageNumber: int
++ PageSize: int
+-
++ GetEmailQueueItemsWithPaginationQuery()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>271</x><y>488</y><w>658</w><h>56</h></coordinates><panel_attributes>GetNonProcessedEmailQueueItemsItemsWithPaginationQueryHandler
+-
+- context: IApplicationDbContext
+- eventBus: IEventBus
+-
++ Handle(request: GetNonProcessedEmailQueueItemsItemsWithPaginationQuery, cancellationToken: CancellationToken): Task&lt;PaginatedList&lt;EmailQueueItemDto&gt;&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>5</x><y>831</y><w>308</w><h>112</h></coordinates><panel_attributes>ApplicationDbContext
+-
++ ApplicationDbContext(options: DbContextOptions&lt;ApplicationDbContext&gt;)
++ EmailQueueItems: DbSet&lt;EmailQueueItem&gt;
++ Logins: DbSet&lt;Login&gt;
++ Overdues: DbSet&lt;Overdue&gt;
++ Reports: DbSet&lt;Report&gt;
++ Users: DbSet&lt;User&gt;
++ OnModelCreating(builder: ModelBuilder): void
+-
+- ApplyConfigurationsFromAssembly(assembly: Assembly): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>866</y><w>98</w><h>28</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;13;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>390</x><y>831</y><w>245</w><h>77</h></coordinates><panel_attributes>&lt;IApplicationDbContext&gt;
+-
++ EmailQueueItems: DbSet&lt;EmailQueueItem&gt;
++ Logins: DbSet&lt;Login&gt;
++ Overdues: DbSet&lt;Overdue&gt;
++ Reports: DbSet&lt;Report&gt;
++ Users: DbSet&lt;User&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>5</x><y>565</y><w>91</w><h>77</h></coordinates><panel_attributes>EmailQueueItem
+-
++ Id: int
++ Email: string
++ Subject: string
++ Sent: char
++ XmlData: XmlData</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>103</x><y>656</y><w>91</w><h>98</h></coordinates><panel_attributes>Login
+-
++ Id: int
++ FullName: string
++ Environment: string
++ Date: DateTime
++ Time: TimeSpan
++ Email: string
++ Subject: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>201</x><y>656</y><w>112</w><h>126</h></coordinates><panel_attributes>Overdue
+-
++ Id: int
++ FullName: string
++ Email: string
++ ProductNumber: string
++ ProductName: string
++ OrderCode: string
++ OrderDate: DateTime
++ OverdueDate: DateTime
++ Email: string
++ Subject: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>656</y><w>112</w><h>84</h></coordinates><panel_attributes>Report
+-
++ Id: int
++ PortalName: string
++ ReportName: string
++ Url: string
++ Email: string
++ Subject: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>439</x><y>656</y><w>112</w><h>126</h></coordinates><panel_attributes>Report
+-
++ Id: int
++ ImageHeader: string
++ Email: string
++ FullName: string
++ UserName: string
++ Password: string
++ Company: string
++ Url: string
++ Email: string
++ Subject: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>285</x><y>593</y><w>56</w><h>35</h></coordinates><panel_attributes>XmlData
+-
++ Id: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>145</x><y>614</y><w>154</w><h>56</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;13;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>621</y><w>63</w><h>49</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;13;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>621</y><w>63</w><h>49</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;13;70;50</additional_attributes></element><element><id>Relation</id><coordinates><x>334</x><y>600</y><w>168</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;13;220;80</additional_attributes></element><element><id>Relation</id><coordinates><x>89</x><y>586</y><w>210</w><h>28</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;280;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>852</x><y>425</y><w>224</w><h>35</h></coordinates><panel_attributes>GetEmailQueueItemsWithPaginationQueryValidator
+-
++ GetEmailQueueItemsWithPaginationQueryValidator()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>936</x><y>488</y><w>308</w><h>35</h></coordinates><panel_attributes>GetNonProcessedEmailQueueItemsItemsWithPaginationQueryValidator
+-
++ GetNonProcessedEmailQueueItemsItemsWithPaginationQueryValidator()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>852</y><w>112</w><h>84</h></coordinates><panel_attributes>ReportIntegrationEvent
+-
++ EmailId: int
++ PortalName: string
++ ReportName: string
++ Url: string
++ EmailTo: string
++ Subject: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>929</x><y>852</y><w>112</w><h>126</h></coordinates><panel_attributes>UserIntegrationEvent
+-
++ EmailId: int
++ ImageHeader: string
++ Email: string
++ FullName: string
++ UserName: string
++ Password: string
++ Company: string
++ Url: string
++ EmailTo: string
++ Subject: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>691</x><y>852</y><w>112</w><h>126</h></coordinates><panel_attributes>LoginIntegrationEvent
+-
++ EmailId: int
++ FullName: string
++ Environment: string
++ Date: string
++ Time: string
++ EmailTo: string
++ Subject: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1048</x><y>852</y><w>112</w><h>126</h></coordinates><panel_attributes>UserIntegrationEvent
+-
++ EmailId: int
++ ImageHeader: string
++ Email: string
++ FullName: string
++ UserName: string
++ Password: string
++ Company: string
++ Url: string
++ EmailTo: string
++ Subject: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>852</x><y>712</y><w>133</w><h>77</h></coordinates><panel_attributes>BaseEmailIntegrationEvent
+-
++ EmailFrom: string
++ EmailTo: string
++ Subject: string
+-
++ BaseEmailIntegrationEvent
+(emailTo: string, subject: string)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>733</x><y>782</y><w>133</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>859</x><y>782</y><w>35</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>30;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>936</x><y>782</y><w>63</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;100</additional_attributes></element><element><id>Relation</id><coordinates><x>978</x><y>782</y><w>140</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>852</x><y>579</y><w>133</w><h>77</h></coordinates><panel_attributes>IntegrationEvent
+-
++ Id: Guid
++ CreationDate: DateTime
+-
++ IntegrationEvent()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>908</x><y>649</y><w>21</w><h>77</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>635</y><w>21</w><h>210</h></coordinates><panel_attributes>lt=-
+m1=</panel_attributes><additional_attributes>10;280;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>138</x><y>747</y><w>21</w><h>98</h></coordinates><panel_attributes>lt=-
+m1=</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>775</y><w>21</w><h>70</h></coordinates><panel_attributes>lt=-
+m1=</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>285</x><y>733</y><w>105</w><h>112</h></coordinates><panel_attributes>lt=-
+m1=</panel_attributes><additional_attributes>10;140;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>775</y><w>203</w><h>70</h></coordinates><panel_attributes>lt=-
+m1=</panel_attributes><additional_attributes>10;80;270;10</additional_attributes></element></diagram>

@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "name": "C#: XmlToCSharp",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}\\XmlToCSharp.csproj",
+      "launchConfigurationId": "TargetFramework=;XmlToCSharp"
+    }
+  ]
+}
